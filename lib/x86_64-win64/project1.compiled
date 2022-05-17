@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CONFIG>
-  <Compiler Value="C:\laz_new\fpc\bin\x86_64-win64\fpc.exe" Date="1415101795"/>
-  <Params Value=" -MObjFPC -Scghi -O1 -gw3 -gl -WG -l -vewnhibq -FiD:\Archive\code_source\font_dialog\lib\x86_64-win64 -FuC:\laz_new\lazarus\lcl\units\x86_64-win64\win32 -FuC:\laz_new\lazarus\lcl\units\x86_64-win64 -FuC:\laz_new\lazarus\components\freetype\lib\x86_64-win64 -FuC:\laz_new\lazarus\components\lazutils\lib\x86_64-win64 -FuC:\laz_new\lazarus\packager\units\x86_64-win64 -FuD:\Archive\code_source\font_dialog\ -FUD:\Archive\code_source\font_dialog\lib\x86_64-win64\ -FED:\Archive\code_source\font_dialog\ -oD:\Archive\code_source\font_dialog\project1.exe -dLCL -dLCLwin32 project1.lpr"/>
-</CONFIG>
