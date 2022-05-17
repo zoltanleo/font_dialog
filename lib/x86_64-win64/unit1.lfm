@@ -1,0 +1,56 @@
+object Form1: TForm1
+  Left = 383
+  Height = 240
+  Top = 31
+  Width = 320
+  Caption = 'Form1'
+  ClientHeight = 240
+  ClientWidth = 320
+  object Button1: TButton
+    AnchorSideLeft.Control = Owner
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = Owner
+    AnchorSideBottom.Side = asrBottom
+    Left = 10
+    Height = 25
+    Top = 205
+    Width = 300
+    Anchors = [akLeft, akRight, akBottom]
+    BorderSpacing.Around = 10
+    Caption = 'FontDialog Execute'
+    OnClick = Button1Click
+    TabOrder = 0
+  end
+  object Label1: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideTop.Control = Owner
+    AnchorSideTop.Side = asrCenter
+    Left = 143
+    Height = 15
+    Top = 113
+    Width = 34
+    Caption = 'Label1'
+  end
+  object StaticText1: TStaticText
+    AnchorSideLeft.Control = Owner
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideTop.Control = Label1
+    AnchorSideTop.Side = asrBottom
+    Left = 132
+    Height = 16
+    Top = 138
+    Width = 57
+    AutoSize = True
+    BorderSpacing.Top = 10
+    Caption = 'StaticText1'
+    TabOrder = 1
+  end
+  object FontDialog1: TFontDialog
+    MinFontSize = 0
+    MaxFontSize = 0
+    Left = 72
+    Top = 64
+  end
+end
