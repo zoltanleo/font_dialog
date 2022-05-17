@@ -1,10 +1,10 @@
 object Form1: TForm1
   Left = 383
-  Height = 240
+  Height = 173
   Top = 31
   Width = 320
   Caption = 'Form1'
-  ClientHeight = 240
+  ClientHeight = 173
   ClientWidth = 320
   object Button1: TButton
     AnchorSideLeft.Control = Owner
@@ -14,11 +14,11 @@ object Form1: TForm1
     AnchorSideBottom.Side = asrBottom
     Left = 10
     Height = 25
-    Top = 205
+    Top = 138
     Width = 300
     Anchors = [akLeft, akRight, akBottom]
     BorderSpacing.Around = 10
-    Caption = 'FontDialog Execute'
+    Caption = 'Execute via Assign(TPersistent)'
     OnClick = Button1Click
     TabOrder = 0
   end
@@ -26,11 +26,12 @@ object Form1: TForm1
     AnchorSideLeft.Control = Owner
     AnchorSideLeft.Side = asrCenter
     AnchorSideTop.Control = Owner
-    AnchorSideTop.Side = asrCenter
     Left = 143
     Height = 15
-    Top = 113
+    Top = 10
     Width = 34
+    BorderSpacing.Top = 10
+    BorderSpacing.Bottom = 10
     Caption = 'Label1'
   end
   object StaticText1: TStaticText
@@ -40,12 +41,27 @@ object Form1: TForm1
     AnchorSideTop.Side = asrBottom
     Left = 132
     Height = 16
-    Top = 138
+    Top = 35
     Width = 57
     AutoSize = True
     BorderSpacing.Top = 10
     Caption = 'StaticText1'
     TabOrder = 1
+  end
+  object Button2: TButton
+    AnchorSideLeft.Control = Owner
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = Button1
+    Left = 10
+    Height = 25
+    Top = 103
+    Width = 300
+    Anchors = [akLeft, akRight, akBottom]
+    BorderSpacing.Around = 10
+    Caption = 'Execute via Assign(TLogFont)'
+    OnClick = Button2Click
+    TabOrder = 2
   end
   object FontDialog1: TFontDialog
     MinFontSize = 0
