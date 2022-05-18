@@ -31,8 +31,6 @@ type
     lbxFontFamily: TListBox;
     lbxTypeFace: TListBox;
     lbxFontSize: TListBox;
-    splFontDlgUnixHorz: TSplitter;
-    splFontDlgUnixVert: TSplitter;
     procedure edtFontSizeKeyPress(Sender: TObject; var Key: char);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
