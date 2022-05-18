@@ -15,30 +15,16 @@ object frmFontDlgUnix: TfrmFontDlgUnix
     AnchorSideRight.Control = splFontDlgUnixVert
     AnchorSideBottom.Control = splFontDlgUnixHorz
     Left = 10
-    Height = 129
+    Height = 139
     Top = 35
-    Width = 241
+    Width = 201
     Anchors = [akTop, akLeft, akRight, akBottom]
     BorderSpacing.Left = 10
     BorderSpacing.Top = 10
     BorderSpacing.Right = 5
     BorderSpacing.Bottom = 10
     Columns = 1
-    Items.Strings = (
-      'выавыаАМваыаыВАвавы'
-      'выавыаАМваыаыВАвавывыавыаАМваыаыВАвавы'
-      'выавыаАМваыаыВАвавывыавыаАМваыаыВАвавы'
-      'выавыаАМваыаыВАвавы'
-      'выавыаАМваыаыВАвавы'
-      'выавыаАМваыаыВАвавы'
-      'выавыаАМваыаыВАвавывыавыаАМваыаыВАвавы'
-      'выавыаАМваыаыВАвавывыавыаАМваыаыВАвавы'
-      'выавыаАМваыаыВАвавы'
-      'выавыаАМваыаыВАвавы'
-      'выавыаАМваыаыВАвавы'
-      'выавыаАМваыаыВАвавы'
-    )
-    ItemHeight = 15
+    ItemHeight = 0
     TabOrder = 0
   end
   object lbxTypeFace: TListBox
@@ -48,10 +34,10 @@ object frmFontDlgUnix: TfrmFontDlgUnix
     AnchorSideTop.Side = asrBottom
     AnchorSideRight.Control = lbxFontSize
     AnchorSideBottom.Control = splFontDlgUnixHorz
-    Left = 266
-    Height = 129
+    Left = 226
+    Height = 139
     Top = 35
-    Width = 152
+    Width = 192
     Anchors = [akTop, akLeft, akRight, akBottom]
     BorderSpacing.Left = 5
     BorderSpacing.Top = 10
@@ -67,25 +53,14 @@ object frmFontDlgUnix: TfrmFontDlgUnix
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = splFontDlgUnixHorz
     Left = 428
-    Height = 96
+    Height = 106
     Top = 68
     Width = 51
     Anchors = [akTop, akRight, akBottom]
     BorderSpacing.Top = 10
     BorderSpacing.Right = 10
     BorderSpacing.Bottom = 10
-    Items.Strings = (
-      '10'
-      '1'
-      '1'
-      '1'
-      '1'
-      '1'
-      '1'
-      '1'
-      '1'
-    )
-    ItemHeight = 15
+    ItemHeight = 0
     TabOrder = 2
   end
   object gbEffects: TGroupBox
@@ -94,15 +69,15 @@ object frmFontDlgUnix: TfrmFontDlgUnix
     AnchorSideTop.Side = asrBottom
     AnchorSideBottom.Control = btnSelect
     Left = 10
-    Height = 158
-    Top = 189
+    Height = 148
+    Top = 199
     Width = 190
     Anchors = [akTop, akLeft, akBottom]
     BorderSpacing.Left = 10
     BorderSpacing.Top = 10
     BorderSpacing.Bottom = 20
     Caption = 'Эффекты'
-    ClientHeight = 138
+    ClientHeight = 128
     ClientWidth = 186
     TabOrder = 3
     object chbFontStyleStrike: TCheckBox
@@ -176,15 +151,15 @@ object frmFontDlgUnix: TfrmFontDlgUnix
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = lblFontCharset
     Left = 210
-    Height = 100
-    Top = 189
+    Height = 90
+    Top = 199
     Width = 269
     Anchors = [akTop, akLeft, akRight, akBottom]
     BorderSpacing.Left = 10
     BorderSpacing.Top = 10
     BorderSpacing.Right = 10
     Caption = 'Образец'
-    ClientHeight = 80
+    ClientHeight = 70
     ClientWidth = 265
     TabOrder = 4
     object lblTemplate: TLabel
@@ -194,7 +169,7 @@ object frmFontDlgUnix: TfrmFontDlgUnix
       AnchorSideTop.Side = asrCenter
       Left = 101
       Height = 15
-      Top = 33
+      Top = 28
       Width = 62
       Caption = 'lblTemplate'
     end
@@ -261,7 +236,7 @@ object frmFontDlgUnix: TfrmFontDlgUnix
   object lblTypeFace: TLabel
     AnchorSideLeft.Control = lbxTypeFace
     AnchorSideTop.Control = Owner
-    Left = 266
+    Left = 226
     Height = 15
     Top = 10
     Width = 69
@@ -280,6 +255,7 @@ object frmFontDlgUnix: TfrmFontDlgUnix
     Width = 51
     Anchors = [akTop, akLeft, akRight]
     BorderSpacing.Top = 10
+    OnKeyPress = edtFontSizeKeyPress
     TabOrder = 8
     Text = 'edtFontSize'
   end
@@ -290,7 +266,7 @@ object frmFontDlgUnix: TfrmFontDlgUnix
     Cursor = crVSplit
     Left = 0
     Height = 5
-    Top = 174
+    Top = 184
     Width = 489
     Align = alNone
     Anchors = [akLeft, akRight]
@@ -312,9 +288,9 @@ object frmFontDlgUnix: TfrmFontDlgUnix
     AnchorSideTop.Control = Owner
     AnchorSideBottom.Control = splFontDlgUnixHorz
     AnchorSideBottom.Side = asrBottom
-    Left = 256
-    Height = 159
-    Top = 10
+    Left = 216
+    Height = 189
+    Top = 0
     Width = 5
     Align = alNone
     Anchors = [akTop, akLeft, akBottom]

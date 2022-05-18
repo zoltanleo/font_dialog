@@ -5,8 +5,8 @@ unit ufontdlgunix;
 interface
 
 uses
-  Classes, ColorBox, ExtCtrls, StdCtrls, SysUtils, Forms, Controls, Graphics,
-  Dialogs;
+  Classes, ColorBox, ExtCtrls, LCLType, StdCtrls, SysUtils, Forms, Controls,
+  Graphics, Dialogs;
 
 type
 
@@ -33,6 +33,7 @@ type
     lbxFontSize: TListBox;
     splFontDlgUnixHorz: TSplitter;
     splFontDlgUnixVert: TSplitter;
+    procedure edtFontSizeKeyPress(Sender: TObject; var Key: char);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
   private
@@ -53,26 +54,35 @@ implementation
 
 procedure TfrmFontDlgUnix.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
+  FreeAndNil(FSelfFont);
   CloseAction:= caFree;
 end;
 
+procedure TfrmFontDlgUnix.edtFontSizeKeyPress(Sender: TObject; var Key: char);
+//const
+//  dig_arr = Array['0','1'] of char;
+begin
+  //Self.Caption:= IntToStr(ord(Key));
+  //if (((ord(Key) < VK_0) or (ord(Key) > VK_9)) or (Ord(Key) = VK_BACK)) then Key:= #0;
+end;
+
 procedure TfrmFontDlgUnix.FormCreate(Sender: TObject);
-const
-  SelfMinValue = 200;
 begin
   with Self do
   begin
     ModalResult:= mrCancel;
-    AutoScroll:= True;
     KeyPreview:= True;
-    BorderIcons:= [biSystemMenu];
-    Constraints.MinHeight:= SelfMinValue * 2;
-    Constraints.MinWidth:= SelfMinValue * 3;
+    BorderStyle:= bsDialog;
   end;
 
+  lbxFontFamily.Constraints.MinHeight:= Self.Canvas.TextHeight('W') * 4;
+  lbxFontFamily.Constraints.MinWidth:= Self.Canvas.TextWidth('W') * 18;
+  lbxTypeFace.Constraints.MinWidth:= Self.Canvas.TextWidth('W') * 14;
+  gbEffects.Constraints.MinHeight:= Self.Canvas.TextHeight('W') * 10;
 
+  FSelfFont:= TFont.Create;
+  edtFontSize.Clear;
 
-  gbTemplate.Constraints.MinHeight:= Self.Canvas.TextHeight('W') * 3;
 end;
 
 procedure TfrmFontDlgUnix.SetSelfFont(AValue: TFont);
