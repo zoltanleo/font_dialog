@@ -5,7 +5,8 @@ unit Unit1;
 interface
 
 uses
-  Classes, LCLType, StdCtrls, SysUtils, Forms, Controls, Graphics, Dialogs;
+  Classes, LCLType, StdCtrls, SysUtils, Forms, Controls, Graphics, Dialogs,
+  ufontdlgunix;
 
 type
 
@@ -14,11 +15,13 @@ type
   TForm1 = class(TForm)
     Button1: TButton;
     Button2: TButton;
+    Button3: TButton;
     FontDialog1: TFontDialog;
     Label1: TLabel;
     StaticText1: TStaticText;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
   private
 
   public
@@ -97,6 +100,24 @@ begin
 
     Label1.Font.Assign(aLogFont);
     StaticText1.Font.Assign(aLogFont);
+  end;
+end;
+
+procedure TForm1.Button3Click(Sender: TObject);
+var
+  tmpFrm: TfrmFontDlgUnix = nil;
+begin
+  tmpFrm:= TfrmFontDlgUnix.Create(Self);
+
+  try
+    tmpFrm.ShowModal;
+
+    if (tmpFrm.ModalResult = mrOK) then
+    begin
+
+    end;
+  finally
+    FreeAndNil(tmpFrm);
   end;
 end;
 
