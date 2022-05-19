@@ -32,6 +32,7 @@ type
     procedure chbStrikeOutChange(Sender: TObject);
     procedure chbUnderlineChange(Sender: TObject);
     procedure ColorBox1Change(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
 
@@ -197,6 +198,12 @@ procedure TForm1.ColorBox1Change(Sender: TObject);
 begin
   Label1.Font.Color:= ColorBox1.Selected;
   StaticText1.Font.Color:= ColorBox1.Selected;
+end;
+
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+  Label1.Font.Size:= 15;
+  StaticText1.Font.Size:= 15;
 end;
 
 procedure TForm1.FormShow(Sender: TObject);
