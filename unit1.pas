@@ -135,35 +135,67 @@ end;
 procedure TForm1.chbBoldChange(Sender: TObject);
 begin
   if chbBold.Checked
-    then StaticText1.Font.Style:= StaticText1.Font.Style + [fsBold]
-    else StaticText1.Font.Style:= StaticText1.Font.Style - [fsBold];
+  then
+    begin
+      Label1.Font.Style:= StaticText1.Font.Style + [fsBold];
+      StaticText1.Font.Style:= StaticText1.Font.Style + [fsBold];
+    end
+  else
+    begin
+      Label1.Font.Style:= StaticText1.Font.Style - [fsBold];
+      StaticText1.Font.Style:= StaticText1.Font.Style - [fsBold];
+    end;
 end;
 
 procedure TForm1.chbItalicChange(Sender: TObject);
 begin
   if chbItalic.Checked
-    then StaticText1.Font.Style:= StaticText1.Font.Style + [fsItalic]
-    else StaticText1.Font.Style:= StaticText1.Font.Style - [fsItalic];
+  then
+    begin
+      Label1.Font.Style:= StaticText1.Font.Style + [fsItalic];
+      StaticText1.Font.Style:= StaticText1.Font.Style + [fsItalic];
+    end
+  else
+    begin
+      Label1.Font.Style:= StaticText1.Font.Style - [fsItalic];
+      StaticText1.Font.Style:= StaticText1.Font.Style - [fsItalic];
+    end
 end;
 
 procedure TForm1.chbStrikeOutChange(Sender: TObject);
 begin
   if chbStrikeOut.Checked
-    then StaticText1.Font.Style:= StaticText1.Font.Style + [fsStrikeOut]
-    else StaticText1.Font.Style:= StaticText1.Font.Style - [fsStrikeOut];
+  then
+    begin
+      Label1.Font.Style:= StaticText1.Font.Style + [fsStrikeOut];
+      StaticText1.Font.Style:= StaticText1.Font.Style + [fsStrikeOut];
+    end
+  else
+    begin
+      Label1.Font.Style:= StaticText1.Font.Style - [fsStrikeOut];
+      StaticText1.Font.Style:= StaticText1.Font.Style - [fsStrikeOut];
+    end
 
 end;
 
 procedure TForm1.chbUnderlineChange(Sender: TObject);
 begin
   if chbUnderline.Checked
-    then StaticText1.Font.Style:= StaticText1.Font.Style + [fsUnderline]
-    else StaticText1.Font.Style:= StaticText1.Font.Style - [fsUnderline];
-
+    then
+      begin
+        Label1.Font.Style:= StaticText1.Font.Style + [fsUnderline];
+        StaticText1.Font.Style:= StaticText1.Font.Style + [fsUnderline];
+      end
+    else
+      begin
+        Label1.Font.Style:= StaticText1.Font.Style - [fsUnderline];
+        StaticText1.Font.Style:= StaticText1.Font.Style - [fsUnderline];
+      end;
 end;
 
 procedure TForm1.ColorBox1Change(Sender: TObject);
 begin
+  Label1.Font.Color:= ColorBox1.Selected;
   StaticText1.Font.Color:= ColorBox1.Selected;
 end;
 
