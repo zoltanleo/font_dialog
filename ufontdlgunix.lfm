@@ -14,9 +14,9 @@ object frmFontDlgUnix: TfrmFontDlgUnix
     AnchorSideTop.Side = asrBottom
     AnchorSideBottom.Control = gbEffects
     Left = 10
-    Height = 149
+    Height = 160
     Top = 30
-    Width = 238
+    Width = 182
     Anchors = [akTop, akLeft, akBottom]
     BorderSpacing.Left = 10
     BorderSpacing.Top = 5
@@ -34,10 +34,10 @@ object frmFontDlgUnix: TfrmFontDlgUnix
     AnchorSideRight.Control = lbxFontSize
     AnchorSideBottom.Control = lbxFontFamily
     AnchorSideBottom.Side = asrBottom
-    Left = 258
-    Height = 149
+    Left = 202
+    Height = 160
     Top = 30
-    Width = 160
+    Width = 216
     Anchors = [akTop, akLeft, akRight, akBottom]
     BorderSpacing.Left = 10
     BorderSpacing.Top = 5
@@ -53,7 +53,7 @@ object frmFontDlgUnix: TfrmFontDlgUnix
     AnchorSideBottom.Control = lbxFontFamily
     AnchorSideBottom.Side = asrBottom
     Left = 428
-    Height = 116
+    Height = 127
     Top = 63
     Width = 51
     Anchors = [akTop, akRight, akBottom]
@@ -67,15 +67,15 @@ object frmFontDlgUnix: TfrmFontDlgUnix
     AnchorSideTop.Side = asrBottom
     AnchorSideBottom.Control = btnSelect
     Left = 10
-    Height = 158
-    Top = 189
+    Height = 147
+    Top = 200
     Width = 190
     Anchors = [akTop, akLeft, akBottom]
     BorderSpacing.Left = 10
     BorderSpacing.Top = 10
     BorderSpacing.Bottom = 20
     Caption = 'Эффекты'
-    ClientHeight = 138
+    ClientHeight = 127
     ClientWidth = 186
     TabOrder = 3
     object chbFontStyleStrike: TCheckBox
@@ -146,15 +146,15 @@ object frmFontDlgUnix: TfrmFontDlgUnix
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = lblFontCharset
     Left = 210
-    Height = 100
-    Top = 189
+    Height = 89
+    Top = 200
     Width = 269
     Anchors = [akTop, akLeft, akRight, akBottom]
     BorderSpacing.Left = 10
     BorderSpacing.Right = 10
     BorderSpacing.Bottom = 15
     Caption = 'Образец'
-    ClientHeight = 80
+    ClientHeight = 69
     ClientWidth = 265
     TabOrder = 4
     object lblTemplate: TLabel
@@ -166,7 +166,7 @@ object frmFontDlgUnix: TfrmFontDlgUnix
       AnchorSideRight.Side = asrBottom
       Left = 9
       Height = 15
-      Top = 33
+      Top = 27
       Width = 246
       Anchors = [akTop, akLeft, akRight]
       BorderSpacing.Left = 10
@@ -237,7 +237,7 @@ object frmFontDlgUnix: TfrmFontDlgUnix
   object lblTypeFace: TLabel
     AnchorSideLeft.Control = lbxTypeFace
     AnchorSideTop.Control = Owner
-    Left = 258
+    Left = 202
     Height = 15
     Top = 10
     Width = 69

@@ -5,8 +5,8 @@ unit Unit1;
 interface
 
 uses
-  Classes, LCLType, StdCtrls, SysUtils, Forms, Controls, Graphics, Dialogs,
-  ufontdlgunix;
+  Classes, ColorBox, LCLType, StdCtrls, SysUtils, Forms, Controls, Graphics,
+  Dialogs, ufontdlgunix;
 
 type
 
@@ -16,12 +16,23 @@ type
     Button1: TButton;
     Button2: TButton;
     Button3: TButton;
+    chbBold: TCheckBox;
+    chbItalic: TCheckBox;
+    chbStrikeOut: TCheckBox;
+    chbUnderline: TCheckBox;
+    ColorBox1: TColorBox;
     FontDialog1: TFontDialog;
     Label1: TLabel;
     StaticText1: TStaticText;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
+    procedure chbBoldChange(Sender: TObject);
+    procedure chbItalicChange(Sender: TObject);
+    procedure chbStrikeOutChange(Sender: TObject);
+    procedure chbUnderlineChange(Sender: TObject);
+    procedure ColorBox1Change(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
 
   public
@@ -119,6 +130,50 @@ begin
   finally
     FreeAndNil(tmpFrm);
   end;
+end;
+
+procedure TForm1.chbBoldChange(Sender: TObject);
+begin
+  if chbBold.Checked
+    then StaticText1.Font.Style:= StaticText1.Font.Style + [fsBold]
+    else StaticText1.Font.Style:= StaticText1.Font.Style - [fsBold];
+end;
+
+procedure TForm1.chbItalicChange(Sender: TObject);
+begin
+  if chbItalic.Checked
+    then StaticText1.Font.Style:= StaticText1.Font.Style + [fsItalic]
+    else StaticText1.Font.Style:= StaticText1.Font.Style - [fsItalic];
+end;
+
+procedure TForm1.chbStrikeOutChange(Sender: TObject);
+begin
+  if chbStrikeOut.Checked
+    then StaticText1.Font.Style:= StaticText1.Font.Style + [fsStrikeOut]
+    else StaticText1.Font.Style:= StaticText1.Font.Style - [fsStrikeOut];
+
+end;
+
+procedure TForm1.chbUnderlineChange(Sender: TObject);
+begin
+  if chbUnderline.Checked
+    then StaticText1.Font.Style:= StaticText1.Font.Style + [fsUnderline]
+    else StaticText1.Font.Style:= StaticText1.Font.Style - [fsUnderline];
+
+end;
+
+procedure TForm1.ColorBox1Change(Sender: TObject);
+begin
+  StaticText1.Font.Color:= ColorBox1.Selected;
+end;
+
+procedure TForm1.FormShow(Sender: TObject);
+begin
+  chbBoldChange(Self);
+  chbItalicChange(Self);
+  chbStrikeOutChange(Self);
+  chbUnderlineChange(Self);
+  ColorBox1.Selected:= clWindowText;
 end;
 
 end.

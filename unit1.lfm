@@ -1,11 +1,12 @@
 object Form1: TForm1
   Left = 383
-  Height = 173
+  Height = 318
   Top = 31
   Width = 320
   Caption = 'Form1'
-  ClientHeight = 173
+  ClientHeight = 318
   ClientWidth = 320
+  OnShow = FormShow
   object Button1: TButton
     AnchorSideLeft.Control = Owner
     AnchorSideRight.Control = Owner
@@ -14,7 +15,7 @@ object Form1: TForm1
     AnchorSideBottom.Side = asrBottom
     Left = 10
     Height = 25
-    Top = 138
+    Top = 283
     Width = 300
     Anchors = [akLeft, akRight, akBottom]
     BorderSpacing.Around = 10
@@ -55,7 +56,7 @@ object Form1: TForm1
     AnchorSideBottom.Control = Button1
     Left = 10
     Height = 25
-    Top = 103
+    Top = 248
     Width = 300
     Anchors = [akLeft, akRight, akBottom]
     BorderSpacing.Around = 10
@@ -70,13 +71,80 @@ object Form1: TForm1
     AnchorSideBottom.Control = Button2
     Left = 10
     Height = 25
-    Top = 68
+    Top = 213
     Width = 300
     Anchors = [akLeft, akRight, akBottom]
     BorderSpacing.Around = 10
     Caption = 'Execute via Custom Dialog'
     OnClick = Button3Click
     TabOrder = 3
+  end
+  object ColorBox1: TColorBox
+    AnchorSideLeft.Control = Owner
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = Button3
+    Left = 10
+    Height = 24
+    Top = 179
+    Width = 300
+    Anchors = [akLeft, akRight, akBottom]
+    BorderSpacing.Around = 10
+    ItemHeight = 16
+    OnChange = ColorBox1Change
+    TabOrder = 4
+  end
+  object chbBold: TCheckBox
+    AnchorSideLeft.Control = Owner
+    AnchorSideBottom.Control = chbItalic
+    Left = 10
+    Height = 19
+    Top = 63
+    Width = 62
+    Anchors = [akLeft, akBottom]
+    BorderSpacing.Around = 10
+    Caption = 'chbBold'
+    OnChange = chbBoldChange
+    TabOrder = 5
+  end
+  object chbItalic: TCheckBox
+    AnchorSideLeft.Control = Owner
+    AnchorSideBottom.Control = chbStrikeOut
+    Left = 10
+    Height = 19
+    Top = 92
+    Width = 63
+    Anchors = [akLeft, akBottom]
+    BorderSpacing.Around = 10
+    Caption = 'chbItalic'
+    OnChange = chbItalicChange
+    TabOrder = 6
+  end
+  object chbStrikeOut: TCheckBox
+    AnchorSideLeft.Control = Owner
+    AnchorSideBottom.Control = chbUnderline
+    Left = 10
+    Height = 19
+    Top = 121
+    Width = 87
+    Anchors = [akLeft, akBottom]
+    BorderSpacing.Around = 10
+    Caption = 'chbStrikeOut'
+    OnChange = chbStrikeOutChange
+    TabOrder = 7
+  end
+  object chbUnderline: TCheckBox
+    AnchorSideLeft.Control = Owner
+    AnchorSideBottom.Control = ColorBox1
+    Left = 10
+    Height = 19
+    Top = 150
+    Width = 89
+    Anchors = [akLeft, akBottom]
+    BorderSpacing.Around = 10
+    Caption = 'chbUnderline'
+    OnChange = chbUnderlineChange
+    TabOrder = 8
   end
   object FontDialog1: TFontDialog
     MinFontSize = 0

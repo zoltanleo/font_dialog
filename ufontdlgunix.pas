@@ -73,10 +73,8 @@ begin
     BorderStyle:= bsDialog;
   end;
 
-  lbxFontFamily.Constraints.MinHeight:= Self.Canvas.TextHeight('W') * 4;
-  lbxFontFamily.Constraints.MinWidth:= Self.Canvas.TextWidth('W') * 18;
-  lbxTypeFace.Constraints.MinWidth:= Self.Canvas.TextWidth('W') * 14;
-  gbEffects.Constraints.MinHeight:= Self.Canvas.TextHeight('W') * 10;
+  gbEffects.Constraints.MinWidth:= Self.Canvas.TextHeight('W') * 12;
+  gbEffects.AutoSize:= True;
 
   FSelfFont:= TFont.Create;
   edtFontSize.Clear;
