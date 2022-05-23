@@ -1,48 +1,51 @@
 object frmFontDlgUnix: TfrmFontDlgUnix
   Left = 383
-  Height = 402
+  Height = 448
   Top = 31
-  Width = 489
+  Width = 506
   Caption = 'frmFontDlgUnix'
-  ClientHeight = 402
-  ClientWidth = 489
+  ClientHeight = 448
+  ClientWidth = 506
   OnClose = FormClose
   OnCreate = FormCreate
+  OnShow = FormShow
+  LCLVersion = '2.3.0.0'
   object lbxFontFamily: TListBox
     AnchorSideLeft.Control = Owner
     AnchorSideTop.Control = lblFamily
     AnchorSideTop.Side = asrBottom
     AnchorSideBottom.Control = gbEffects
     Left = 10
-    Height = 160
+    Height = 150
     Top = 30
-    Width = 182
-    Anchors = [akTop, akLeft, akBottom]
+    Width = 238
     BorderSpacing.Left = 10
     BorderSpacing.Top = 5
     BorderSpacing.Right = 5
     BorderSpacing.Bottom = 10
     Columns = 1
     ItemHeight = 0
+    OnClick = lbxFontFamilyClick
     TabOrder = 0
   end
-  object lbxTypeFace: TListBox
+  object lbxStyles: TListBox
     AnchorSideLeft.Control = lbxFontFamily
     AnchorSideLeft.Side = asrBottom
-    AnchorSideTop.Control = lblTypeFace
+    AnchorSideTop.Control = lblStyles
     AnchorSideTop.Side = asrBottom
     AnchorSideRight.Control = lbxFontSize
     AnchorSideBottom.Control = lbxFontFamily
     AnchorSideBottom.Side = asrBottom
-    Left = 202
-    Height = 160
+    Left = 258
+    Height = 150
     Top = 30
-    Width = 216
+    Width = 177
     Anchors = [akTop, akLeft, akRight, akBottom]
     BorderSpacing.Left = 10
     BorderSpacing.Top = 5
     BorderSpacing.Right = 10
     ItemHeight = 0
+    OnClick = lbxStylesClick
     TabOrder = 1
   end
   object lbxFontSize: TListBox
@@ -52,30 +55,30 @@ object frmFontDlgUnix: TfrmFontDlgUnix
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = lbxFontFamily
     AnchorSideBottom.Side = asrBottom
-    Left = 428
-    Height = 127
+    Left = 445
+    Height = 117
     Top = 63
     Width = 51
     Anchors = [akTop, akRight, akBottom]
     BorderSpacing.Top = 10
     BorderSpacing.Right = 10
     ItemHeight = 0
+    OnClick = lbxFontSizeClick
     TabOrder = 2
   end
   object gbEffects: TGroupBox
     AnchorSideLeft.Control = Owner
-    AnchorSideTop.Side = asrBottom
-    AnchorSideBottom.Control = btnSelect
+    AnchorSideTop.Control = gbTemplate
+    AnchorSideBottom.Control = cbbFontPitch
+    AnchorSideBottom.Side = asrBottom
     Left = 10
-    Height = 147
-    Top = 200
+    Height = 193
+    Top = 190
     Width = 190
     Anchors = [akTop, akLeft, akBottom]
     BorderSpacing.Left = 10
-    BorderSpacing.Top = 10
-    BorderSpacing.Bottom = 20
     Caption = 'Эффекты'
-    ClientHeight = 127
+    ClientHeight = 173
     ClientWidth = 186
     TabOrder = 3
     object chbFontStyleStrike: TCheckBox
@@ -87,6 +90,7 @@ object frmFontDlgUnix: TfrmFontDlgUnix
       Width = 91
       BorderSpacing.Around = 10
       Caption = 'Зачеркнутый'
+      OnChange = chbFontStyleStrikeChange
       ParentFont = False
       TabOrder = 0
     end
@@ -101,10 +105,11 @@ object frmFontDlgUnix: TfrmFontDlgUnix
       BorderSpacing.Bottom = 5
       BorderSpacing.Around = 10
       Caption = 'Подчеркнутый'
+      OnChange = chbFontStyleUnderlineChange
       ParentFont = False
       TabOrder = 1
     end
-    object ColorBox1: TColorBox
+    object clboxFontColor: TColorBox
       AnchorSideLeft.Control = lblFontColor
       AnchorSideTop.Control = lblFontColor
       AnchorSideTop.Side = asrBottom
@@ -121,13 +126,14 @@ object frmFontDlgUnix: TfrmFontDlgUnix
       BorderSpacing.Right = 10
       BorderSpacing.Bottom = 15
       ItemHeight = 16
+      OnChange = clboxFontColorChange
       TabOrder = 2
     end
     object lblFontColor: TLabel
       AnchorSideLeft.Control = gbEffects
       AnchorSideTop.Control = chbFontStyleUnderline
       AnchorSideTop.Side = asrBottom
-      AnchorSideBottom.Control = ColorBox1
+      AnchorSideBottom.Control = clboxFontColor
       Left = 10
       Height = 15
       Top = 73
@@ -141,33 +147,33 @@ object frmFontDlgUnix: TfrmFontDlgUnix
   object gbTemplate: TGroupBox
     AnchorSideLeft.Control = gbEffects
     AnchorSideLeft.Side = asrBottom
-    AnchorSideTop.Control = gbEffects
+    AnchorSideTop.Control = lbxFontFamily
+    AnchorSideTop.Side = asrBottom
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = lblFontCharset
     Left = 210
-    Height = 89
-    Top = 200
-    Width = 269
-    Anchors = [akTop, akLeft, akRight, akBottom]
+    Height = 82
+    Top = 190
+    Width = 286
+    Anchors = [akTop, akLeft, akRight]
     BorderSpacing.Left = 10
+    BorderSpacing.Top = 10
     BorderSpacing.Right = 10
-    BorderSpacing.Bottom = 15
     Caption = 'Образец'
-    ClientHeight = 69
-    ClientWidth = 265
+    ClientHeight = 62
+    ClientWidth = 282
     TabOrder = 4
     object lblTemplate: TLabel
       AnchorSideLeft.Control = gbTemplate
-      AnchorSideLeft.Side = asrCenter
       AnchorSideTop.Control = gbTemplate
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = gbTemplate
       AnchorSideRight.Side = asrBottom
-      Left = 9
+      Left = 10
       Height = 15
-      Top = 27
-      Width = 246
+      Top = 24
+      Width = 262
       Anchors = [akTop, akLeft, akRight]
       BorderSpacing.Left = 10
       BorderSpacing.Right = 10
@@ -176,22 +182,20 @@ object frmFontDlgUnix: TfrmFontDlgUnix
     end
   end
   object cbbFontCharset: TComboBox
-    AnchorSideLeft.Control = gbEffects
-    AnchorSideLeft.Side = asrBottom
-    AnchorSideTop.Control = gbTemplate
+    AnchorSideLeft.Control = gbTemplate
+    AnchorSideTop.Control = lblFontCharset
     AnchorSideTop.Side = asrBottom
-    AnchorSideRight.Control = Owner
+    AnchorSideRight.Control = gbTemplate
     AnchorSideRight.Side = asrBottom
-    AnchorSideBottom.Control = gbEffects
-    AnchorSideBottom.Side = asrBottom
+    AnchorSideBottom.Control = lblFontPitch
     Left = 210
     Height = 23
-    Top = 324
-    Width = 269
-    Anchors = [akLeft, akRight, akBottom]
-    BorderSpacing.Left = 10
-    BorderSpacing.Right = 10
+    Top = 307
+    Width = 286
+    Anchors = [akTop, akLeft, akRight]
+    BorderSpacing.Top = 5
     ItemHeight = 15
+    OnChange = cbbFontCharsetChange
     Style = csDropDownList
     TabOrder = 5
   end
@@ -200,13 +204,13 @@ object frmFontDlgUnix: TfrmFontDlgUnix
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
-    Left = 404
+    Left = 421
     Height = 25
-    Top = 367
+    Top = 413
     Width = 75
     Anchors = [akRight, akBottom]
     BorderSpacing.Around = 10
-    Caption = 'Выбрать'
+    Caption = 'btnSelect'
     ModalResult = 1
     TabOrder = 6
   end
@@ -214,13 +218,13 @@ object frmFontDlgUnix: TfrmFontDlgUnix
     AnchorSideRight.Control = btnSelect
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
-    Left = 319
+    Left = 336
     Height = 25
-    Top = 367
+    Top = 413
     Width = 75
     Anchors = [akRight, akBottom]
     BorderSpacing.Around = 10
-    Caption = 'Отменить'
+    Caption = 'btnCancel'
     ModalResult = 2
     TabOrder = 7
   end
@@ -234,10 +238,10 @@ object frmFontDlgUnix: TfrmFontDlgUnix
     BorderSpacing.Top = 10
     Caption = 'Семейство:'
   end
-  object lblTypeFace: TLabel
-    AnchorSideLeft.Control = lbxTypeFace
+  object lblStyles: TLabel
+    AnchorSideLeft.Control = lbxStyles
     AnchorSideTop.Control = Owner
-    Left = 202
+    Left = 258
     Height = 15
     Top = 10
     Width = 69
@@ -250,12 +254,13 @@ object frmFontDlgUnix: TfrmFontDlgUnix
     AnchorSideTop.Side = asrBottom
     AnchorSideRight.Control = lbxFontSize
     AnchorSideRight.Side = asrBottom
-    Left = 428
+    Left = 445
     Height = 23
     Top = 30
     Width = 51
     Anchors = [akTop, akLeft, akRight]
     BorderSpacing.Top = 5
+    OnEditingDone = edtFontSizeEditingDone
     OnKeyPress = edtFontSizeKeyPress
     TabOrder = 8
     Text = 'edtFontSize'
@@ -264,7 +269,7 @@ object frmFontDlgUnix: TfrmFontDlgUnix
     AnchorSideLeft.Control = lbxFontSize
     AnchorSideLeft.Side = asrCenter
     AnchorSideTop.Control = Owner
-    Left = 432
+    Left = 449
     Height = 15
     Top = 10
     Width = 43
@@ -272,17 +277,44 @@ object frmFontDlgUnix: TfrmFontDlgUnix
     Caption = 'Размер:'
   end
   object lblFontCharset: TLabel
-    AnchorSideLeft.Control = cbbFontCharset
+    AnchorSideLeft.Control = gbTemplate
     AnchorSideTop.Control = gbTemplate
     AnchorSideTop.Side = asrBottom
     AnchorSideBottom.Control = cbbFontCharset
     Left = 210
     Height = 15
-    Top = 304
+    Top = 287
     Width = 97
-    Anchors = [akLeft, akBottom]
     BorderSpacing.Top = 15
-    BorderSpacing.Bottom = 5
     Caption = 'Набор символов:'
+  end
+  object lblFontPitch: TLabel
+    AnchorSideLeft.Control = gbTemplate
+    AnchorSideTop.Control = cbbFontCharset
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Side = asrBottom
+    Left = 210
+    Height = 15
+    Top = 340
+    Width = 106
+    BorderSpacing.Top = 10
+    Caption = 'Ширина символов:'
+  end
+  object cbbFontPitch: TComboBox
+    AnchorSideLeft.Control = gbTemplate
+    AnchorSideTop.Control = lblFontPitch
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = gbTemplate
+    AnchorSideRight.Side = asrBottom
+    Left = 210
+    Height = 23
+    Top = 360
+    Width = 286
+    Anchors = [akTop, akLeft, akRight]
+    BorderSpacing.Top = 5
+    ItemHeight = 15
+    OnChange = cbbFontPitchChange
+    Style = csDropDownList
+    TabOrder = 9
   end
 end

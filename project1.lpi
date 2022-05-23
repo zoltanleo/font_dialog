@@ -39,7 +39,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="38"/>
+        <UsageCount Value="81"/>
       </Unit>
       <Unit>
         <Filename Value="unit1.pas"/>
@@ -48,10 +48,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit1"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="198"/>
+        <TopLine Value="28"/>
         <CursorPos X="14" Y="206"/>
-        <UsageCount Value="38"/>
+        <UsageCount Value="81"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -59,25 +58,26 @@
         <Filename Value="C:\laz_new\lazarus\lcl\graphics.pp"/>
         <UnitName Value="Graphics"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="69"/>
-        <CursorPos X="9" Y="78"/>
-        <UsageCount Value="12"/>
+        <TopLine Value="70"/>
+        <CursorPos X="3" Y="81"/>
+        <UsageCount Value="9"/>
       </Unit>
       <Unit>
         <Filename Value="C:\laz_new\lazarus\lcl\lcltype.pp"/>
         <UnitName Value="LCLType"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="401"/>
-        <CursorPos X="12" Y="411"/>
-        <UsageCount Value="19"/>
+        <TopLine Value="1533"/>
+        <CursorPos X="15" Y="1542"/>
+        <UsageCount Value="39"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="C:\laz_new\fpcsrc\rtl\win\wininc\struct.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="656"/>
-        <CursorPos X="20" Y="662"/>
-        <UsageCount Value="12"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="653"/>
+        <CursorPos X="6" Y="657"/>
+        <UsageCount Value="23"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="ufontdlgunix.pas"/>
@@ -85,134 +85,178 @@
         <ComponentName Value="frmFontDlgUnix"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="55"/>
-        <CursorPos X="33" Y="76"/>
-        <UsageCount Value="34"/>
+        <TopLine Value="420"/>
+        <CursorPos Y="424"/>
+        <FoldState Value=" T3o803031^"/>
+        <UsageCount Value="77"/>
+        <Bookmarks Count="3">
+          <Item0 X="60" Y="282" ID="7"/>
+          <Item1 X="2" Y="410" ID="1"/>
+          <Item2 Y="128" ID="2"/>
+        </Bookmarks>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\laz_new\lazarus\lcl\dialogs.pp"/>
+        <UnitName Value="Dialogs"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="165"/>
+        <CursorPos X="48" Y="188"/>
+        <UsageCount Value="17"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\laz_new\lazarus\lcl\forms.pp"/>
+        <UnitName Value="Forms"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1221"/>
+        <CursorPos X="14" Y="1218"/>
+        <UsageCount Value="17"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\laz_new\lazarus\lcl\include\screen.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="891"/>
+        <CursorPos X="3" Y="893"/>
+        <UsageCount Value="15"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\laz_new\lazarus\lcl\include\customlistbox.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="230"/>
+        <CursorPos Y="240"/>
+        <UsageCount Value="11"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\laz_new\lazarus\lcl\include\font.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1327"/>
+        <CursorPos X="3" Y="1329"/>
+        <UsageCount Value="9"/>
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="ufontdlgunix.pas"/>
-        <Caret Line="59" Column="25" TopLine="44"/>
+        <Caret Line="203" Column="28" TopLine="190"/>
       </Position>
       <Position>
         <Filename Value="ufontdlgunix.pas"/>
-        <Caret Line="60" Column="25" TopLine="45"/>
+        <Caret Line="199" Column="28" TopLine="191"/>
       </Position>
       <Position>
         <Filename Value="ufontdlgunix.pas"/>
-        <Caret Line="63" Column="25" TopLine="46"/>
+        <Caret Line="134" Column="43" TopLine="118"/>
       </Position>
       <Position>
         <Filename Value="ufontdlgunix.pas"/>
-        <Caret Line="62" Column="18" TopLine="52"/>
+        <Caret Line="127" Column="3" TopLine="118"/>
       </Position>
       <Position>
         <Filename Value="ufontdlgunix.pas"/>
-        <Caret Line="69" Column="28" TopLine="53"/>
+        <Caret Line="130" Column="31" TopLine="118"/>
       </Position>
       <Position>
         <Filename Value="ufontdlgunix.pas"/>
-        <Caret Line="68" Column="28" TopLine="52"/>
+        <Caret Line="133" Column="51" TopLine="118"/>
       </Position>
       <Position>
         <Filename Value="ufontdlgunix.pas"/>
-        <Caret Line="69" Column="48" TopLine="59"/>
+        <Caret Line="134" TopLine="121"/>
       </Position>
       <Position>
         <Filename Value="ufontdlgunix.pas"/>
-        <Caret Line="72" Column="42" TopLine="59"/>
+        <Caret Line="423" TopLine="415"/>
       </Position>
       <Position>
         <Filename Value="ufontdlgunix.pas"/>
-        <Caret Line="73" TopLine="71"/>
+        <Caret Line="298" Column="30" TopLine="295"/>
       </Position>
       <Position>
         <Filename Value="ufontdlgunix.pas"/>
-        <Caret Line="63" Column="20" TopLine="53"/>
+        <Caret Line="293" Column="3" TopLine="283"/>
       </Position>
       <Position>
         <Filename Value="ufontdlgunix.pas"/>
-        <Caret Line="65" Column="24" TopLine="53"/>
+        <Caret Line="416" Column="2" TopLine="407"/>
       </Position>
       <Position>
         <Filename Value="ufontdlgunix.pas"/>
-        <Caret Line="66" Column="43" TopLine="55"/>
+        <Caret Line="133" Column="29" TopLine="128"/>
       </Position>
       <Position>
         <Filename Value="ufontdlgunix.pas"/>
-        <Caret Line="65" Column="48" TopLine="55"/>
-      </Position>
-      <Position>
-        <Filename Value="C:\laz_new\lazarus\lcl\lcltype.pp"/>
-        <Caret Line="2200" Column="7" TopLine="2195"/>
+        <Caret Line="298" Column="30" TopLine="295"/>
       </Position>
       <Position>
         <Filename Value="ufontdlgunix.pas"/>
-        <Caret Line="65" Column="57" TopLine="55"/>
+        <Caret Line="416" Column="2" TopLine="407"/>
       </Position>
       <Position>
         <Filename Value="ufontdlgunix.pas"/>
-        <Caret Line="71" Column="43" TopLine="55"/>
+        <Caret Line="91" Column="3" TopLine="81"/>
       </Position>
       <Position>
         <Filename Value="ufontdlgunix.pas"/>
-        <Caret Line="70" Column="43" TopLine="54"/>
+        <Caret Line="425" Column="20" TopLine="413"/>
       </Position>
       <Position>
         <Filename Value="ufontdlgunix.pas"/>
-        <Caret Line="69" Column="43" TopLine="53"/>
+        <Caret Line="131" Column="30" TopLine="117"/>
       </Position>
       <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="117" Column="7" TopLine="105"/>
+        <Filename Value="ufontdlgunix.pas"/>
+        <Caret Line="293" TopLine="283"/>
       </Position>
       <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="118" Column="7" TopLine="106"/>
+        <Filename Value="ufontdlgunix.pas"/>
+        <Caret Line="419" Column="13" TopLine="401"/>
       </Position>
       <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="119" Column="7" TopLine="107"/>
+        <Filename Value="ufontdlgunix.pas"/>
+        <Caret Line="110" Column="10" TopLine="99"/>
       </Position>
       <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="120" Column="7" TopLine="108"/>
+        <Filename Value="ufontdlgunix.pas"/>
+        <Caret Line="419" Column="17" TopLine="401"/>
       </Position>
       <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="121" Column="7" TopLine="109"/>
+        <Filename Value="ufontdlgunix.pas"/>
+        <Caret Line="128" Column="43" TopLine="118"/>
       </Position>
       <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="123" Column="7" TopLine="111"/>
+        <Filename Value="ufontdlgunix.pas"/>
+        <Caret Line="421" Column="12" TopLine="414"/>
       </Position>
       <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="138" Column="46" TopLine="118"/>
+        <Filename Value="ufontdlgunix.pas"/>
+        <Caret Line="132" Column="64" TopLine="121"/>
       </Position>
       <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="137" TopLine="119"/>
+        <Filename Value="ufontdlgunix.pas"/>
+        <Caret Line="427" Column="9" TopLine="416"/>
       </Position>
       <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="144" Column="69" TopLine="131"/>
+        <Filename Value="ufontdlgunix.pas"/>
+        <Caret Line="129" TopLine="126"/>
       </Position>
       <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="151" Column="72" TopLine="142"/>
+        <Filename Value="ufontdlgunix.pas"/>
+        <Caret Line="91" Column="15" TopLine="80"/>
       </Position>
       <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="160" Column="72" TopLine="140"/>
+        <Filename Value="ufontdlgunix.pas"/>
+        <Caret Line="430" Column="17" TopLine="424"/>
       </Position>
       <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="141" Column="59" TopLine="141"/>
+        <Filename Value="ufontdlgunix.pas"/>
+        <Caret Line="134" TopLine="122"/>
+      </Position>
+      <Position>
+        <Filename Value="ufontdlgunix.pas"/>
+        <Caret Line="91" TopLine="206"/>
       </Position>
     </JumpHistory>
   </ProjectOptions>
@@ -238,6 +282,14 @@
     </Linking>
   </CompilerOptions>
   <Debugging>
+    <Watches>
+      <Item>
+        <Expression Value="LCharset"/>
+      </Item>
+      <Item>
+        <Expression Value="s"/>
+      </Item>
+    </Watches>
     <Exceptions>
       <Item>
         <Name Value="EAbort"/>
