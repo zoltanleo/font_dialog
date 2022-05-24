@@ -1,0 +1,6 @@
+While executing the command: 
+"TGDBMIDebuggerInstruction: "-data-evaluate-expression LCHARSET^", [ifRequiresThread, ifRequiresStackFrame, ifRequiresMemLimit, ifRequiresArrayLimit] Thr=1 Frm=0"
+gdb reported:
+"&"/build/gdb-Nav6Es/gdb-10.1/gdb/gdbtypes.c:2500: internal-error: type* resolve_dynamic_struct(type*, property_addr_info*): Assertion `type->num_fields () > 0' failed.\nA problem internal to GDB has been detected,\nfurther debugging may prove unreliable.""
+
+TfrmFontDlgUnix.SetStylesList

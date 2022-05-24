@@ -8,7 +8,8 @@ uses
   Classes
   , ColorBox
   , ExtCtrls
-  , LCLIntf, LCLType
+  , LCLIntf
+  , LCLType
   , StdCtrls
   , SysUtils
   , Forms
@@ -121,18 +122,14 @@ begin
   sl:= TStringList(PtrInt(Data));
   // collect styles
   s:= eLogFont.elfStyle;
-  if (sl.IndexOf(s) < 0) then
-  begin
-    // encode bold, italic
-    n:= eLogFont.elfLogFont.lfItalic;
-
-    if (eLogFont.elfLogFont.lfWeight > FW_MEDIUM)
-      then n:= (n or 2)
-      else
-        if (n > 0)
-          then n:= (n xor 2);
-
-    sl.AddObject(eLogFont.elfStyle, TObject(PtrInt(n)));
+  if sl.IndexOf(s)<0 then begin
+    // encode italic (bit 1), bold (bit 2) -- see SelectFont()
+    n := 0;
+    if eLogFont.elfLogFont.lfItalic <> 0 then
+      n := n or 1;
+    if eLogFont.elfLogFont.lfWeight > FW_MEDIUM then
+      n := n or 2;
+    sl.AddObject(eLogFont.elfStyle, TObject(ptrint(n)));
   end;
 
   result := 1;
@@ -402,6 +399,7 @@ var
   LStyles: TStringList = nil;
   dc: HDC;
   Lf: TLogFont;
+  i: PtrInt = -1;
 begin
   DC:= GetDC(0);
   LStyles:= TStringList.Create;
@@ -411,9 +409,6 @@ begin
     Lf.lfCharSet := GetCharSet;
     Lf.lfPitchAndFamily := GetPitch;
     EnumFontFamiliesEX(DC, @Lf, @EnumFamilyFonts, PtrInt(LStyles), 0);
-
-    //Self.Caption:= IntToStr(PtrInt(SelectedFontCharset));
-    //cbbFontCharset.ItemIndex:= PtrInt(SelectedFontCharset);
 
     // fill styles listbox
     LStyles.Sort;

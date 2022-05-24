@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, ColorBox, LCLType, StdCtrls, SysUtils, Forms, Controls, Graphics,
-  Dialogs, ufontdlgunix;
+  Dialogs, ufontdialogex;
 
 type
 
@@ -117,9 +117,9 @@ end;
 
 procedure TForm1.Button3Click(Sender: TObject);
 var
-  tmpFrm: TfrmFontDlgUnix = nil;
+  tmpFrm: TfrmFontDialogEx = nil;
 begin
-  tmpFrm:= TfrmFontDlgUnix.Create(Self);
+  tmpFrm:= TfrmFontDialogEx.Create(Self);
 
   try
     tmpFrm.ShowModal;
