@@ -13,28 +13,27 @@ type
   { TfrmFontDialogEx }
 
   TfrmFontDialogEx = class(TForm)
-    Button1: TButton;
-    Button2: TButton;
-    BtnFontDlg: TButton;
+    btnResetText: TButton;
+    btnApplyFilter: TButton;
+    btnFontDlg: TButton;
     cbCharset: TComboBox;
     cbPitch: TComboBox;
     chkStrike: TCheckBox;
     chkUnderLine: TCheckBox;
     FontDialog1: TFontDialog;
-    Label3: TLabel;
-    Label4: TLabel;
-    Label5: TLabel;
+    lflFontFaceList: TLabel;
+    lblStyles: TLabel;
     lblCharset: TLabel;
-    Label6: TLabel;
-    Sizes: TLabel;
+    lblFilter: TLabel;
+    lblSizes: TLabel;
     lbFamily: TListBox;
     lbStyles: TListBox;
     lbSizes: TListBox;
     lbCharset: TListBox;
     grid: TStringGrid;
-    procedure BtnFontDlgClick(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
+    procedure btnFontDlgClick(Sender: TObject);
+    procedure btnResetTextClick(Sender: TObject);
+    procedure btnApplyFilterClick(Sender: TObject);
     procedure chkStrikeChange(Sender: TObject);
     procedure chkUnderLineChange(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: boolean);
@@ -115,28 +114,28 @@ begin
       LCharsets.AddObject(s, TObject(ptrint(eLogFont.elfLogFont.lfCharSet)));
     exit;
   end;
+  
   // collect styles
   s :=eLogFont.elfStyle;
-
   if LStyles.IndexOf(s)<0 then begin
-      // encode bold (bit 0), italic (bit 1) -- see SelectFont
-      n := 0;
-      {$IFDEF LCLWin32}
-      if (eLogFont.elfLogFont.lfItalic <> 0) then
-        n := n or 1;
-      if (eLogFont.elfLogFont.lfWeight > FW_MEDIUM) then
-        n := n or 2;
-      {$ENDIF}
-      {$IF DEFINED(LCLGtk2) or DEFINED(LCLGtk3) or DEFINED(LCLQt) or DEFINED(LCLQt5)}
-      s := Lowercase(s);
-      if (pos('italic', s) <> 0) or (pos('oblique', s) <> 0) then
-        n := n or 1;
-      if (pos('bold', s) <> 0) then
-        n := n or 2;
-      {$ENDIF}
-      LStyles.AddObject(eLogFont.elfStyle, TObject(ptrint(n)));
-    end;
-
+    // encode bold (bit 0), italic (bit 1) -- see SelectFont
+    n := 0;
+    {$IF DEFINED(LCLWin32) or DEFINED(LCLCocoa) }
+    if (eLogFont.elfLogFont.lfItalic <> 0) then
+      n := n or 1;
+    if (eLogFont.elfLogFont.lfWeight > FW_MEDIUM) then
+      n := n or 2;
+    {$ENDIF}
+    {$IF DEFINED(LCLGtk2) or DEFINED(LCLGtk3) or DEFINED(LCLQt) or DEFINED(LCLQt5)}
+    s := Lowercase(s);
+    if (pos('italic', s) <> 0) or (pos('oblique', s) <> 0) then
+      n := n or 1;
+    if (pos('bold', s) <> 0) then
+      n := n or 2;
+    {$ENDIF}
+    LStyles.AddObject(eLogFont.elfStyle, TObject(ptrint(n)));
+  end;
+  
   // collect sizes
   if FontType=TRUETYPE_FONTTYPE then
     NeedTTF := True
@@ -154,18 +153,18 @@ begin
   result := 1;
 end;
 
-procedure TfrmFontDialogEx.BtnFontDlgClick(Sender: TObject);
+procedure TfrmFontDialogEx.btnFontDlgClick(Sender: TObject);
 begin
   if FontDialog1.Execute then
     UpdateFont(FontDialog1.Font);
 end;
 
-procedure TfrmFontDialogEx.Button1Click(Sender: TObject);
+procedure TfrmFontDialogEx.btnResetTextClick(Sender: TObject);
 begin
   ResetSampleText;
 end;
 
-procedure TfrmFontDialogEx.Button2Click(Sender: TObject);
+procedure TfrmFontDialogEx.btnApplyFilterClick(Sender: TObject);
 begin
   LoadFontList;
 end;
@@ -311,7 +310,7 @@ begin
     else
       result := DEFAULT_PITCH;
   end;
-  Button2.Caption := IntToStr(result);
+  btnApplyFilter.Caption := IntToStr(result);
 end;
 
 procedure TfrmFontDialogEx.EnableEvents(Ok: boolean; Lb: TListbox = nil);
@@ -366,22 +365,8 @@ begin
             F.Style := [];
             if i and 1 <> 0 then F.Style := F.Style + [fsItalic];
             if i and 2 <> 0 then F.Style := F.Style + [fsBold];
-            //Self.Caption:= IntToStr(i);
-            //case i of
-            //  //0: F.Style := [];
-            //  1: F.Style := [fsItalic];
-            //  2: F.Style := [fsBold];
-            //  3: F.Style := [fsBold, fsItalic];
-            //else
-            //  F.Style:= [];
-            //end;
-
-            if chkUnderLine.Checked
-              then F.Style := F.Style + [fsUnderline]
-              else F.Style := F.Style - [fsUnderline];
-            if chkStrike.Checked
-              then F.Style := F.Style + [fsStrikeOut]
-              else F.Style := F.Style - [fsStrikeOut];
+            if chkUnderLine.Checked then F.Style := F.Style + [fsUnderline];
+            if chkStrike.Checked then F.Style := F.Style + [fsStrikeOut];
             UpdateFont(F);
             SaveSelection;
           finally
@@ -497,7 +482,7 @@ begin
     end;
     LoadFamilyFonts(-1);
     
-    Label4.Caption := format('Fontfaces, found %d, %d ms',[lbFamily.Items.Count, FTime]);
+    lflFontFaceList.Caption := format('Fontfaces, found %d, %d ms',[lbFamily.Items.Count, FTime]);
   finally
     EnableEvents(True, lbFamily);
     ReleaseDC(0, DC);
@@ -571,7 +556,7 @@ begin
       EnableEvents(true, LbCharset);
     end else begin
       // fill styles listbox
-      //LStyles.Sort;
+      LStyles.Sort;
       EnableEvents(False, LbStyles);
       LbStyles.Items.Assign(LStyles);
       lbStyles.ItemIndex := -1;
