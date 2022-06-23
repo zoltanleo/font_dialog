@@ -6,7 +6,10 @@ interface
 
 uses
   Classes
-  , ColorBox, ExtCtrls, SysUtils
+  , ColorBox
+  , Controls
+  , ExtCtrls
+  , SysUtils
   , Forms
   , Graphics
   , Dialogs
@@ -25,19 +28,19 @@ type
   TfrmFontDialogEx = class(TForm)
     Button1: TButton;
     Button2: TButton;
+    btnApplyFilter: TButton;
     cbbCharset: TComboBox;
     cbbPitch: TComboBox;
     chbStrike: TCheckBox;
     chbUnderLine: TCheckBox;
-    ColorBox1: TColorBox;
+    clboxFontColor: TColorBox;
     Edit1: TEdit;
     edtFamily: TEdit;
     FontDialog1: TFontDialog;
     gbEffects: TGroupBox;
     gbFilter: TGroupBox;
-    lblSample: TLabel;
-    lblFontPitch: TLabel;
     lblCharset: TLabel;
+    lblSample: TLabel;
     lblFontColor: TLabel;
     lblFontFaceList: TLabel;
     lblStyles: TLabel;
@@ -47,14 +50,13 @@ type
     lbxSizes: TListBox;
     lbxCharset: TListBox;
     grid: TStringGrid;
-    Memo1: TMemo;
     splFamilyFont: TSplitter;
     Splitter1: TSplitter;
     procedure btnResetTextClick(Sender: TObject);
-    procedure cbbCharsetChange(Sender: TObject);
-    procedure cbbPitchChange(Sender: TObject);
+    procedure btnApplyFilterClick(Sender: TObject);
     procedure chbStrikeChange(Sender: TObject);
     procedure chbUnderLineChange(Sender: TObject);
+    procedure clboxFontColorChange(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: boolean);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -65,7 +67,11 @@ type
   private
     FTime: LongWord;
     FIniTime: LongWord;
-    FCurrentFamily,FCurrentStyle,FCurrentSize,FCurrentCharset: string;
+    FCurrentFamily
+    ,FCurrentStyle
+    ,FCurrentSize
+    ,FCurrentCharset
+    , FCurrentColor: string;
     procedure StartTimer;
     Procedure EndTimer;
     function  GetCharSet: byte;
@@ -78,6 +84,7 @@ type
     procedure LoadFontList;
     procedure LoadFamilyFonts(Charset: integer);
     procedure UpdateFont(F: TFont);
+    procedure FillcbbCharSet;
   public
 
   end; 
@@ -177,14 +184,12 @@ begin
   ResetSampleText;
 end;
 
-procedure TfrmFontDialogEx.cbbCharsetChange(Sender: TObject);
+procedure TfrmFontDialogEx.btnApplyFilterClick(Sender: TObject);
 begin
-  LoadFontList
-end;
-
-procedure TfrmFontDialogEx.cbbPitchChange(Sender: TObject);
-begin
-  LoadFontList
+  LoadFontList;
+  LoadFamilyFonts(-1);
+  lbxCharsetClick(nil);
+  SelectFont;
 end;
 
 procedure TfrmFontDialogEx.chbStrikeChange(Sender: TObject);
@@ -193,6 +198,11 @@ begin
 end;
 
 procedure TfrmFontDialogEx.chbUnderLineChange(Sender: TObject);
+begin
+  SelectFont;
+end;
+
+procedure TfrmFontDialogEx.clboxFontColorChange(Sender: TObject);
 begin
   SelectFont;
 end;
@@ -208,52 +218,17 @@ begin
     Ini.WriteString('General','CurrentCharset',FCurrentCharset);
     Ini.WriteString('General','CurrentStyle',  FCurrentStyle);
     Ini.WriteString('General','CurrentSize',   FCurrentSize);
+    Ini.WriteString('General','CurrentColor',  FCurrentColor);
   finally
     Ini.Free;
   end;
 end;
 
 procedure TfrmFontDialogEx.FormCreate(Sender: TObject);
-  procedure Add(Charset: Integer);
-  begin
-    cbbCharset.Items.AddObject(CharSetToString(CharSet), TObject(ptrint(Charset)));
-  end;
 var
   Ini: TIniFile;
 begin
-  // populate cbbCharset
-  cbbCharset.Items.clear;
-  Add(ANSI_CHARSET);
-  Add(DEFAULT_CHARSET);
-  Add(SYMBOL_CHARSET);
-  Add(MAC_CHARSET);
-  Add(SHIFTJIS_CHARSET);
-  Add(HANGEUL_CHARSET);
-  Add(JOHAB_CHARSET);
-  Add(GB2312_CHARSET);
-  Add(CHINESEBIG5_CHARSET);
-  Add(GREEK_CHARSET);
-  Add(TURKISH_CHARSET);
-  Add(VIETNAMESE_CHARSET);
-  Add(HEBREW_CHARSET);
-  Add(ARABIC_CHARSET);
-  Add(BALTIC_CHARSET);
-  Add(RUSSIAN_CHARSET);
-  Add(THAI_CHARSET);
-  Add(EASTEUROPE_CHARSET);
-  Add(OEM_CHARSET);
-  Add(FCS_ISO_10646_1);
-  Add(FCS_ISO_8859_1);
-  Add(FCS_ISO_8859_2);
-  Add(FCS_ISO_8859_3);
-  Add(FCS_ISO_8859_4);
-  Add(FCS_ISO_8859_5);
-  Add(FCS_ISO_8859_6);
-  Add(FCS_ISO_8859_7);
-  Add(FCS_ISO_8859_8);
-  Add(FCS_ISO_8859_9);
-  Add(FCS_ISO_8859_10);
-  Add(FCS_ISO_8859_15);
+  FillcbbCharSet;
   ResetSampleText;
   
   Ini := TIniFile.Create(UTF8ToSys(ChangeFileExt(Application.ExeName,'.ini')));
@@ -262,11 +237,22 @@ begin
     FCurrentCharset := Ini.ReadString('General','CurrentCharset','');
     FCurrentStyle   := Ini.ReadString('General','CurrentStyle',  '');
     FCurrentSize    := Ini.ReadString('General','CurrentSize',   '');
+    FCurrentColor   := Ini.ReadString('General','CurrentColor',   '');
   finally
     Ini.Free;
   end;
 
-  grid.Columns.Add;
+  lbxFamily.Constraints.MinWidth:= Self.Canvas.TextWidth('W') * 22;
+  lbxFamily.Constraints.MinHeight:= Self.Canvas.TextHeight('Wj') * 11;
+  lbxStyles.Constraints.MinWidth:= Self.Canvas.TextWidth('W') * 22;
+
+  gbEffects.Constraints.MinWidth:= Self.Canvas.TextWidth('W') * 22;
+  grid.Constraints.MinWidth:= gbEffects.Constraints.MinWidth;
+
+  Self.BorderStyle:= bsDialog;
+  Self.Position:= poScreenCenter;
+
+  clboxFontColor.Selected:= StringToColorDef(FCurrentColor, clWindowText);
 end;
 
 procedure TfrmFontDialogEx.FormShow(Sender: TObject);
@@ -313,7 +299,7 @@ begin
   FTime := GetTickCount-FIniTime;
 end;
 
-function TfrmFontDialogEx.GetCharSet: Byte;
+function TfrmFontDialogEx.GetCharSet: byte;
 begin
   if cbbCharset.Itemindex<0 then
     result := ANSI_CHARSET
@@ -386,6 +372,7 @@ begin
             if i and 2 <> 0 then F.Style := F.Style + [fsBold];
             if chbUnderLine.Checked then F.Style := F.Style + [fsUnderline];
             if chbStrike.Checked then F.Style := F.Style + [fsStrikeOut];
+            F.Color:= clboxFontColor.Selected;
             UpdateFont(F);
             SaveSelection;
           finally
@@ -396,33 +383,19 @@ end;
 
 procedure TfrmFontDialogEx.ResetSampleText;
 var
-  L: TStringList;
+  SL: TStringList = nil;
 begin
-
-  L := TStringList.Create;
-  L.Add('abcdefghijklmnopqrstuvwxyz');
-  L.Add('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
-  L.Add('01234567891   ўЈ¤Ґ§');
-  L.Add('абвгдежзийклмнопрстуфхцшщъыь');
-  L.add('АБВГДЕЖЗИЙКЛМНОПРСТУФХХШЩЪЫЬЭЯ');
-  grid.Cols[0] := L;
-  Memo1.Lines.Assign(l);
-  Memo1.Text:= UTF8Trim(Memo1.Text);
-  l.Free;
-
-  //with grid.Columns.Items[0] do
-  //begin
-  //  Add('abcdefghijklmnopqrstuvwxyz');
-  //  L.Add('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
-  //  L.Add('01234567891   ўЈ¤Ґ§');
-  //  L.Add('абвгдежзийклмнопрстуфхцшщъыь');
-  //  L.add('АБВГДЕЖЗИЙКЛМНОПРСТУФХХШЩЪЫЬЭЯ');
-  //end;
-  //grid.Cells[0,0]:= 'abcdefghijklmnopqrstuvwxyz';
-  //grid.Cells[0,1]:= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  //grid.Cells[0,2]:= '01234567891   ўЈ¤Ґ§';
-  //grid.Cells[0,3]:= 'абвгдежзийклмнопрстуфхцшщъыь';
-  //grid.Cells[0,4]:= 'АБВГДЕЖЗИЙКЛМНОПРСТУФХХШЩЪЫЬЭЯ';
+  SL:= TStringList.Create;
+  try
+    SL.Add('abcdefghijklmnopqrstuvwxyz');
+    SL.Add('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+    SL.Add('01234567891   ўЈ¤Ґ§');
+    SL.Add('абвгдежзийклмнопрстуфхцшщъыь');
+    SL.add('АБВГДЕЖЗИЙКЛМНОПРСТУФХХШЩЪЫЬЭЯ');
+    grid.Cols[0] := SL;
+  finally
+    FreeAndNil(SL);
+  end;
 end;
 
 procedure TfrmFontDialogEx.SaveSelection;
@@ -438,6 +411,7 @@ begin
   FCurrentCharset := doGet(lbxCharset);
   FCurrentStyle := doGet(lbxStyles);
   FCurrentSize := doGet(lbxSizes);
+  FCurrentColor:= ColorToString(clboxFontColor.Selected);
 end;
 
 procedure TfrmFontDialogEx.RestoreSelection(Sender: TListbox);
@@ -639,12 +613,50 @@ end;
 procedure TfrmFontDialogEx.UpdateFont(F: TFont);
 begin
   grid.Font := F;
-  Memo1.Font:= F;
   grid.DefaultRowHeight := grid.canvas.textHeight('Wj') + 5;
-  //grid.Columns.Items[0].Width:= grid.Canvas.TextWidth('АБВГДЕЖЗИЙКЛМНОПРСТУФХХШЩЪЫЬЭЯ') + 100;
-  //grid.DefaultColWidth:= grid.Canvas.TextWidth('АБВГДЕЖЗИЙКЛМНОПРСТУФХХШЩЪЫЬЭЯ') + 100;
-  //ShowScrollBar(grid.Handle,SB_Vert,True);
-  //ShowScrollBar(grid.Handle,SB_Horz,True);
+end;
+
+procedure TfrmFontDialogEx.FillcbbCharSet;
+  procedure Add(Charset: Integer);
+  begin
+    cbbCharset.Items.AddObject(CharSetToString(CharSet), TObject(ptrint(Charset)));
+  end;
+begin
+  // populate cbbCharset
+  cbbCharset.Items.clear;
+  Add(ANSI_CHARSET);
+  Add(DEFAULT_CHARSET);
+  Add(SYMBOL_CHARSET);
+  Add(MAC_CHARSET);
+  Add(SHIFTJIS_CHARSET);
+  Add(HANGEUL_CHARSET);
+  Add(JOHAB_CHARSET);
+  Add(GB2312_CHARSET);
+  Add(CHINESEBIG5_CHARSET);
+  Add(GREEK_CHARSET);
+  Add(TURKISH_CHARSET);
+  Add(VIETNAMESE_CHARSET);
+  Add(HEBREW_CHARSET);
+  Add(ARABIC_CHARSET);
+  Add(BALTIC_CHARSET);
+  Add(RUSSIAN_CHARSET);
+  Add(THAI_CHARSET);
+  Add(EASTEUROPE_CHARSET);
+  Add(OEM_CHARSET);
+  Add(FCS_ISO_10646_1);
+  Add(FCS_ISO_8859_1);
+  Add(FCS_ISO_8859_2);
+  Add(FCS_ISO_8859_3);
+  Add(FCS_ISO_8859_4);
+  Add(FCS_ISO_8859_5);
+  Add(FCS_ISO_8859_6);
+  Add(FCS_ISO_8859_7);
+  Add(FCS_ISO_8859_8);
+  Add(FCS_ISO_8859_9);
+  Add(FCS_ISO_8859_10);
+  Add(FCS_ISO_8859_15);
+
+  cbbCharset.ItemIndex:= 1;
 end;
 
 end.
