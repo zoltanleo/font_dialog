@@ -47,6 +47,7 @@ type
     lbxSizes: TListBox;
     lbxCharset: TListBox;
     grid: TStringGrid;
+    Memo1: TMemo;
     splFamilyFont: TSplitter;
     Splitter1: TSplitter;
     procedure btnResetTextClick(Sender: TObject);
@@ -264,6 +265,8 @@ begin
   finally
     Ini.Free;
   end;
+
+  grid.Columns.Add;
 end;
 
 procedure TfrmFontDialogEx.FormShow(Sender: TObject);
@@ -403,9 +406,23 @@ begin
   L.Add('абвгдежзийклмнопрстуфхцшщъыь');
   L.add('АБВГДЕЖЗИЙКЛМНОПРСТУФХХШЩЪЫЬЭЯ');
   grid.Cols[0] := L;
+  Memo1.Lines.Assign(l);
+  Memo1.Text:= UTF8Trim(Memo1.Text);
   l.Free;
 
-
+  //with grid.Columns.Items[0] do
+  //begin
+  //  Add('abcdefghijklmnopqrstuvwxyz');
+  //  L.Add('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+  //  L.Add('01234567891   ўЈ¤Ґ§');
+  //  L.Add('абвгдежзийклмнопрстуфхцшщъыь');
+  //  L.add('АБВГДЕЖЗИЙКЛМНОПРСТУФХХШЩЪЫЬЭЯ');
+  //end;
+  //grid.Cells[0,0]:= 'abcdefghijklmnopqrstuvwxyz';
+  //grid.Cells[0,1]:= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  //grid.Cells[0,2]:= '01234567891   ўЈ¤Ґ§';
+  //grid.Cells[0,3]:= 'абвгдежзийклмнопрстуфхцшщъыь';
+  //grid.Cells[0,4]:= 'АБВГДЕЖЗИЙКЛМНОПРСТУФХХШЩЪЫЬЭЯ';
 end;
 
 procedure TfrmFontDialogEx.SaveSelection;
@@ -622,8 +639,12 @@ end;
 procedure TfrmFontDialogEx.UpdateFont(F: TFont);
 begin
   grid.Font := F;
+  Memo1.Font:= F;
   grid.DefaultRowHeight := grid.canvas.textHeight('Wj') + 5;
-  //grid.Columns[0].Items[0].Width:= grid.Canvas.TextWidth('АБВГДЕЖЗИЙКЛМНОПРСТУФХХШЩЪЫЬЭЯ') + 20;
+  //grid.Columns.Items[0].Width:= grid.Canvas.TextWidth('АБВГДЕЖЗИЙКЛМНОПРСТУФХХШЩЪЫЬЭЯ') + 100;
+  //grid.DefaultColWidth:= grid.Canvas.TextWidth('АБВГДЕЖЗИЙКЛМНОПРСТУФХХШЩЪЫЬЭЯ') + 100;
+  //ShowScrollBar(grid.Handle,SB_Vert,True);
+  //ShowScrollBar(grid.Handle,SB_Horz,True);
 end;
 
 end.
