@@ -5,8 +5,16 @@ unit Unit1;
 interface
 
 uses
-  Classes, ColorBox, LCLType, StdCtrls, SysUtils, Forms, Controls, Graphics,
-  Dialogs, ufontdialogex;
+  Classes
+  , ColorBox
+  , LCLType
+  , StdCtrls
+  , SysUtils
+  , Forms
+  , Controls
+  , Graphics
+  , Dialogs
+  , ufontdialogex;
 
 type
 
