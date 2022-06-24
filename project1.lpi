@@ -16,8 +16,8 @@
     <VersionInfo>
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
-      <RevisionNr Value="10"/>
-      <BuildNr Value="19"/>
+      <RevisionNr Value="11"/>
+      <BuildNr Value="21"/>
     </VersionInfo>
     <BuildModes Active="Default">
       <Item Name="Default" Default="True"/>
@@ -45,7 +45,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="119"/>
+        <UsageCount Value="121"/>
       </Unit>
       <Unit>
         <Filename Value="unit1.pas"/>
@@ -54,9 +54,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit1"/>
-        <TopLine Value="31"/>
-        <CursorPos X="3" Y="17"/>
-        <UsageCount Value="119"/>
+        <TopLine Value="207"/>
+        <CursorPos X="3" Y="213"/>
+        <UsageCount Value="121"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -112,11 +112,10 @@
       <Unit>
         <Filename Value="C:\laz_new\lazarus\lcl\forms.pp"/>
         <UnitName Value="Forms"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="704"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="703"/>
         <CursorPos X="14" Y="714"/>
         <UsageCount Value="22"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="C:\laz_new\lazarus\lcl\include\screen.inc"/>
@@ -168,17 +167,17 @@
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="314"/>
-        <CursorPos X="4" Y="324"/>
-        <FoldState Value=" TIvQ360"/>
-        <UsageCount Value="50"/>
+        <TopLine Value="331"/>
+        <CursorPos X="3" Y="314"/>
+        <FoldState Value=" TIwf36v"/>
+        <UsageCount Value="52"/>
         <Bookmarks Count="6">
-          <Item0 X="8" Y="361" ID="4"/>
-          <Item1 X="3" Y="551" ID="5"/>
-          <Item2 X="19" Y="97" ID="1"/>
-          <Item3 X="11" Y="591" ID="3"/>
-          <Item4 X="16" Y="334" ID="2"/>
-          <Item5 Y="322"/>
+          <Item0 X="8" Y="419" ID="4"/>
+          <Item1 X="3" Y="609" ID="5"/>
+          <Item2 X="19" Y="99" ID="1"/>
+          <Item3 X="11" Y="649" ID="3"/>
+          <Item4 X="16" Y="392" ID="2"/>
+          <Item5 Y="325"/>
         </Bookmarks>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -208,51 +207,52 @@
       <Unit>
         <Filename Value="C:\laz_new\lazarus\lcl\controls.pp"/>
         <UnitName Value="Controls"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="10"/>
         <CursorPos X="3" Y="183"/>
         <UsageCount Value="16"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="C:\laz_new\lazarus\lcl\stdctrls.pp"/>
         <UnitName Value="StdCtrls"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="279"/>
         <CursorPos X="3" Y="289"/>
         <UsageCount Value="11"/>
-        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\leybasoft_arm_v5\utreeclinicdescroptionframe.pas"/>
+        <ComponentName Value="frTreeClinicDescrOption"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Frame"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="683"/>
+        <CursorPos Y="651"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\leybasoft_vtv\unit1.pas"/>
+        <ComponentName Value="Form1"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="Unit1"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="394"/>
+        <CursorPos Y="397"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="..\leybasoft_arm_v5\uphonesedit.pas"/>
+        <ComponentName Value="frmPhonesEdit"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="224"/>
+        <CursorPos X="19" Y="153"/>
+        <UsageCount Value="10"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="310" TopLine="307"/>
-      </Position>
-      <Position>
-        <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="638" Column="29" TopLine="627"/>
-      </Position>
-      <Position>
-        <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="323" Column="62" TopLine="318"/>
-      </Position>
-      <Position>
-        <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="218" Column="4" TopLine="215"/>
-      </Position>
-      <Position>
-        <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="321" Column="24" TopLine="313"/>
-      </Position>
-      <Position>
-        <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="643" Column="77" TopLine="630"/>
-      </Position>
-      <Position>
-        <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="642" Column="13" TopLine="632"/>
-      </Position>
+    <JumpHistory HistoryIndex="28">
       <Position>
         <Filename Value="ufontdialogex.pas"/>
         <Caret Line="641" Column="63" TopLine="630"/>
@@ -344,6 +344,30 @@
       <Position>
         <Filename Value="ufontdialogex.pas"/>
         <Caret Line="324" Column="5" TopLine="310"/>
+      </Position>
+      <Position>
+        <Filename Value="ufontdialogex.pas"/>
+        <Caret Line="93" Column="24" TopLine="74"/>
+      </Position>
+      <Position>
+        <Filename Value="ufontdialogex.pas"/>
+        <Caret Line="768" Column="30" TopLine="752"/>
+      </Position>
+      <Position>
+        <Filename Value="ufontdialogex.pas"/>
+        <Caret Line="78" Column="14" TopLine="75"/>
+      </Position>
+      <Position>
+        <Filename Value="ufontdialogex.pas"/>
+        <Caret Line="282" Column="45" TopLine="276"/>
+      </Position>
+      <Position>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="43" Column="18" TopLine="32"/>
+      </Position>
+      <Position>
+        <Filename Value="ufontdialogex.pas"/>
+        <Caret Line="329" Column="37" TopLine="320"/>
       </Position>
     </JumpHistory>
   </ProjectOptions>

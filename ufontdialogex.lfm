@@ -13,6 +13,7 @@ object frmFontDialogEx: TfrmFontDialogEx
   OnCreate = FormCreate
   OnShow = FormShow
   ShowHint = True
+  LCLVersion = '2.3.0.0'
   object btnRight: TButton
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
@@ -188,7 +189,7 @@ object frmFontDialogEx: TfrmFontDialogEx
       ScrollBars = ssNone
       TabOrder = 4
       ColWidths = (
-        333
+        337
       )
     end
     object edtFamily: TEdit

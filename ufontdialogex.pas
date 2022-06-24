@@ -75,6 +75,7 @@ type
     ,FCurrentSize
     ,FCurrentCharset
     , FCurrentColor: string;
+    FCharSize: TSize;
     procedure StartTimer;
     Procedure EndTimer;
     function  GetCharSet: byte;
@@ -89,7 +90,8 @@ type
     procedure UpdateFont(F: TFont);
     procedure FillcbbCharSet;
   public
-
+    procedure BtnOKClick(Sender: TObject);
+    procedure BtnCancelClick(Sender: TObject);
   end; 
 
 const
@@ -248,10 +250,10 @@ end;
 procedure TfrmFontDialogEx.FormCreate(Sender: TObject);
 var
   Ini: TIniFile;
-  sz: TSize;
+  len: PtrInt = 0;
 begin
-  sz.cx:= Self.Canvas.TextWidth('W');
-  sz.cy:= Self.Canvas.TextHeight('Wj');
+  FCharSize.cx:= Self.Canvas.TextWidth('W');
+  FCharSize.cy:= Self.Canvas.TextHeight('Wj');
 
   FillcbbCharSet;
   ResetSampleText;
@@ -278,19 +280,19 @@ begin
     VertScrollBar.Tracking:= True;
   end;
 
-  lbxFamily.Constraints.MinWidth:= sz.cx * 22;
-  lbxFamily.Constraints.MinHeight:= sz.cy * 10;
-  lbxStyles.Constraints.MinWidth:= sz.cx * 22;
+  lbxFamily.Constraints.MinWidth:= FCharSize.cx * 22;
+  lbxFamily.Constraints.MinHeight:= FCharSize.cy * 10;
+  lbxStyles.Constraints.MinWidth:= FCharSize.cx * 22;
 
-  gbEffects.Constraints.MinWidth:= sz.cx * 22;
+  gbEffects.Constraints.MinWidth:= FCharSize.cx * 22;
   grid.Constraints.MinWidth:= gbEffects.Constraints.MinWidth;
   {$IFDEF LINUX}
-  splFamilyFontHorz.Top:= sz.cy * 12;
+  splFamilyFontHorz.Top:= FCharSize.cy * 12;
   {$ELSE}
-  splFamilyFontHorz.Top:= sz.cy * 14;
+  splFamilyFontHorz.Top:= FCharSize.cy * 14;
   {$ENDIF}
 
-  lbxSizes.Width:= sz.cx * 6;
+  lbxSizes.Width:= FCharSize.cx * 6;
 
   with Self do
   begin
@@ -299,13 +301,14 @@ begin
     //{linux w: 15 | h: 19}
     //Caption:= Format('w: %d | h: %d',[sz.cx, sz.cy]);
     Caption:= cTitle;
+    ModalResult:= mrCancel;
     BorderStyle:= bsSizeable;
     Position:= poScreenCenter;
-    Constraints.MinWidth:= sz.cx * 60;
+    Constraints.MinWidth:= FCharSize.cx * 60;
     {$IFDEF LINUX}
-    Constraints.MinHeight:= sz.cy * 36;
+    Constraints.MinHeight:= FCharSize.cy * 36;
     {$ELSE}
-    Constraints.MinHeight:= sz.cy * 39;
+    Constraints.MinHeight:= FCharSize.cy * 39;
     {$ENDIF}
   end;
 
@@ -321,10 +324,65 @@ begin
 
 
   {$IFDEF MSWINDOWS}
-   !
+  btnLeft.Caption:= cBtnOKCaption;
+  btnRight.Caption:= cBtnCancelCaption;
+  btnLeft.OnClick:= @BtnOKClick;
+  btnRight.OnClick:= @BtnCancelClick;
   {$ELSE}
-
+  btnLeft.Caption:= cBtnCancelCaption;
+  btnRight.Caption:= cBtnOKCaption;
+  btnLeft.OnClick:= @BtnCancelClick;
+  btnRight.OnClick:= @BtnOKClick;
   {$ENDIF}
+
+  //{$IFDEF MSWINDOWS}
+  //btnLeft.Caption:= 'Сохранить';
+  //btnRight.Caption:= 'Отмена';
+  //btnLeft.OnClick:= @ActbtnOKExecute;
+  //btnRight.OnClick:= @ActbtnCancelExecute;
+  //
+  //if (UTF8LowerCase(ShortCutToText(ActBtnCancel.ShortCut)) <> 'unknown')
+  //  then btnRight.Hint:= Format('<%s>',[ShortCutToText(ActBtnCancel.ShortCut)])
+  //  else btnRight.Hint:= '';
+  //if (UTF8LowerCase(ShortCutToText(ActBtnOK.ShortCut)) <> 'unknown')
+  //  then btnLeft.Hint:= Format('<%s>',[ShortCutToText(ActBtnOK.ShortCut)])
+  //  else btnRight.Hint:= '';
+  //
+  //{$ELSE}
+  //btnLeft.Caption:= 'Отмена';
+  //btnRight.Caption:= 'Сохранить';
+  //btnLeft.OnClick:= @ActbtnCancelExecute;
+  //btnRight.OnClick:= @ActbtnOKExecute;
+  //
+  //if (UTF8LowerCase(ShortCutToText(ActBtnCancel.ShortCut)) <> 'unknown')
+  //  then btnLeft.Hint:= Format('<%s>',[ShortCutToText(ActBtnCancel.ShortCut)])
+  //  else btnLeft.Hint:= '';
+  //if (UTF8LowerCase(ShortCutToText(ActBtnOK.ShortCut)) <> 'unknown')
+  //  then btnRight.Hint:= Format('<%s>',[ShortCutToText(ActBtnOK.ShortCut)])
+  //  else btnRight.Hint:= '';
+  //{$ENDIF}
+
+  //for i:= 0 to Pred(pnlBtn.ControlCount) do
+  //  if TObject(pnlBtn.Controls[i]).InheritsFrom(TButton) then
+  //    if (txtlen < pnlBtn.Canvas.TextWidth(TButton(pnlBtn.Controls[i]).Caption)) then
+  //      txtlen:= pnlBtn.Canvas.TextWidth(TButton(pnlBtn.Controls[i]).Caption);
+  //
+  //for i:= 0 to Pred(pnlBtn.ControlCount) do
+  //  if TObject(pnlBtn.Controls[i]).InheritsFrom(TButton) then
+  //  begin
+  //    {$IFDEF MSWINDOWS}
+  //    TButton(pnlBtn.Controls[i]).AutoSize:= True;
+  //    {$ELSE}
+  //      {$IFDEF LINUX}
+  //      TButton(pnlBtn.Controls[i]).AutoSize:= False;
+  //      TButton(pnlBtn.Controls[i]).Height:= pnlBtn.Canvas.TextHeight('W') * 3 div 2;
+  //      {$ENDIF}
+  //    {$ENDIF}
+  //
+  //    TButton(pnlBtn.Controls[i]).Constraints.MinWidth:= txtlen + pnlBtn.Canvas.TextWidth('W') * 2;
+  //    TButton(pnlBtn.Controls[i]).ShowHint:= True;
+  //
+  //  end;
 end;
 
 procedure TfrmFontDialogEx.FormShow(Sender: TObject);
@@ -755,6 +813,16 @@ begin
   Add(FCS_ISO_8859_15);
 
   cbbCharset.ItemIndex:= 1;
+end;
+
+procedure TfrmFontDialogEx.BtnOKClick(Sender: TObject);
+begin
+  Self.ModalResult:= mrOK;
+end;
+
+procedure TfrmFontDialogEx.BtnCancelClick(Sender: TObject);
+begin
+  Self.ModalResult:= mrCancel;
 end;
 
 end.
