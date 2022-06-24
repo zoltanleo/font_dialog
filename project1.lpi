@@ -168,11 +168,11 @@
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="258"/>
-        <CursorPos Y="268"/>
+        <TopLine Value="249"/>
+        <CursorPos X="70" Y="259"/>
         <UsageCount Value="44"/>
         <Bookmarks Count="3">
-          <Item0 X="31" Y="682" ID="3"/>
+          <Item0 X="31" Y="686" ID="3"/>
           <Item1 Y="229" ID="1"/>
           <Item2 X="13" Y="216" ID="2"/>
         </Bookmarks>

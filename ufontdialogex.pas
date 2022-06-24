@@ -256,12 +256,16 @@ begin
   end;
 
   lbxFamily.Constraints.MinWidth:= Self.Canvas.TextWidth('W') * 22;
-  lbxFamily.Constraints.MinHeight:= Self.Canvas.TextHeight('Wj') * 11;
+  lbxFamily.Constraints.MinHeight:= Self.Canvas.TextHeight('Wj') * 10;
   lbxStyles.Constraints.MinWidth:= Self.Canvas.TextWidth('W') * 22;
 
   gbEffects.Constraints.MinWidth:= Self.Canvas.TextWidth('W') * 22;
   grid.Constraints.MinWidth:= gbEffects.Constraints.MinWidth;
+  {$IFDEF LINUX}
+  splFamilyFontHorz.Top:= Canvas.TextHeight('Wj') * 12;
+  {$ELSE}
   splFamilyFontHorz.Top:= Canvas.TextHeight('Wj') * 14;
+  {$ENDIF}
 
   with Self do
   begin
