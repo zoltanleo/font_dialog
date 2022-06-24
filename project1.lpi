@@ -16,7 +16,7 @@
     <VersionInfo>
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
-      <RevisionNr Value="6"/>
+      <RevisionNr Value="8"/>
       <BuildNr Value="17"/>
     </VersionInfo>
     <BuildModes Active="Default">
@@ -168,13 +168,13 @@
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="249"/>
-        <CursorPos X="70" Y="259"/>
+        <TopLine Value="268"/>
+        <CursorPos X="29" Y="275"/>
         <UsageCount Value="44"/>
         <Bookmarks Count="3">
-          <Item0 X="31" Y="686" ID="3"/>
-          <Item1 Y="229" ID="1"/>
-          <Item2 X="13" Y="216" ID="2"/>
+          <Item0 X="31" Y="696" ID="3"/>
+          <Item1 Y="230" ID="1"/>
+          <Item2 X="13" Y="217" ID="2"/>
         </Bookmarks>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -212,10 +212,6 @@
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="600" Column="21" TopLine="584"/>
-      </Position>
       <Position>
         <Filename Value="ufontdialogex.pas"/>
         <Caret Line="247" Column="12" TopLine="236"/>
@@ -331,6 +327,10 @@
       <Position>
         <Filename Value="ufontdialogex.pas"/>
         <Caret Line="255" TopLine="245"/>
+      </Position>
+      <Position>
+        <Filename Value="ufontdialogex.pas"/>
+        <Caret Line="22" Column="10" TopLine="13"/>
       </Position>
     </JumpHistory>
   </ProjectOptions>

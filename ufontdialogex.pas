@@ -19,6 +19,7 @@ uses
   , LCLType
   , LCLIntf
   , LazUTF8
+  , Types
   ;
 
 type
@@ -229,7 +230,11 @@ end;
 procedure TfrmFontDialogEx.FormCreate(Sender: TObject);
 var
   Ini: TIniFile;
+  sz: TSize;
 begin
+  sz.cx:= Self.Canvas.TextWidth('W');
+  sz.cy:= Self.Canvas.TextHeight('Wj');
+
   FillcbbCharSet;
   ResetSampleText;
   
@@ -255,27 +260,32 @@ begin
     VertScrollBar.Tracking:= True;
   end;
 
-  lbxFamily.Constraints.MinWidth:= Self.Canvas.TextWidth('W') * 22;
-  lbxFamily.Constraints.MinHeight:= Self.Canvas.TextHeight('Wj') * 10;
-  lbxStyles.Constraints.MinWidth:= Self.Canvas.TextWidth('W') * 22;
+  lbxFamily.Constraints.MinWidth:= sz.cx * 22;
+  lbxFamily.Constraints.MinHeight:= sz.cy * 10;
+  lbxStyles.Constraints.MinWidth:= sz.cx * 22;
 
-  gbEffects.Constraints.MinWidth:= Self.Canvas.TextWidth('W') * 22;
+  gbEffects.Constraints.MinWidth:= sz.cx * 22;
   grid.Constraints.MinWidth:= gbEffects.Constraints.MinWidth;
   {$IFDEF LINUX}
-  splFamilyFontHorz.Top:= Canvas.TextHeight('Wj') * 12;
+  splFamilyFontHorz.Top:= sz.cy * 12;
   {$ELSE}
-  splFamilyFontHorz.Top:= Canvas.TextHeight('Wj') * 14;
+  splFamilyFontHorz.Top:= sz.cy * 14;
   {$ENDIF}
+
+  lbxSizes.Width:= sz.cx * 6;
 
   with Self do
   begin
+    {darwin w: 13 | h: 15}
+    {ms windows w: 11 | h: 15}
+    Caption:= Format('w: %d | h: %d',[sz.cx, sz.cy]);
     BorderStyle:= bsSizeable;
     Position:= poScreenCenter;
-    Constraints.MinWidth:= Canvas.TextWidth('W') * 60;
+    Constraints.MinWidth:= sz.cx * 60;
     {$IFDEF LINUX}
-    Constraints.MinHeight:= Canvas.TextHeight('Wj') * 36;
+    Constraints.MinHeight:= sz.cy * 36;
     {$ELSE}
-    Constraints.MinHeight:= Canvas.TextHeight('Wj') * 39;
+    Constraints.MinHeight:= sz.cy * 39;
     {$ENDIF}
   end;
 
