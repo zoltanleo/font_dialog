@@ -26,9 +26,9 @@ type
   { TfrmFontDialogEx }
 
   TfrmFontDialogEx = class(TForm)
+    btnApplyFilter: TButton;
     Button1: TButton;
     Button2: TButton;
-    btnApplyFilter: TButton;
     cbbCharset: TComboBox;
     cbbPitch: TComboBox;
     chbStrike: TCheckBox;
@@ -39,17 +39,18 @@ type
     FontDialog1: TFontDialog;
     gbEffects: TGroupBox;
     gbFilter: TGroupBox;
+    grid: TStringGrid;
     lblCharset: TLabel;
-    lblSample: TLabel;
     lblFontColor: TLabel;
     lblFontFaceList: TLabel;
-    lblStyles: TLabel;
+    lblSample: TLabel;
     lblSizes: TLabel;
-    lbxFamily: TListBox;
-    lbxStyles: TListBox;
-    lbxSizes: TListBox;
+    lblStyles: TLabel;
     lbxCharset: TListBox;
-    grid: TStringGrid;
+    lbxFamily: TListBox;
+    lbxSizes: TListBox;
+    lbxStyles: TListBox;
+    scrbxDialog: TScrollBox;
     splFamilyFont: TSplitter;
     Splitter1: TSplitter;
     procedure btnResetTextClick(Sender: TObject);
@@ -242,6 +243,16 @@ begin
     Ini.Free;
   end;
 
+  with scrbxDialog do
+  begin
+    BorderStyle:= bsNone;
+    HorzScrollBar.Smooth:= True;
+    HorzScrollBar.Tracking:= True;
+    VertScrollBar.Smooth:= True;
+    VertScrollBar.Tracking:= True;
+    //Constraints.MinWidth:= Canvas.TextWidth('W') * 58;
+  end;
+
   lbxFamily.Constraints.MinWidth:= Self.Canvas.TextWidth('W') * 22;
   lbxFamily.Constraints.MinHeight:= Self.Canvas.TextHeight('Wj') * 11;
   lbxStyles.Constraints.MinWidth:= Self.Canvas.TextWidth('W') * 22;
@@ -249,8 +260,13 @@ begin
   gbEffects.Constraints.MinWidth:= Self.Canvas.TextWidth('W') * 22;
   grid.Constraints.MinWidth:= gbEffects.Constraints.MinWidth;
 
-  Self.BorderStyle:= bsDialog;
-  Self.Position:= poScreenCenter;
+  with Self do
+  begin
+    BorderStyle:= bsSizeable;
+    Position:= poScreenCenter;
+    Constraints.MinWidth:= Canvas.TextWidth('W') * 60;
+    Constraints.MinHeight:= Canvas.TextHeight('Wj') * 39;
+  end;
 
   clboxFontColor.Selected:= StringToColorDef(FCurrentColor, clWindowText);
 end;
