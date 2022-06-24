@@ -51,8 +51,9 @@ type
     lbxSizes: TListBox;
     lbxStyles: TListBox;
     scrbxDialog: TScrollBox;
-    splFamilyFont: TSplitter;
-    Splitter1: TSplitter;
+    splFamilyFontVert: TSplitter;
+    splgbEffects: TSplitter;
+    splFamilyFontHorz: TSplitter;
     procedure btnResetTextClick(Sender: TObject);
     procedure btnApplyFilterClick(Sender: TObject);
     procedure chbStrikeChange(Sender: TObject);
@@ -243,6 +244,8 @@ begin
     Ini.Free;
   end;
 
+  clboxFontColor.Selected:= StringToColorDef(FCurrentColor, clWindowText);
+
   with scrbxDialog do
   begin
     BorderStyle:= bsNone;
@@ -250,7 +253,6 @@ begin
     HorzScrollBar.Tracking:= True;
     VertScrollBar.Smooth:= True;
     VertScrollBar.Tracking:= True;
-    //Constraints.MinWidth:= Canvas.TextWidth('W') * 58;
   end;
 
   lbxFamily.Constraints.MinWidth:= Self.Canvas.TextWidth('W') * 22;
@@ -259,16 +261,21 @@ begin
 
   gbEffects.Constraints.MinWidth:= Self.Canvas.TextWidth('W') * 22;
   grid.Constraints.MinWidth:= gbEffects.Constraints.MinWidth;
+  splFamilyFontHorz.Top:= Canvas.TextHeight('Wj') * 14;
 
   with Self do
   begin
     BorderStyle:= bsSizeable;
     Position:= poScreenCenter;
     Constraints.MinWidth:= Canvas.TextWidth('W') * 60;
+    {$IFDEF LINUX}
+    Constraints.MinHeight:= Canvas.TextHeight('Wj') * 36;
+    {$ELSE}
     Constraints.MinHeight:= Canvas.TextHeight('Wj') * 39;
+    {$ENDIF}
   end;
 
-  clboxFontColor.Selected:= StringToColorDef(FCurrentColor, clWindowText);
+
 end;
 
 procedure TfrmFontDialogEx.FormShow(Sender: TObject);
