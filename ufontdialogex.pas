@@ -106,6 +106,7 @@ const
   cFontCharSet = 'Current font charset:';
   cBtnOKCaption = 'ОК';
   cBtnCancelCaption = 'Cancel';
+  cBtnApplyFilter = 'Apply filter';
 
 var
   frmFontDialogEx: TfrmFontDialogEx;
@@ -317,19 +318,46 @@ begin
   lblFontColor.Caption:= cFontColor;
   lblSample.Caption:= cFontSample;
   lblCharset.Caption:= cFontCharSet;
+
+
+  {$IFDEF MSWINDOWS}
+   !
+  {$ELSE}
+
+  {$ENDIF}
 end;
 
 procedure TfrmFontDialogEx.FormShow(Sender: TObject);
+var
+  i: PtrInt = -1;
 begin
   LoadFontlist;
   lbxCharsetClick(nil);
+  if (lbxCharset.Count > 0) then
+  begin
+    i:= cbbCharset.Items.IndexOf(lbxCharset.Items[lbxCharset.ItemIndex]);
+    if (i <> -1)
+      then cbbCharset.ItemIndex:= i
+      else cbbCharset.ItemIndex:= 1;
+  end;
   SelectFont;
 end;
 
 procedure TfrmFontDialogEx.lbxFamilyClick(Sender: TObject);
+var
+  i: PtrInt = -1;
 begin
   LoadFamilyFonts(-1);
   lbxCharsetClick(nil);
+
+  if (lbxCharset.Count > 0) then
+  begin
+    i:= cbbCharset.Items.IndexOf(lbxCharset.Items[lbxCharset.ItemIndex]);
+    if (i <> -1)
+      then cbbCharset.ItemIndex:= i
+      else cbbCharset.ItemIndex:= 1;
+  end;
+
   SelectFont;
 end;
 
@@ -634,7 +662,6 @@ begin
       lbxCharset.Items.Assign(LCharset);
       lbxCharset.ItemIndex := -1;
       EnableEvents(true, lbxCharset);
-      //if cbbCharset.Items.;
     end else begin
       // fill styles listbox
       LStyles.Sort;
