@@ -13,7 +13,7 @@ object frmFontDialogEx: TfrmFontDialogEx
   OnCreate = FormCreate
   OnShow = FormShow
   ShowHint = True
-  object Button1: TButton
+  object btnRight: TButton
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = Owner
@@ -24,11 +24,11 @@ object frmFontDialogEx: TfrmFontDialogEx
     Width = 75
     Anchors = [akRight, akBottom]
     BorderSpacing.Around = 10
-    Caption = 'Button1'
+    Caption = 'btnRight'
     TabOrder = 0
   end
-  object Button2: TButton
-    AnchorSideRight.Control = Button1
+  object btnLeft: TButton
+    AnchorSideRight.Control = btnRight
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 463
@@ -38,7 +38,7 @@ object frmFontDialogEx: TfrmFontDialogEx
     Anchors = [akRight, akBottom]
     BorderSpacing.Top = 20
     BorderSpacing.Around = 10
-    Caption = 'Button2'
+    Caption = 'btnLeft'
     TabOrder = 1
   end
   object scrbxDialog: TScrollBox
@@ -46,7 +46,7 @@ object frmFontDialogEx: TfrmFontDialogEx
     AnchorSideTop.Control = Owner
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
-    AnchorSideBottom.Control = Button1
+    AnchorSideBottom.Control = btnRight
     Left = 0
     Height = 512
     Top = 0

@@ -28,8 +28,8 @@ type
 
   TfrmFontDialogEx = class(TForm)
     btnApplyFilter: TButton;
-    Button1: TButton;
-    Button2: TButton;
+    btnRight: TButton;
+    btnLeft: TButton;
     cbbCharset: TComboBox;
     cbbPitch: TComboBox;
     chbStrike: TCheckBox;
@@ -91,6 +91,21 @@ type
   public
 
   end; 
+
+const
+  cTitle = 'Choose font';
+  cFontFaceList = 'Font family (found: %d items):';
+  cFontStyles = 'Font style(s):';
+  cFontSize = 'Font size:';
+  cFontEffects = 'Font effects:';
+  cStrikeout = 'StrikeOut';
+  cUnderline = 'Underline';
+  cFontColor = 'Font color:';
+  cFontSample= 'Font sample:';
+  cFontFilter = 'Font filter';
+  cFontCharSet = 'Current font charset:';
+  cBtnOKCaption = 'ОК';
+  cBtnCancelCaption = 'Cancel';
 
 var
   frmFontDialogEx: TfrmFontDialogEx;
@@ -188,10 +203,12 @@ begin
 end;
 
 procedure TfrmFontDialogEx.btnApplyFilterClick(Sender: TObject);
+var
+  i: PtrInt = -1;
 begin
   LoadFontList;
-  LoadFamilyFonts(-1);
-  lbxCharsetClick(nil);
+  i:= cbbCharset.ItemIndex;
+  LoadFamilyFonts(byte(i));
   SelectFont;
 end;
 
@@ -276,9 +293,11 @@ begin
 
   with Self do
   begin
-    {darwin w: 13 | h: 15}
-    {ms windows w: 11 | h: 15}
-    Caption:= Format('w: %d | h: %d',[sz.cx, sz.cy]);
+    //{darwin w: 13 | h: 15}
+    //{ms windows w: 11 | h: 15}
+    //{linux w: 15 | h: 19}
+    //Caption:= Format('w: %d | h: %d',[sz.cx, sz.cy]);
+    Caption:= cTitle;
     BorderStyle:= bsSizeable;
     Position:= poScreenCenter;
     Constraints.MinWidth:= sz.cx * 60;
@@ -289,7 +308,15 @@ begin
     {$ENDIF}
   end;
 
-
+  lblStyles.Caption:= cFontStyles;
+  lblSizes.Caption:= cFontSize;
+  gbEffects.Caption:= cFontEffects;
+  chbStrike.Caption:= cStrikeout;
+  chbUnderLine.Caption:= cUnderline;
+  gbFilter.Caption:= cFontFilter;
+  lblFontColor.Caption:= cFontColor;
+  lblSample.Caption:= cFontSample;
+  lblCharset.Caption:= cFontCharSet;
 end;
 
 procedure TfrmFontDialogEx.FormShow(Sender: TObject);
@@ -312,7 +339,7 @@ var
 begin
   i := lbxCharset.ItemIndex;
   if i<0 then exit;
-  i := ptrint(lbxCharset.Items.Objects[i]);
+  i := PtrInt(lbxCharset.Items.Objects[i]);
   LoadFamilyFonts(byte(i));
 end;
 
@@ -341,7 +368,7 @@ begin
   if cbbCharset.Itemindex<0 then
     result := ANSI_CHARSET
   else
-    result := byte(ptrint(cbbCharset.items.Objects[cbbCharset.ItemIndex]));
+    result := Byte(PtrInt(cbbCharset.items.Objects[cbbCharset.ItemIndex]));
 end;
 
 function TfrmFontDialogEx.GetPitch: integer;
@@ -471,15 +498,18 @@ var
   s: string;
 begin
   s := GetCurrent;
-  if GetSelection <> s then begin
+  if GetSelection <> s then
+  begin
     i := Sender.Items.IndexOf(s);
-    if i>-1 then begin
-      {$ifdef debug}
-      debugln('RestoreSelection: listbox=',Sender.Name,' Old=',GetSelection,' New=',S);
-      {$endif}
-      if i<>Sender.ItemIndex then
-        Sender.ItemIndex := i;
-    end;
+    if (i > -1)
+    then
+      begin
+        {$ifdef debug}
+        debugln('RestoreSelection: listbox=',Sender.Name,' Old=',GetSelection,' New=',S);
+        {$endif}
+        if i<>Sender.ItemIndex then
+          Sender.ItemIndex := i;
+      end;
   end;
 end;
 
@@ -499,9 +529,10 @@ begin
     2: i:=VARIABLE_PITCH;
     3: i:=MONO_FONT;
     else
-      i:=DEFAULT_PITCH;
+      i:= DEFAULT_PITCH;
   end;
-  lf.lfPitchAndFamily := i;
+
+  lf.lfPitchAndFamily:= i;
 
   {$ifdef debug}
   debugln('LoadFontList: for charset=',CharSetToString(lf.lfcharset));
@@ -529,7 +560,9 @@ begin
     end;
     LoadFamilyFonts(-1);
     
-    lblFontFaceList.Caption := format('Fontfaces, found %d, %d ms',[lbxFamily.Items.Count, FTime]);
+    //lblFontFaceList.Caption := format('Fontfaces, found %d, %d ms',[lbxFamily.Items.Count, FTime]);
+    lblFontFaceList.Caption := format(cFontFaceList,[lbxFamily.Items.Count]);
+
   finally
     EnableEvents(True, lbxFamily);
     ReleaseDC(0, DC);
@@ -601,6 +634,7 @@ begin
       lbxCharset.Items.Assign(LCharset);
       lbxCharset.ItemIndex := -1;
       EnableEvents(true, lbxCharset);
+      //if cbbCharset.Items.;
     end else begin
       // fill styles listbox
       LStyles.Sort;
