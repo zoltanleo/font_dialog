@@ -259,8 +259,6 @@ begin
 end;
 
 procedure TfrmFontDialogEx.FormCreate(Sender: TObject);
-//var
-//  Ini: TIniFile;
 begin
   FCharSize.cx:= Self.Canvas.TextWidth('W');
   FCharSize.cy:= Self.Canvas.TextHeight('Wj');
@@ -270,18 +268,6 @@ begin
 
   FSelfFont:= TFont.Create;
   FSelfFont.Assign(Screen.SystemFont);
-
-  
-  //Ini := TIniFile.Create(UTF8ToSys(ChangeFileExt(Application.ExeName,'.ini')));
-  //try
-  //  FCurrentFamily  := Ini.ReadString('General','CurrentFamily', '');
-  //  FCurrentCharset := Ini.ReadString('General','CurrentCharset','');
-  //  FCurrentStyle   := Ini.ReadString('General','CurrentStyle',  '');
-  //  FCurrentSize    := Ini.ReadString('General','CurrentSize',   '');
-  //  FCurrentColor   := Ini.ReadString('General','CurrentColor',   '');
-  //finally
-  //  Ini.Free;
-  //end;
 
   with scrbxDialog do
   begin
@@ -333,6 +319,7 @@ begin
   lblFontColor.Caption:= cFontColor;
   lblSample.Caption:= cFontSample;
   lblCharset.Caption:= cFontCharSet;
+  btnApplyFilter.Caption:= cBtnApplyFilter;
 
 
   {$IFDEF MSWINDOWS}
@@ -407,7 +394,10 @@ var
   i: PtrInt = -1;
   n: PtrInt = 0;
 begin
-  FCurrentFamily:= SelfFont.Name;
+  if (LowerCase(SelfFont.Name) = 'default')
+    then FCurrentFamily:= Screen.SystemFont.Name
+    else FCurrentFamily:= SelfFont.Name;
+
   FCurrentCharset:= CharSetToString(SelfFont.CharSet);
   FCurrentSize:= IntToStr(SelfFont.Size);
   clboxFontColor.Selected:= SelfFont.Color;
@@ -436,15 +426,11 @@ begin
   if (i <> -1)
     then lbxStyles.ItemIndex:= i
     else
-      if lbxStyles.Count > 0
+      if (lbxStyles.Count > 0)
         then lbxStyles.ItemIndex:= 0
         else lbxStyles.ItemIndex:= -1;
 
   lbxStylesClick(Self);
-
-
-
-  //SelectFont;
 end;
 
 procedure TfrmFontDialogEx.lbxFamilyClick(Sender: TObject);
@@ -470,7 +456,7 @@ var
   i: Integer;
 begin
   i := lbxCharset.ItemIndex;
-  if i<0 then exit;
+  if (i < 0) then exit;
   i := PtrInt(lbxCharset.Items.Objects[i]);
   LoadFamilyFonts(byte(i));
 end;
@@ -614,7 +600,7 @@ end;
 procedure TfrmFontDialogEx.RestoreSelection(Sender: TListbox);
   function GetSelection: string;
   begin
-    if Sender.itemindex>=0 then
+    if (Sender.itemindex >= 0) then
       result := Sender.Items[Sender.ItemIndex]
     else
       result := '';
@@ -633,14 +619,14 @@ begin
   s := GetCurrent;
   if GetSelection <> s then
   begin
-    i := Sender.Items.IndexOf(s);
-    if (i > -1)
+    i:= Sender.Items.IndexOf(s);
+    if (i <> -1)
     then
       begin
         {$ifdef debug}
         debugln('RestoreSelection: listbox=',Sender.Name,' Old=',GetSelection,' New=',S);
         {$endif}
-        if i<>Sender.ItemIndex then
+        if (i <> Sender.ItemIndex) then
           Sender.ItemIndex := i;
       end;
   end;
@@ -671,7 +657,7 @@ begin
   debugln('LoadFontList: for charset=',CharSetToString(lf.lfcharset));
   {$endif}
 
-  L := TStringList.create;
+  L:= TStringList.create;
   lbxStyles.Clear;
   lbxCharset.Clear;
   lbxSizes.Clear;
