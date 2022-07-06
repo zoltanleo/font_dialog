@@ -37,7 +37,6 @@ type
     clboxFontColor: TColorBox;
     Edit1: TEdit;
     edtFamily: TEdit;
-    FontDialog1: TFontDialog;
     gbEffects: TGroupBox;
     gbFilter: TGroupBox;
     grid: TStringGrid;
@@ -259,6 +258,9 @@ begin
 end;
 
 procedure TfrmFontDialogEx.FormCreate(Sender: TObject);
+var
+  i: PtrInt = 0;
+  txtlen: PtrInt = 0;
 begin
   FCharSize.cx:= Self.Canvas.TextWidth('W');
   FCharSize.cy:= Self.Canvas.TextHeight('Wj');
@@ -335,11 +337,6 @@ begin
   {$ENDIF}
 
   //{$IFDEF MSWINDOWS}
-  //btnLeft.Caption:= 'Сохранить';
-  //btnRight.Caption:= 'Отмена';
-  //btnLeft.OnClick:= @ActbtnOKExecute;
-  //btnRight.OnClick:= @ActbtnCancelExecute;
-  //
   //if (UTF8LowerCase(ShortCutToText(ActBtnCancel.ShortCut)) <> 'unknown')
   //  then btnRight.Hint:= Format('<%s>',[ShortCutToText(ActBtnCancel.ShortCut)])
   //  else btnRight.Hint:= '';
@@ -348,11 +345,6 @@ begin
   //  else btnRight.Hint:= '';
   //
   //{$ELSE}
-  //btnLeft.Caption:= 'Отмена';
-  //btnRight.Caption:= 'Сохранить';
-  //btnLeft.OnClick:= @ActbtnCancelExecute;
-  //btnRight.OnClick:= @ActbtnOKExecute;
-  //
   //if (UTF8LowerCase(ShortCutToText(ActBtnCancel.ShortCut)) <> 'unknown')
   //  then btnLeft.Hint:= Format('<%s>',[ShortCutToText(ActBtnCancel.ShortCut)])
   //  else btnLeft.Hint:= '';
@@ -361,27 +353,28 @@ begin
   //  else btnRight.Hint:= '';
   //{$ENDIF}
 
-  //for i:= 0 to Pred(pnlBtn.ControlCount) do
-  //  if TObject(pnlBtn.Controls[i]).InheritsFrom(TButton) then
-  //    if (txtlen < pnlBtn.Canvas.TextWidth(TButton(pnlBtn.Controls[i]).Caption)) then
-  //      txtlen:= pnlBtn.Canvas.TextWidth(TButton(pnlBtn.Controls[i]).Caption);
-  //
-  //for i:= 0 to Pred(pnlBtn.ControlCount) do
-  //  if TObject(pnlBtn.Controls[i]).InheritsFrom(TButton) then
-  //  begin
-  //    {$IFDEF MSWINDOWS}
-  //    TButton(pnlBtn.Controls[i]).AutoSize:= True;
-  //    {$ELSE}
-  //      {$IFDEF LINUX}
-  //      TButton(pnlBtn.Controls[i]).AutoSize:= False;
-  //      TButton(pnlBtn.Controls[i]).Height:= pnlBtn.Canvas.TextHeight('W') * 3 div 2;
-  //      {$ENDIF}
-  //    {$ENDIF}
-  //
-  //    TButton(pnlBtn.Controls[i]).Constraints.MinWidth:= txtlen + pnlBtn.Canvas.TextWidth('W') * 2;
-  //    TButton(pnlBtn.Controls[i]).ShowHint:= True;
-  //
-  //  end;
+  for i:= 0 to Pred(Self.ControlCount) do
+    if TObject(Self.Controls[i]).InheritsFrom(TButton) then
+      if (txtlen < Self.Canvas.TextWidth(TButton(Self.Controls[i]).Caption)) then
+        txtlen:= Self.Canvas.TextWidth(TButton(Self.Controls[i]).Caption);
+
+  for i:= 0 to Pred(Self.ControlCount) do
+    if TObject(Self.Controls[i]).InheritsFrom(TButton) then
+    begin
+      {$IFDEF MSWINDOWS}
+      TButton(Self.Controls[i]).AutoSize:= True;
+      {$ELSE}
+        {$IFDEF LINUX}
+        TButton(Self.Controls[i]).AutoSize:= False;
+        TButton(Self.Controls[i]).Height:= FCharSize.cx * 3 div 2;
+        {$ENDIF}
+      {$ENDIF}
+
+      TButton(Self.Controls[i]).Constraints.MinWidth:= txtlen + FCharSize.cx * 2;
+      TButton(Self.Controls[i]).ShowHint:= True;
+    end;
+
+  Self.Caption:= Format('width %d / height %d', [btnLeft.Width, btnLeft.Height]);
 end;
 
 procedure TfrmFontDialogEx.FormDestroy(Sender: TObject);

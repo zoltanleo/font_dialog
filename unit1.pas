@@ -136,7 +136,12 @@ begin
     if (tmpFrm.ModalResult = mrOK) then
     begin
       Label1.Font.Assign(tmpFrm.SelfFont);
-      StaticText1.Color:= clRed;
+      StaticText1.Font.Assign(tmpFrm.SelfFont);
+      chbBold.Checked:= (fsBold in tmpFrm.SelfFont.Style);
+      chbItalic.Checked:= (fsItalic in tmpFrm.SelfFont.Style);
+      chbStrikeOut.Checked:= (fsStrikeOut in tmpFrm.SelfFont.Style);
+      chbUnderline.Checked:= (fsUnderline in tmpFrm.SelfFont.Style);
+      ColorBox1.Selected:= tmpFrm.SelfFont.Color;
     end;
   finally
     FreeAndNil(tmpFrm);

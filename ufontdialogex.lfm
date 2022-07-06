@@ -443,10 +443,4 @@ object frmFontDialogEx: TfrmFontDialogEx
       ResizeAnchor = akBottom
     end
   end
-  object FontDialog1: TFontDialog
-    MinFontSize = 0
-    MaxFontSize = 0
-    Left = 84
-    Top = 108
-  end
 end
