@@ -130,11 +130,13 @@ begin
   tmpFrm:= TfrmFontDialogEx.Create(Self);
 
   try
+    tmpFrm.SelfFont.Assign(Label1.Font);
     tmpFrm.ShowModal;
 
     if (tmpFrm.ModalResult = mrOK) then
     begin
-
+      Label1.Font.Assign(tmpFrm.SelfFont);
+      StaticText1.Color:= clRed;
     end;
   finally
     FreeAndNil(tmpFrm);

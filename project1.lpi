@@ -16,8 +16,8 @@
     <VersionInfo>
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
-      <RevisionNr Value="11"/>
-      <BuildNr Value="21"/>
+      <RevisionNr Value="12"/>
+      <BuildNr Value="31"/>
     </VersionInfo>
     <BuildModes Active="Default">
       <Item Name="Default" Default="True"/>
@@ -45,7 +45,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="121"/>
+        <UsageCount Value="134"/>
       </Unit>
       <Unit>
         <Filename Value="unit1.pas"/>
@@ -54,34 +54,40 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit1"/>
-        <TopLine Value="207"/>
-        <CursorPos X="3" Y="213"/>
-        <UsageCount Value="121"/>
+        <TopLine Value="120"/>
+        <CursorPos Y="138"/>
+        <UsageCount Value="134"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="C:\laz_new\lazarus\lcl\graphics.pp"/>
         <UnitName Value="Graphics"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="535"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="478"/>
         <CursorPos X="3" Y="488"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="16"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="C:\laz_new\lazarus\lcl\lcltype.pp"/>
         <UnitName Value="LCLType"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="3240"/>
-        <CursorPos X="20" Y="3230"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="2281"/>
+        <CursorPos X="3" Y="2291"/>
         <UsageCount Value="38"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="C:\laz_new\fpcsrc\rtl\win\wininc\struct.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="653"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="650"/>
         <CursorPos X="6" Y="657"/>
         <UsageCount Value="22"/>
+        <Bookmarks Count="1">
+          <Item0 X="6" Y="657"/>
+        </Bookmarks>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="ufontdlgunix.pas"/>
@@ -92,7 +98,7 @@
         <TopLine Value="402"/>
         <CursorPos Y="413"/>
         <FoldState Value=" T3o503031:"/>
-        <UsageCount Value="84"/>
+        <UsageCount Value="83"/>
         <Bookmarks Count="5">
           <Item0 X="60" Y="279" ID="7"/>
           <Item1 X="2" Y="408" ID="1"/>
@@ -107,7 +113,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="165"/>
         <CursorPos X="48" Y="188"/>
-        <UsageCount Value="16"/>
+        <UsageCount Value="15"/>
       </Unit>
       <Unit>
         <Filename Value="C:\laz_new\lazarus\lcl\forms.pp"/>
@@ -115,49 +121,50 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="703"/>
         <CursorPos X="14" Y="714"/>
-        <UsageCount Value="22"/>
+        <UsageCount Value="21"/>
       </Unit>
       <Unit>
         <Filename Value="C:\laz_new\lazarus\lcl\include\screen.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="891"/>
         <CursorPos X="3" Y="893"/>
-        <UsageCount Value="14"/>
+        <UsageCount Value="13"/>
       </Unit>
       <Unit>
         <Filename Value="C:\laz_new\lazarus\lcl\include\customlistbox.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="230"/>
         <CursorPos Y="240"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="C:\laz_new\lazarus\lcl\include\font.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1327"/>
         <CursorPos X="3" Y="1329"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="7"/>
       </Unit>
       <Unit>
         <Filename Value="C:\laz_new\lazarus\lcl\include\winapi.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="378"/>
-        <CursorPos X="3" Y="380"/>
-        <UsageCount Value="9"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="259"/>
+        <CursorPos X="3" Y="262"/>
+        <UsageCount Value="14"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="C:\laz_new\lazarus\lcl\lclstrconsts.pas"/>
         <UnitName Value="LCLStrConsts"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="184"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="C:\laz_new\lazarus\lcl\interfaces\win32\win32listsl.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="142"/>
         <CursorPos Y="152"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="ufontdialogex.pas"/>
@@ -167,17 +174,16 @@
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="331"/>
-        <CursorPos X="3" Y="314"/>
-        <FoldState Value=" TIwf36v"/>
-        <UsageCount Value="52"/>
+        <TopLine Value="408"/>
+        <CursorPos X="44" Y="413"/>
+        <UsageCount Value="65"/>
         <Bookmarks Count="6">
-          <Item0 X="8" Y="419" ID="4"/>
-          <Item1 X="3" Y="609" ID="5"/>
-          <Item2 X="19" Y="99" ID="1"/>
-          <Item3 X="11" Y="649" ID="3"/>
-          <Item4 X="16" Y="392" ID="2"/>
-          <Item5 Y="325"/>
+          <Item0 X="3" Y="708" ID="5"/>
+          <Item1 X="8" Y="257" ID="4"/>
+          <Item2 X="5" Y="763" ID="2"/>
+          <Item3 X="3" Y="160" ID="3"/>
+          <Item4 X="15" Y="572" ID="9"/>
+          <Item5 Y="443" ID="1"/>
         </Bookmarks>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -188,21 +194,21 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="1791"/>
         <CursorPos X="14" Y="1799"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit>
       <Unit>
         <Filename Value="C:\laz_new\lazarus\lcl\include\intfbasewinapi.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2148"/>
         <CursorPos X="3" Y="2150"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit>
       <Unit>
         <Filename Value="C:\laz_new\fpcsrc\rtl\objpas\classes\stringl.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1051"/>
         <CursorPos X="3" Y="1063"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="C:\laz_new\lazarus\lcl\controls.pp"/>
@@ -210,7 +216,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="10"/>
         <CursorPos X="3" Y="183"/>
-        <UsageCount Value="16"/>
+        <UsageCount Value="15"/>
       </Unit>
       <Unit>
         <Filename Value="C:\laz_new\lazarus\lcl\stdctrls.pp"/>
@@ -218,7 +224,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="279"/>
         <CursorPos X="3" Y="289"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="..\leybasoft_arm_v5\utreeclinicdescroptionframe.pas"/>
@@ -228,7 +234,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="683"/>
         <CursorPos Y="651"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit>
       <Unit>
         <Filename Value="..\leybasoft_vtv\unit1.pas"/>
@@ -239,7 +245,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="394"/>
         <CursorPos Y="397"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit>
       <Unit>
         <Filename Value="..\leybasoft_arm_v5\uphonesedit.pas"/>
@@ -249,125 +255,129 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="224"/>
         <CursorPos X="19" Y="153"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="28">
+    <JumpHistory HistoryIndex="29">
       <Position>
-        <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="641" Column="63" TopLine="630"/>
+        <Filename Value="C:\laz_new\fpcsrc\rtl\win\wininc\struct.inc"/>
+        <Caret Line="657" Column="6" TopLine="650"/>
       </Position>
       <Position>
         <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="334" Column="3" TopLine="331"/>
+        <Caret Line="410" TopLine="399"/>
       </Position>
       <Position>
         <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="600" Column="3" TopLine="588"/>
+        <Caret Line="745" Column="5" TopLine="736"/>
       </Position>
       <Position>
         <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="334" Column="3" TopLine="331"/>
+        <Caret Line="188" Column="56" TopLine="171"/>
       </Position>
       <Position>
         <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="343" Column="3" TopLine="331"/>
+        <Caret Line="408" TopLine="443"/>
       </Position>
       <Position>
         <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="643" Column="38" TopLine="630"/>
+        <Caret Line="575" Column="53" TopLine="564"/>
       </Position>
       <Position>
         <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="322" Column="33" TopLine="312"/>
+        <Caret Line="13" Column="14"/>
       </Position>
       <Position>
         <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="526" Column="3" TopLine="515"/>
+        <Caret Line="53" Column="14" TopLine="37"/>
       </Position>
       <Position>
         <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="322" Column="33" TopLine="240"/>
+        <Caret Line="71" Column="24" TopLine="55"/>
       </Position>
       <Position>
         <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="709" Column="55" TopLine="698"/>
+        <Caret Line="297" Column="12" TopLine="281"/>
       </Position>
       <Position>
         <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="641" Column="47" TopLine="625"/>
+        <Caret Line="489" Column="37" TopLine="481"/>
       </Position>
       <Position>
         <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="403" Column="3" TopLine="387"/>
+        <Caret Line="537" Column="46" TopLine="520"/>
       </Position>
       <Position>
         <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="640" Column="7" TopLine="631"/>
+        <Caret Line="548" Column="23" TopLine="532"/>
       </Position>
       <Position>
         <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="403" Column="3" TopLine="397"/>
+        <Caret Line="568" Column="20" TopLine="558"/>
       </Position>
       <Position>
         <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="389" Column="13" TopLine="378"/>
+        <Caret Line="574" Column="55" TopLine="558"/>
       </Position>
       <Position>
         <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="640" TopLine="631"/>
+        <Caret Line="575" Column="45" TopLine="559"/>
       </Position>
       <Position>
         <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="337" Column="28" TopLine="331"/>
+        <Caret Line="615" Column="35" TopLine="598"/>
       </Position>
       <Position>
         <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="344" Column="36" TopLine="329"/>
+        <Caret Line="632" Column="24" TopLine="615"/>
       </Position>
       <Position>
         <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="109" Column="36" TopLine="101"/>
+        <Caret Line="681" Column="12" TopLine="665"/>
       </Position>
       <Position>
         <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="330" Column="16" TopLine="323"/>
+        <Caret Line="780" Column="36" TopLine="764"/>
       </Position>
       <Position>
         <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="587" Column="11" TopLine="578"/>
+        <Caret Line="781" Column="16" TopLine="765"/>
       </Position>
       <Position>
         <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="357" Column="8" TopLine="347"/>
+        <Caret Line="782" Column="16" TopLine="766"/>
       </Position>
       <Position>
         <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="324" Column="5" TopLine="310"/>
+        <Caret Line="781" Column="37" TopLine="767"/>
       </Position>
       <Position>
         <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="93" Column="24" TopLine="74"/>
+        <Caret Line="128" Column="10" TopLine="117"/>
       </Position>
       <Position>
         <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="768" Column="30" TopLine="752"/>
+        <Caret Line="172" Column="14" TopLine="162"/>
       </Position>
       <Position>
         <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="78" Column="14" TopLine="75"/>
+        <Caret Line="181" Column="9" TopLine="172"/>
+      </Position>
+      <Position>
+        <Filename Value="C:\laz_new\fpcsrc\rtl\win\wininc\struct.inc"/>
+        <Caret Line="657" Column="6" TopLine="650"/>
       </Position>
       <Position>
         <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="282" Column="45" TopLine="276"/>
-      </Position>
-      <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="43" Column="18" TopLine="32"/>
+        <Caret Line="578" Column="15" TopLine="568"/>
       </Position>
       <Position>
         <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="329" Column="37" TopLine="320"/>
+        <Caret Line="424" Column="3" TopLine="442"/>
+      </Position>
+      <Position>
+        <Filename Value="ufontdialogex.pas"/>
+        <Caret Line="576" Column="21" TopLine="566"/>
       </Position>
     </JumpHistory>
   </ProjectOptions>

@@ -9,11 +9,12 @@ object frmFontDialogEx: TfrmFontDialogEx
   ClientHeight = 557
   ClientWidth = 633
   KeyPreview = True
+  OnClose = FormClose
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
+  OnDestroy = FormDestroy
   OnShow = FormShow
   ShowHint = True
-  LCLVersion = '2.3.0.0'
   object btnRight: TButton
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
@@ -189,7 +190,7 @@ object frmFontDialogEx: TfrmFontDialogEx
       ScrollBars = ssNone
       TabOrder = 4
       ColWidths = (
-        337
+        333
       )
     end
     object edtFamily: TEdit

@@ -60,14 +60,17 @@ type
     procedure chbStrikeChange(Sender: TObject);
     procedure chbUnderLineChange(Sender: TObject);
     procedure clboxFontColorChange(Sender: TObject);
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCloseQuery(Sender: TObject; var CanClose: boolean);
     procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure lbxFamilyClick(Sender: TObject);
     procedure lbxCharsetClick(Sender: TObject);
     procedure lbxSizesClick(Sender: TObject);
     procedure lbxStylesClick(Sender: TObject);
   private
+    FSelfFont: TFont;
     FTime: LongWord;
     FIniTime: LongWord;
     FCurrentFamily
@@ -76,6 +79,7 @@ type
     ,FCurrentCharset
     , FCurrentColor: string;
     FCharSize: TSize;
+    procedure SetSelfFont(AValue: TFont);
     procedure StartTimer;
     Procedure EndTimer;
     function  GetCharSet: byte;
@@ -90,6 +94,7 @@ type
     procedure UpdateFont(F: TFont);
     procedure FillcbbCharSet;
   public
+    property SelfFont: TFont read FSelfFont write SetSelfFont;
     procedure BtnOKClick(Sender: TObject);
     procedure BtnCancelClick(Sender: TObject);
   end; 
@@ -153,18 +158,18 @@ var
   lcharsets: TStringList;
 begin
   LCharSets := TStringList(ptrint(Data));
-  if Lcharsets<>nil then begin
+  if (Lcharsets <> nil) then begin
     // collect charsets
     // when collecting charsets no need to collect all other info
-    s :=CharSetToString(eLogFont.elfLogFont.lfCharSet);
-    if LCharsets.indexOf(s)<0 then
+    s:= CharSetToString(eLogFont.elfLogFont.lfCharSet);
+    if (LCharsets.indexOf(s) < 0) then
       LCharsets.AddObject(s, TObject(ptrint(eLogFont.elfLogFont.lfCharSet)));
     exit;
   end;
   
   // collect styles
   s :=eLogFont.elfStyle;
-  if LStyles.IndexOf(s)<0 then begin
+  if (LStyles.IndexOf(s) < 0) then begin
     // encode bold (bit 0), italic (bit 1) -- see SelectFont
     n := 0;
     {$IF DEFINED(LCLWin32) or DEFINED(LCLCocoa) }
@@ -180,7 +185,7 @@ begin
     if (pos('bold', s) <> 0) then
       n := n or 2;
     {$ENDIF}
-    LStyles.AddObject(eLogFont.elfStyle, TObject(ptrint(n)));
+    LStyles.AddObject(eLogFont.elfStyle, TObject(PtrInt(n)));
   end;
   
   // collect sizes
@@ -230,46 +235,53 @@ begin
   SelectFont;
 end;
 
-procedure TfrmFontDialogEx.FormCloseQuery(Sender: TObject; var CanClose: boolean);
-var
-  Ini: TInifile;
+procedure TfrmFontDialogEx.FormClose(Sender: TObject;
+  var CloseAction: TCloseAction);
 begin
-  SaveSelection;
-  Ini := TIniFile.Create(UTF8ToSys(ChangeFileExt(Application.ExeName,'.ini')));
-  try
-    Ini.WriteString('General','CurrentFamily', FCurrentFamily);
-    Ini.WriteString('General','CurrentCharset',FCurrentCharset);
-    Ini.WriteString('General','CurrentStyle',  FCurrentStyle);
-    Ini.WriteString('General','CurrentSize',   FCurrentSize);
-    Ini.WriteString('General','CurrentColor',  FCurrentColor);
-  finally
-    Ini.Free;
-  end;
+  CloseAction:= caFree;
+end;
+
+procedure TfrmFontDialogEx.FormCloseQuery(Sender: TObject; var CanClose: boolean);
+//var
+//  Ini: TInifile;
+begin
+  //SaveSelection;
+  //Ini := TIniFile.Create(UTF8ToSys(ChangeFileExt(Application.ExeName,'.ini')));
+  //try
+  //  Ini.WriteString('General','CurrentFamily', FCurrentFamily);
+  //  Ini.WriteString('General','CurrentCharset',FCurrentCharset);
+  //  Ini.WriteString('General','CurrentStyle',  FCurrentStyle);
+  //  Ini.WriteString('General','CurrentSize',   FCurrentSize);
+  //  Ini.WriteString('General','CurrentColor',  FCurrentColor);
+  //finally
+  //  Ini.Free;
+  //end;
 end;
 
 procedure TfrmFontDialogEx.FormCreate(Sender: TObject);
-var
-  Ini: TIniFile;
-  len: PtrInt = 0;
+//var
+//  Ini: TIniFile;
 begin
   FCharSize.cx:= Self.Canvas.TextWidth('W');
   FCharSize.cy:= Self.Canvas.TextHeight('Wj');
 
   FillcbbCharSet;
   ResetSampleText;
-  
-  Ini := TIniFile.Create(UTF8ToSys(ChangeFileExt(Application.ExeName,'.ini')));
-  try
-    FCurrentFamily  := Ini.ReadString('General','CurrentFamily', '');
-    FCurrentCharset := Ini.ReadString('General','CurrentCharset','');
-    FCurrentStyle   := Ini.ReadString('General','CurrentStyle',  '');
-    FCurrentSize    := Ini.ReadString('General','CurrentSize',   '');
-    FCurrentColor   := Ini.ReadString('General','CurrentColor',   '');
-  finally
-    Ini.Free;
-  end;
 
-  clboxFontColor.Selected:= StringToColorDef(FCurrentColor, clWindowText);
+  FSelfFont:= TFont.Create;
+  FSelfFont.Assign(Screen.SystemFont);
+
+  
+  //Ini := TIniFile.Create(UTF8ToSys(ChangeFileExt(Application.ExeName,'.ini')));
+  //try
+  //  FCurrentFamily  := Ini.ReadString('General','CurrentFamily', '');
+  //  FCurrentCharset := Ini.ReadString('General','CurrentCharset','');
+  //  FCurrentStyle   := Ini.ReadString('General','CurrentStyle',  '');
+  //  FCurrentSize    := Ini.ReadString('General','CurrentSize',   '');
+  //  FCurrentColor   := Ini.ReadString('General','CurrentColor',   '');
+  //finally
+  //  Ini.Free;
+  //end;
 
   with scrbxDialog do
   begin
@@ -385,10 +397,24 @@ begin
   //  end;
 end;
 
+procedure TfrmFontDialogEx.FormDestroy(Sender: TObject);
+begin
+  FreeAndNil(FSelfFont);
+end;
+
 procedure TfrmFontDialogEx.FormShow(Sender: TObject);
 var
   i: PtrInt = -1;
+  n: PtrInt = 0;
 begin
+  FCurrentFamily:= SelfFont.Name;
+  FCurrentCharset:= CharSetToString(SelfFont.CharSet);
+  FCurrentSize:= IntToStr(SelfFont.Size);
+  clboxFontColor.Selected:= SelfFont.Color;
+  chbStrike.Checked:= (fsStrikeOut in SelfFont.Style);
+  chbUnderLine.Checked:= (fsUnderline in SelfFont.Style);
+
+
   LoadFontlist;
   lbxCharsetClick(nil);
   if (lbxCharset.Count > 0) then
@@ -398,7 +424,27 @@ begin
       then cbbCharset.ItemIndex:= i
       else cbbCharset.ItemIndex:= 1;
   end;
-  SelectFont;
+
+  //load and set font styles
+  n:= 0;//regular = non fsBold and non fsItalic
+
+  if (fsItalic in SelfFont.Style) then n:= (n or 1); //fsItalic and regular
+  if (fsBold in SelfFont.Style) then n:= (n or 2);//fsbold and regular/italic
+
+  i:= lbxStyles.Items.IndexOfObject(TObject(PtrInt(n)));
+
+  if (i <> -1)
+    then lbxStyles.ItemIndex:= i
+    else
+      if lbxStyles.Count > 0
+        then lbxStyles.ItemIndex:= 0
+        else lbxStyles.ItemIndex:= -1;
+
+  lbxStylesClick(Self);
+
+
+
+  //SelectFont;
 end;
 
 procedure TfrmFontDialogEx.lbxFamilyClick(Sender: TObject);
@@ -442,6 +488,12 @@ end;
 procedure TfrmFontDialogEx.StartTimer;
 begin
   FIniTime := GetTickCount;
+end;
+
+procedure TfrmFontDialogEx.SetSelfFont(AValue: TFont);
+begin
+  if FSelfFont.Equals(AValue) then Exit;
+  FSelfFont.Assign(AValue);
 end;
 
 procedure TfrmFontDialogEx.EndTimer;
@@ -495,7 +547,6 @@ end;
 
 procedure TfrmFontDialogEx.SelectFont;
 var
-  F: TFont;
   i: integer;
   function GetFontSize(s: string): Integer;
   begin
@@ -506,28 +557,24 @@ var
       result := StrToInt(s);
   end;
 begin
-  if lbxFamily.ItemIndex>=0 then
-    if lbxCharset.ItemIndex>=0 then
-      if lbxStyles.ItemIndex>=0 then
-        if lbxSizes.ItemIndex>=0 then
+  if (lbxFamily.ItemIndex >= 0) then
+    if (lbxCharset.ItemIndex >= 0) then
+      if (lbxStyles.ItemIndex >= 0) then
+        if (lbxSizes.ItemIndex >= 0) then
         begin
-          F := TFont.Create;
-          try
-            F.Name := lbxFamily.Items[lbxFamily.ItemIndex];
-            F.CharSet := TFontCharSet(ptrint(lbxCharset.Items.Objects[lbxCharset.ItemIndex]));
-            F.Size := GetFontSize(lbxSizes.Items[lbxSizes.ItemIndex]);
-            i := ptrint(lbxStyles.Items.Objects[lbxStyles.ItemIndex]);
-            F.Style := [];
-            if i and 1 <> 0 then F.Style := F.Style + [fsItalic];
-            if i and 2 <> 0 then F.Style := F.Style + [fsBold];
-            if chbUnderLine.Checked then F.Style := F.Style + [fsUnderline];
-            if chbStrike.Checked then F.Style := F.Style + [fsStrikeOut];
-            F.Color:= clboxFontColor.Selected;
-            UpdateFont(F);
-            SaveSelection;
-          finally
-            F.Free;
-          end;
+          FSelfFont.Name := lbxFamily.Items[lbxFamily.ItemIndex];
+          FSelfFont.CharSet := TFontCharSet(ptrint(lbxCharset.Items.Objects[lbxCharset.ItemIndex]));
+          FSelfFont.Size := GetFontSize(lbxSizes.Items[lbxSizes.ItemIndex]);
+          i:= PtrInt(lbxStyles.Items.Objects[lbxStyles.ItemIndex]);
+          //Self.Caption:= Format('lbxStyles i = %d',[i]);
+          FSelfFont.Style:= [];
+          if ((i and 1) <> 0) then FSelfFont.Style:= FSelfFont.Style + [fsItalic];
+          if ((i and 2) <> 0) then FSelfFont.Style:= FSelfFont.Style + [fsBold];
+          if chbUnderLine.Checked then FSelfFont.Style:= FSelfFont.Style + [fsUnderline];
+          if chbStrike.Checked then FSelfFont.Style:= FSelfFont.Style + [fsStrikeOut];
+          FSelfFont.Color:= clboxFontColor.Selected;
+          UpdateFont(FSelfFont);
+          //SaveSelection;
         end;
 end;
 
@@ -632,17 +679,17 @@ begin
   DC := GetDC(0);
   EnableEvents(False, lbxFamily);
   try
-    StartTimer;
+    //StartTimer;
     EnumFontFamiliesEX(DC, @lf, @EnumFontsNoDups, ptrint(L), 0);
-    EndTimer;
+    //EndTimer;
     L.Sort;
     lbxFamily.Items.Assign(L);
-    lbxFamily.Itemindex := -1;
+    lbxFamily.Itemindex:= -1;
     
     RestoreSelection(lbxFamily);
-    if lbxFamily.ItemIndex<0 then begin
-      if lbxFamily.Items.Count>0 then
-        lbxFamily.ItemIndex := 0;
+    if (lbxFamily.ItemIndex < 0) then begin
+      if (lbxFamily.Items.Count > 0) then
+        lbxFamily.ItemIndex:= 0;
     end;
     LoadFamilyFonts(-1);
     
@@ -680,10 +727,11 @@ var
     add(20); add(22); add(24); add(26); add(28); add(36); add(48); add(72);
   end;
 begin
-  i := lbxFamily.ItemIndex;
-  if i<0 then exit;
+  i:= lbxFamily.ItemIndex;
+  if (i < 0) then exit;
   
-  LoadingCharsets := Charset<0;
+  LoadingCharsets:= (Charset < 0);
+
   {$ifdef debug}
   Write('LoadFamilyFonts: for family=', lbxFamily.Items[i],' and Charset=');
   if LoadingCharsets then
