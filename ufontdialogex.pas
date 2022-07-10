@@ -98,21 +98,21 @@ type
     procedure BtnCancelClick(Sender: TObject);
   end; 
 
-const
-  cTitle = 'Choose font';
-  cFontFaceList = 'Font family (found: %d items):';
-  cFontStyles = 'Font style(s):';
-  cFontSize = 'Font size:';
-  cFontEffects = 'Font effects:';
-  cStrikeout = 'StrikeOut';
-  cUnderline = 'Underline';
-  cFontColor = 'Font color:';
-  cFontSample= 'Font sample:';
-  cFontFilter = 'Font filter';
-  cFontCharSet = 'Current font charset:';
-  cBtnOKCaption = 'ОК';
-  cBtnCancelCaption = 'Cancel';
-  cBtnApplyFilter = 'Apply filter';
+//const
+//  cTitle = 'Choose font';
+//  cFontFaceList = 'Font family (found: %d items):';
+//  cFontStyles = 'Font style(s):';
+//  cFontSize = 'Font size:';
+//  cFontEffects = 'Font effects:';
+//  cStrikeout = 'StrikeOut';
+//  cUnderline = 'Underline';
+//  cFontColor = 'Font color:';
+//  cFontSample= 'Font sample:';
+//  cFontFilter = 'Font filter';
+//  cFontCharSet = 'Current font charset:';
+//  cBtnOKCaption = 'ОК';
+//  cBtnCancelCaption = 'Cancel';
+//  cBtnApplyFilter = 'Apply filter';
 
 var
   frmFontDialogEx: TfrmFontDialogEx;
@@ -121,6 +121,7 @@ implementation
 {.$define Debug}
 
 {$R *.lfm}
+{$I 'ufontdlgex_i18n.inc'}
 
 { TfrmFontDialogEx }
 var
@@ -374,7 +375,7 @@ begin
       TButton(Self.Controls[i]).ShowHint:= True;
     end;
 
-  Self.Caption:= Format('width %d / height %d', [btnLeft.Width, btnLeft.Height]);
+  //Self.Caption:= Format('width %d / height %d', [btnLeft.Width, btnLeft.Height]);
 end;
 
 procedure TfrmFontDialogEx.FormDestroy(Sender: TObject);
