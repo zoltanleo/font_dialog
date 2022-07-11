@@ -279,21 +279,14 @@ begin
     HorzScrollBar.Tracking:= True;
     VertScrollBar.Smooth:= True;
     VertScrollBar.Tracking:= True;
+    AutoSize:= True;
   end;
 
-  lbxFamily.Constraints.MinWidth:= FCharSize.cx * 22;
-  lbxFamily.Constraints.MinHeight:= FCharSize.cy * 10;
-  lbxStyles.Constraints.MinWidth:= FCharSize.cx * 22;
-
-  gbEffects.Constraints.MinWidth:= FCharSize.cx * 22;
-  grid.Constraints.MinWidth:= gbEffects.Constraints.MinWidth;
-  {$IFDEF LINUX}
-  splFamilyFontHorz.Top:= FCharSize.cy * 12;
-  {$ELSE}
-  splFamilyFontHorz.Top:= FCharSize.cy * 14;
-  {$ENDIF}
-
-  lbxSizes.Width:= FCharSize.cx * 6;
+  //{$IFDEF LINUX}
+  //splFamilyFontHorz.Top:= FCharSize.cy * 12;
+  //{$ELSE}
+  //splFamilyFontHorz.Top:= FCharSize.cy * 14;
+  //{$ENDIF}
 
   with Self do
   begin
@@ -303,27 +296,10 @@ begin
     //Caption:= Format('w: %d | h: %d',[sz.cx, sz.cy]);
     Caption:= cTitle;
     ModalResult:= mrCancel;
-    BorderStyle:= bsSizeable;
+    //BorderStyle:= bsSizeable;
     Position:= poScreenCenter;
-    Constraints.MinWidth:= FCharSize.cx * 60;
-    {$IFDEF LINUX}
-    Constraints.MinHeight:= FCharSize.cy * 36;
-    {$ELSE}
-    Constraints.MinHeight:= FCharSize.cy * 39;
-    {$ENDIF}
+    BorderIcons:= [biSystemMenu];
   end;
-
-  lblStyles.Caption:= cFontStyles;
-  lblSizes.Caption:= cFontSize;
-  gbEffects.Caption:= cFontEffects;
-  chbStrike.Caption:= cStrikeout;
-  chbUnderLine.Caption:= cUnderline;
-  gbFilter.Caption:= cFontFilter;
-  lblFontColor.Caption:= cFontColor;
-  lblSample.Caption:= cFontSample;
-  lblCharset.Caption:= cFontCharSet;
-  btnApplyFilter.Caption:= cBtnApplyFilter;
-
 
   {$IFDEF MSWINDOWS}
   btnLeft.Caption:= cBtnOKCaption;
@@ -375,7 +351,6 @@ begin
       TButton(Self.Controls[i]).ShowHint:= True;
     end;
 
-  //Self.Caption:= Format('width %d / height %d', [btnLeft.Width, btnLeft.Height]);
 end;
 
 procedure TfrmFontDialogEx.FormDestroy(Sender: TObject);
@@ -388,6 +363,17 @@ var
   i: PtrInt = -1;
   n: PtrInt = 0;
 begin
+  lblStyles.Caption:= cFontStyles;
+  lblSizes.Caption:= cFontSize;
+  gbEffects.Caption:= cFontEffects;
+  chbStrike.Caption:= cStrikeout;
+  chbUnderLine.Caption:= cUnderline;
+  gbFilter.Caption:= cFontFilter;
+  lblFontColor.Caption:= cFontColor;
+  lblSample.Caption:= cFontSample;
+  lblCharset.Caption:= cFontCharSet;
+  btnApplyFilter.Caption:= cBtnApplyFilter;
+
   if (LowerCase(SelfFont.Name) = 'default')
     then FCurrentFamily:= Screen.SystemFont.Name
     else FCurrentFamily:= SelfFont.Name;
@@ -397,7 +383,6 @@ begin
   clboxFontColor.Selected:= SelfFont.Color;
   chbStrike.Checked:= (fsStrikeOut in SelfFont.Style);
   chbUnderLine.Checked:= (fsUnderline in SelfFont.Style);
-
 
   LoadFontlist;
   lbxCharsetClick(nil);
@@ -425,6 +410,37 @@ begin
         else lbxStyles.ItemIndex:= -1;
 
   lbxStylesClick(Self);
+
+  lbxSizes.Constraints.MinWidth:=  lblSizes.Width + FCharSize.cx * 2;
+  lbxStyles.Constraints.MinWidth:= lblStyles.Width + FCharSize.cx * 2;
+  gbEffects.Constraints.MinWidth:= chbStrike.Width * 2 + FCharSize.cx * 2;
+  grid.Constraints.MinWidth:= gbEffects.Constraints.MinWidth;
+  lbxFamily.Constraints.MinWidth:= lblFontFaceList.Width + FCharSize.cx * 2;
+  lbxFamily.Constraints.MinHeight:= lbxFamily.ItemHeight + FCharSize.cx * 2;
+  //lbxFamily.Constraints.MaxHeight:= lbxFamily.ItemHeight * 7 + FCharSize.cx * 2;
+
+  splFamilyFontVert.Left:= lbxFamily.Left +
+                           lbxFamily.Width +
+                           lbxFamily.BorderSpacing.Right +
+                           FCharSize.cx * 2;
+
+  splFamilyFontHorz.Top:= lbxFamily.Top +
+                          lbxFamily.Height +
+                          lbxFamily.BorderSpacing.Bottom +
+                          FCharSize.cx * 2;
+  splgbEffects.Left:= gbEffects.Left +
+                      gbEffects.Width +
+                      gbEffects.BorderSpacing.Right +
+                      FCharSize.cx * 2;
+
+  Self.BorderStyle:= bsSizeable;
+  //Self.Constraints.MinWidth:= FCharSize.cx * 60;
+  //{$IFDEF LINUX}
+  //Self.Constraints.MinHeight:= FCharSize.cy * 36;
+  //{$ELSE}
+  //Self.Constraints.MinHeight:= FCharSize.cy * 39;
+  //{$ENDIF}
+  //Self.AutoSize:= True;
 end;
 
 procedure TfrmFontDialogEx.lbxFamilyClick(Sender: TObject);
