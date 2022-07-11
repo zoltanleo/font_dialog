@@ -16,8 +16,8 @@
     <VersionInfo>
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
-      <RevisionNr Value="16"/>
-      <BuildNr Value="33"/>
+      <RevisionNr Value="17"/>
+      <BuildNr Value="35"/>
     </VersionInfo>
     <BuildModes Active="Default">
       <Item Name="Default" Default="True"/>
@@ -169,17 +169,17 @@
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="416"/>
-        <CursorPos X="49" Y="420"/>
-        <FoldState Value=" TMoE2F%"/>
+        <TopLine Value="190"/>
+        <CursorPos X="50" Y="178"/>
+        <FoldState Value=" TMnF2F&apos;"/>
         <UsageCount Value="73"/>
         <Bookmarks Count="6">
-          <Item0 X="3" Y="704" ID="5"/>
-          <Item1 X="8" Y="257" ID="4"/>
-          <Item2 X="3" Y="160" ID="3"/>
-          <Item3 X="15" Y="568" ID="9"/>
-          <Item4 Y="291" ID="1"/>
-          <Item5 X="35" Y="436" ID="2"/>
+          <Item0 X="3" Y="650" ID="5"/>
+          <Item1 Y="225" ID="4"/>
+          <Item2 X="3" Y="141" ID="3"/>
+          <Item3 X="15" Y="514" ID="9"/>
+          <Item4 Y="250" ID="1"/>
+          <Item5 X="35" Y="389" ID="2"/>
         </Bookmarks>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -271,10 +271,6 @@
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="422" Column="37" TopLine="408"/>
-      </Position>
       <Position>
         <Filename Value="ufontdialogex.pas"/>
         <Caret Line="423" Column="37" TopLine="409"/>
@@ -389,7 +385,11 @@
       </Position>
       <Position>
         <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="420" Column="62" TopLine="416"/>
+        <Caret Line="420" Column="49" TopLine="426"/>
+      </Position>
+      <Position>
+        <Filename Value="ufontdialogex.pas"/>
+        <Caret Line="419" Column="49" TopLine="419"/>
       </Position>
     </JumpHistory>
   </ProjectOptions>

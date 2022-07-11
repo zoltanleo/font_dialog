@@ -15,7 +15,6 @@ uses
   , Dialogs
   , StdCtrls
   , Grids
-  , IniFiles
   , LCLType
   , LCLIntf
   , LazUTF8
@@ -53,14 +52,12 @@ type
     scrbxDialog: TScrollBox;
     splFamilyFontVert: TSplitter;
     splgbEffects: TSplitter;
-    splFamilyFontHorz: TSplitter;
     procedure btnResetTextClick(Sender: TObject);
     procedure btnApplyFilterClick(Sender: TObject);
     procedure chbStrikeChange(Sender: TObject);
     procedure chbUnderLineChange(Sender: TObject);
     procedure clboxFontColorChange(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
-    procedure FormCloseQuery(Sender: TObject; var CanClose: boolean);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -97,22 +94,6 @@ type
     procedure BtnOKClick(Sender: TObject);
     procedure BtnCancelClick(Sender: TObject);
   end; 
-
-//const
-//  cTitle = 'Choose font';
-//  cFontFaceList = 'Font family (found: %d items):';
-//  cFontStyles = 'Font style(s):';
-//  cFontSize = 'Font size:';
-//  cFontEffects = 'Font effects:';
-//  cStrikeout = 'StrikeOut';
-//  cUnderline = 'Underline';
-//  cFontColor = 'Font color:';
-//  cFontSample= 'Font sample:';
-//  cFontFilter = 'Font filter';
-//  cFontCharSet = 'Current font charset:';
-//  cBtnOKCaption = 'ОК';
-//  cBtnCancelCaption = 'Cancel';
-//  cBtnApplyFilter = 'Apply filter';
 
 var
   frmFontDialogEx: TfrmFontDialogEx;
@@ -194,11 +175,12 @@ begin
   else
     with metric.ntmentm do
       if tmDigitizedAspectY <> 0 then begin
-        n := (tmHeight-tmInternalLeading)*72+tmDigitizedAspectY shr 1;
+        n := (tmHeight-tmInternalLeading) * 72 + tmDigitizedAspectY shr 1;
         n := n div tmDigitizedAspectY;
-        if n>0 then begin
-          s := IntToStr(n)+'*'; // font sizes with * indicate raster fonts
-          if LSizes.IndexOf(s)<0 then
+        if (n > 0) then
+        begin
+          s:= IntToStr(n)+'*'; // font sizes with * indicate raster fonts
+          if (LSizes.IndexOf(s) < 0) then
             LSizes.AddObject(s, TObject(ptrint(n)));
         end;
       end;
@@ -241,23 +223,6 @@ begin
   CloseAction:= caFree;
 end;
 
-procedure TfrmFontDialogEx.FormCloseQuery(Sender: TObject; var CanClose: boolean);
-//var
-//  Ini: TInifile;
-begin
-  //SaveSelection;
-  //Ini := TIniFile.Create(UTF8ToSys(ChangeFileExt(Application.ExeName,'.ini')));
-  //try
-  //  Ini.WriteString('General','CurrentFamily', FCurrentFamily);
-  //  Ini.WriteString('General','CurrentCharset',FCurrentCharset);
-  //  Ini.WriteString('General','CurrentStyle',  FCurrentStyle);
-  //  Ini.WriteString('General','CurrentSize',   FCurrentSize);
-  //  Ini.WriteString('General','CurrentColor',  FCurrentColor);
-  //finally
-  //  Ini.Free;
-  //end;
-end;
-
 procedure TfrmFontDialogEx.FormCreate(Sender: TObject);
 var
   i: PtrInt = 0;
@@ -282,12 +247,6 @@ begin
     AutoSize:= True;
   end;
 
-  //{$IFDEF LINUX}
-  //splFamilyFontHorz.Top:= FCharSize.cy * 12;
-  //{$ELSE}
-  //splFamilyFontHorz.Top:= FCharSize.cy * 14;
-  //{$ENDIF}
-
   with Self do
   begin
     //{darwin w: 13 | h: 15}
@@ -296,7 +255,6 @@ begin
     //Caption:= Format('w: %d | h: %d',[sz.cx, sz.cy]);
     Caption:= cTitle;
     ModalResult:= mrCancel;
-    //BorderStyle:= bsSizeable;
     Position:= poScreenCenter;
     BorderIcons:= [biSystemMenu];
   end;
@@ -417,30 +375,18 @@ begin
   grid.Constraints.MinWidth:= gbEffects.Constraints.MinWidth;
   lbxFamily.Constraints.MinWidth:= lblFontFaceList.Width + FCharSize.cx * 2;
   lbxFamily.Constraints.MinHeight:= lbxFamily.ItemHeight + FCharSize.cx * 2;
-  //lbxFamily.Constraints.MaxHeight:= lbxFamily.ItemHeight * 7 + FCharSize.cx * 2;
 
   splFamilyFontVert.Left:= lbxFamily.Left +
                            lbxFamily.Width +
                            lbxFamily.BorderSpacing.Right +
                            FCharSize.cx * 2;
 
-  splFamilyFontHorz.Top:= lbxFamily.Top +
-                          lbxFamily.Height +
-                          lbxFamily.BorderSpacing.Bottom +
-                          FCharSize.cx * 2;
   splgbEffects.Left:= gbEffects.Left +
                       gbEffects.Width +
                       gbEffects.BorderSpacing.Right +
                       FCharSize.cx * 2;
 
   Self.BorderStyle:= bsSizeable;
-  //Self.Constraints.MinWidth:= FCharSize.cx * 60;
-  //{$IFDEF LINUX}
-  //Self.Constraints.MinHeight:= FCharSize.cy * 36;
-  //{$ELSE}
-  //Self.Constraints.MinHeight:= FCharSize.cy * 39;
-  //{$ENDIF}
-  //Self.AutoSize:= True;
 end;
 
 procedure TfrmFontDialogEx.lbxFamilyClick(Sender: TObject);

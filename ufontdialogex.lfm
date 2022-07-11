@@ -10,7 +10,6 @@ object frmFontDialogEx: TfrmFontDialogEx
   ClientWidth = 633
   KeyPreview = True
   OnClose = FormClose
-  OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnShow = FormShow
@@ -54,7 +53,7 @@ object frmFontDialogEx: TfrmFontDialogEx
     Top = 0
     Width = 633
     HorzScrollBar.Page = 89
-    VertScrollBar.Page = 484
+    VertScrollBar.Page = 489
     Anchors = [akTop, akLeft, akRight, akBottom]
     ClientHeight = 492
     ClientWidth = 629
@@ -96,7 +95,6 @@ object frmFontDialogEx: TfrmFontDialogEx
       AnchorSideTop.Control = edtFamily
       AnchorSideTop.Side = asrBottom
       AnchorSideRight.Control = splFamilyFontVert
-      AnchorSideBottom.Control = splFamilyFontHorz
       Left = 10
       Height = 110
       Top = 63
@@ -115,7 +113,6 @@ object frmFontDialogEx: TfrmFontDialogEx
       AnchorSideLeft.Side = asrBottom
       AnchorSideTop.Control = edtFamily
       AnchorSideRight.Control = lbxSizes
-      AnchorSideBottom.Control = splFamilyFontHorz
       Left = 269
       Height = 138
       Top = 35
@@ -133,7 +130,6 @@ object frmFontDialogEx: TfrmFontDialogEx
       AnchorSideTop.Side = asrBottom
       AnchorSideRight.Control = scrbxDialog
       AnchorSideRight.Side = asrBottom
-      AnchorSideBottom.Control = splFamilyFontHorz
       Left = 552
       Height = 110
       Top = 63
@@ -157,7 +153,7 @@ object frmFontDialogEx: TfrmFontDialogEx
       AnchorSideBottom.Side = asrBottom
       Left = 282
       Height = 118
-      Top = 346
+      Top = 351
       Width = 337
       Anchors = [akTop, akLeft, akRight, akBottom]
       BorderSpacing.Left = 5
@@ -176,7 +172,7 @@ object frmFontDialogEx: TfrmFontDialogEx
       AnchorSideBottom.Control = lblCharset
       Left = 282
       Height = 108
-      Top = 208
+      Top = 213
       Width = 337
       Anchors = [akTop, akLeft, akRight]
       AutoFillColumns = True
@@ -223,18 +219,18 @@ object frmFontDialogEx: TfrmFontDialogEx
     end
     object gbEffects: TGroupBox
       AnchorSideLeft.Control = lbxFamily
-      AnchorSideTop.Control = splFamilyFontHorz
+      AnchorSideTop.Control = lbxFamily
       AnchorSideTop.Side = asrBottom
       AnchorSideRight.Control = splgbEffects
       Left = 10
       Height = 135
       Hint = 'A'
-      Top = 188
+      Top = 193
       Width = 257
       Align = alCustom
       Anchors = [akTop, akLeft, akRight]
       AutoSize = True
-      BorderSpacing.Top = 5
+      BorderSpacing.Top = 20
       BorderSpacing.Right = 5
       Caption = 'gbEffects'
       ClientHeight = 115
@@ -321,7 +317,7 @@ object frmFontDialogEx: TfrmFontDialogEx
       AnchorSideBottom.Side = asrBottom
       Left = 10
       Height = 131
-      Top = 333
+      Top = 338
       Width = 257
       Anchors = [akTop, akLeft, akRight]
       AutoSize = True
@@ -402,20 +398,18 @@ object frmFontDialogEx: TfrmFontDialogEx
       AnchorSideBottom.Side = asrBottom
       Left = 272
       Height = 276
-      Top = 188
+      Top = 193
       Width = 5
       Align = alCustom
       Anchors = [akTop, akBottom]
     end
     object lblSample: TLabel
       AnchorSideLeft.Control = grid
-      AnchorSideTop.Control = splFamilyFontHorz
-      AnchorSideTop.Side = asrBottom
+      AnchorSideTop.Control = gbEffects
       Left = 282
       Height = 15
-      Top = 188
+      Top = 193
       Width = 39
-      BorderSpacing.Top = 5
       Caption = 'Sample'
     end
     object lblCharset: TLabel
@@ -425,24 +419,11 @@ object frmFontDialogEx: TfrmFontDialogEx
       AnchorSideBottom.Control = lbxCharset
       Left = 282
       Height = 15
-      Top = 326
+      Top = 331
       Width = 41
       BorderSpacing.Top = 10
       BorderSpacing.Bottom = 5
       Caption = 'CharSet'
-    end
-    object splFamilyFontHorz: TSplitter
-      AnchorSideLeft.Control = lbxFamily
-      AnchorSideRight.Control = lbxSizes
-      AnchorSideRight.Side = asrBottom
-      Cursor = crVSplit
-      Left = 10
-      Height = 5
-      Top = 178
-      Width = 609
-      Align = alNone
-      Anchors = [akLeft, akRight]
-      ResizeAnchor = akBottom
     end
   end
 end
