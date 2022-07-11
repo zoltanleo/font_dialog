@@ -57,6 +57,7 @@ type
     procedure chbStrikeChange(Sender: TObject);
     procedure chbUnderLineChange(Sender: TObject);
     procedure clboxFontColorChange(Sender: TObject);
+    procedure edtFamilyEditingDone(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -217,6 +218,19 @@ begin
   SelectFont;
 end;
 
+procedure TfrmFontDialogEx.edtFamilyEditingDone(Sender: TObject);
+begin
+  if (lbxFamily.Items.IndexOf(UTF8Trim(edtFamily.Text)) > -1)
+  then
+    begin
+      lbxFamily.ItemIndex:= lbxFamily.Items.IndexOf(UTF8Trim(edtFamily.Text));
+      lbxFamilyClick(nil);
+    end
+  else
+    if (lbxFamily.ItemIndex > -1)
+      then edtFamily.Text:= lbxFamily.Items[lbxFamily.ItemIndex];
+end;
+
 procedure TfrmFontDialogEx.FormClose(Sender: TObject;
   var CloseAction: TCloseAction);
 begin
@@ -343,6 +357,13 @@ begin
   chbUnderLine.Checked:= (fsUnderline in SelfFont.Style);
 
   LoadFontlist;
+
+  if (lbxFamily.ItemIndex < 0)
+    then edtFamily.Clear
+    else
+      if (edtFamily.Text <> lbxFamily.Items[lbxFamily.ItemIndex])
+        then edtFamily.Text:= lbxFamily.Items[lbxFamily.ItemIndex];
+
   lbxCharsetClick(nil);
   if (lbxCharset.Count > 0) then
   begin
@@ -394,6 +415,13 @@ var
   i: PtrInt = -1;
 begin
   LoadFamilyFonts(-1);
+
+  if (lbxFamily.ItemIndex < 0)
+    then edtFamily.Clear
+    else
+      if (edtFamily.Text <> lbxFamily.Items[lbxFamily.ItemIndex])
+        then edtFamily.Text:= lbxFamily.Items[lbxFamily.ItemIndex];
+
   lbxCharsetClick(nil);
 
   if (lbxCharset.Count > 0) then

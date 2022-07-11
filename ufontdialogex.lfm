@@ -203,6 +203,7 @@ object frmFontDialogEx: TfrmFontDialogEx
       Width = 244
       Anchors = [akTop, akLeft, akRight]
       BorderSpacing.Top = 5
+      OnEditingDone = edtFamilyEditingDone
       TabOrder = 5
       Text = 'edtFamily'
     end
