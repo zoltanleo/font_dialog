@@ -50,10 +50,9 @@ type
     lbxFamily: TListBox;
     lbxSizes: TListBox;
     lbxStyles: TListBox;
-    scrbxDialog: TScrollBox;
+    splFamilyFontHorz: TSplitter;
     splFamilyFontVert: TSplitter;
     splgbEffects: TSplitter;
-    splFamilyFontHorz: TSplitter;
     procedure btnResetTextClick(Sender: TObject);
     procedure btnApplyFilterClick(Sender: TObject);
     procedure chbStrikeChange(Sender: TObject);

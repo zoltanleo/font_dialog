@@ -1,13 +1,13 @@
 object frmFontDialogEx: TfrmFontDialogEx
   Left = 216
-  Height = 541
+  Height = 500
   Top = 153
-  Width = 633
+  Width = 663
   HorzScrollBar.Page = 713
   VertScrollBar.Page = 439
   Caption = 'frmFontDialogEx'
-  ClientHeight = 541
-  ClientWidth = 633
+  ClientHeight = 500
+  ClientWidth = 663
   KeyPreview = True
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
@@ -20,9 +20,9 @@ object frmFontDialogEx: TfrmFontDialogEx
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
-    Left = 548
+    Left = 578
     Height = 25
-    Top = 506
+    Top = 465
     Width = 75
     Anchors = [akRight, akBottom]
     BorderSpacing.Around = 10
@@ -33,9 +33,9 @@ object frmFontDialogEx: TfrmFontDialogEx
     AnchorSideRight.Control = btnRight
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
-    Left = 463
+    Left = 493
     Height = 25
-    Top = 506
+    Top = 465
     Width = 75
     Anchors = [akRight, akBottom]
     BorderSpacing.Top = 20
@@ -43,406 +43,389 @@ object frmFontDialogEx: TfrmFontDialogEx
     Caption = 'btnLeft'
     TabOrder = 1
   end
-  object scrbxDialog: TScrollBox
-    AnchorSideLeft.Control = Owner
+  object lblFontFaceList: TLabel
+    AnchorSideLeft.Control = lbxFamily
     AnchorSideTop.Control = Owner
+    Left = 10
+    Height = 15
+    Top = 15
+    Width = 79
+    BorderSpacing.Top = 15
+    Caption = 'lblFontFaceList'
+  end
+  object edtFamily: TEdit
+    AnchorSideLeft.Control = lbxFamily
+    AnchorSideTop.Control = lblFontFaceList
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = lbxFamily
+    AnchorSideRight.Side = asrBottom
+    Left = 10
+    Height = 23
+    Top = 35
+    Width = 256
+    Anchors = [akTop, akLeft, akRight]
+    BorderSpacing.Top = 5
+    TabOrder = 2
+    Text = 'edtFamily'
+  end
+  object lbxFamily: TListBox
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = edtFamily
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = splFamilyFontVert
+    AnchorSideBottom.Control = splFamilyFontHorz
+    Left = 10
+    Height = 96
+    Top = 63
+    Width = 256
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    BorderSpacing.Left = 10
+    BorderSpacing.Top = 5
+    BorderSpacing.Right = 5
+    BorderSpacing.Bottom = 5
+    ItemHeight = 0
+    OnClick = lbxFamilyClick
+    TabOrder = 3
+  end
+  object splFamilyFontVert: TSplitter
+    AnchorSideTop.Control = edtFamily
+    AnchorSideBottom.Control = lbxFamily
+    AnchorSideBottom.Side = asrBottom
+    Left = 271
+    Height = 124
+    Top = 35
+    Width = 5
+    Align = alCustom
+    Anchors = [akTop, akBottom]
+  end
+  object splFamilyFontHorz: TSplitter
+    AnchorSideLeft.Control = lbxFamily
+    AnchorSideRight.Control = lbxSizes
+    AnchorSideRight.Side = asrBottom
+    Cursor = crVSplit
+    Left = 10
+    Height = 5
+    Top = 164
+    Width = 643
+    Align = alNone
+    Anchors = [akLeft, akRight]
+    ResizeAnchor = akBottom
+  end
+  object lblStyles: TLabel
+    AnchorSideLeft.Control = lbxStyles
+    AnchorSideBottom.Control = lbxStyles
+    Left = 281
+    Height = 15
+    Top = 15
+    Width = 30
+    Anchors = [akLeft, akBottom]
+    BorderSpacing.Bottom = 5
+    Caption = 'Styles'
+  end
+  object lbxStyles: TListBox
+    AnchorSideLeft.Control = splFamilyFontVert
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = edtFamily
+    AnchorSideRight.Control = lbxSizes
+    AnchorSideBottom.Control = splFamilyFontHorz
+    Left = 281
+    Height = 124
+    Top = 35
+    Width = 295
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    BorderSpacing.Left = 5
+    BorderSpacing.Right = 10
+    BorderSpacing.Bottom = 5
+    ItemHeight = 0
+    OnClick = lbxStylesClick
+    TabOrder = 6
+  end
+  object lblSizes: TLabel
+    AnchorSideLeft.Control = Edit1
+    AnchorSideBottom.Control = Edit1
+    Left = 586
+    Height = 15
+    Top = 15
+    Width = 25
+    Anchors = [akLeft, akBottom]
+    BorderSpacing.Bottom = 5
+    Caption = 'Sizes'
+  end
+  object Edit1: TEdit
+    AnchorSideLeft.Control = lbxSizes
+    AnchorSideTop.Control = edtFamily
+    AnchorSideRight.Control = lbxSizes
+    AnchorSideRight.Side = asrBottom
+    Left = 586
+    Height = 23
+    Top = 35
+    Width = 67
+    Anchors = [akTop, akLeft, akRight]
+    TabOrder = 7
+    Text = 'Edit1'
+  end
+  object lbxSizes: TListBox
+    AnchorSideTop.Control = Edit1
+    AnchorSideTop.Side = asrBottom
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
-    AnchorSideBottom.Control = btnRight
-    Left = 0
-    Height = 496
-    Top = 0
-    Width = 633
-    HorzScrollBar.Page = 89
-    VertScrollBar.Page = 484
-    Anchors = [akTop, akLeft, akRight, akBottom]
-    ClientHeight = 492
-    ClientWidth = 629
-    TabOrder = 2
-    object lblFontFaceList: TLabel
-      AnchorSideLeft.Control = lbxFamily
-      AnchorSideTop.Control = scrbxDialog
-      Left = 10
-      Height = 15
-      Top = 15
-      Width = 79
-      BorderSpacing.Top = 15
-      Caption = 'lblFontFaceList'
-    end
-    object lblStyles: TLabel
-      AnchorSideLeft.Control = lbxStyles
-      AnchorSideBottom.Control = lbxStyles
-      Left = 269
-      Height = 15
-      Top = 15
-      Width = 30
-      Anchors = [akLeft, akBottom]
-      BorderSpacing.Bottom = 5
-      Caption = 'Styles'
-    end
-    object lblSizes: TLabel
-      AnchorSideLeft.Control = Edit1
-      AnchorSideBottom.Control = Edit1
-      Left = 552
-      Height = 15
-      Top = 15
-      Width = 25
-      Anchors = [akLeft, akBottom]
-      BorderSpacing.Bottom = 5
-      Caption = 'Sizes'
-    end
-    object lbxFamily: TListBox
-      AnchorSideLeft.Control = scrbxDialog
-      AnchorSideTop.Control = edtFamily
-      AnchorSideTop.Side = asrBottom
-      AnchorSideRight.Control = splFamilyFontVert
-      AnchorSideBottom.Control = splFamilyFontHorz
-      Left = 10
-      Height = 110
-      Top = 63
-      Width = 244
-      Anchors = [akTop, akLeft, akRight, akBottom]
-      BorderSpacing.Left = 10
-      BorderSpacing.Top = 5
-      BorderSpacing.Right = 5
-      BorderSpacing.Bottom = 5
-      ItemHeight = 0
-      OnClick = lbxFamilyClick
-      TabOrder = 0
-    end
-    object lbxStyles: TListBox
-      AnchorSideLeft.Control = splFamilyFontVert
-      AnchorSideLeft.Side = asrBottom
-      AnchorSideTop.Control = edtFamily
-      AnchorSideRight.Control = lbxSizes
-      AnchorSideBottom.Control = splFamilyFontHorz
-      Left = 269
-      Height = 138
-      Top = 35
-      Width = 273
-      Anchors = [akTop, akLeft, akRight, akBottom]
-      BorderSpacing.Left = 5
-      BorderSpacing.Right = 10
-      BorderSpacing.Bottom = 5
-      ItemHeight = 0
-      OnClick = lbxStylesClick
-      TabOrder = 1
-    end
-    object lbxSizes: TListBox
-      AnchorSideTop.Control = Edit1
-      AnchorSideTop.Side = asrBottom
-      AnchorSideRight.Control = scrbxDialog
-      AnchorSideRight.Side = asrBottom
-      AnchorSideBottom.Control = splFamilyFontHorz
-      Left = 552
-      Height = 110
-      Top = 63
-      Width = 67
-      Anchors = [akTop, akRight, akBottom]
-      BorderSpacing.Top = 5
-      BorderSpacing.Right = 10
-      BorderSpacing.Bottom = 5
-      ItemHeight = 0
-      OnClick = lbxSizesClick
-      TabOrder = 2
-    end
-    object lbxCharset: TListBox
-      AnchorSideLeft.Control = splgbEffects
-      AnchorSideLeft.Side = asrBottom
-      AnchorSideTop.Control = lblCharset
-      AnchorSideTop.Side = asrBottom
-      AnchorSideRight.Control = grid
-      AnchorSideRight.Side = asrBottom
-      AnchorSideBottom.Control = gbFilter
-      AnchorSideBottom.Side = asrBottom
-      Left = 282
-      Height = 118
-      Top = 346
-      Width = 337
-      Anchors = [akTop, akLeft, akRight, akBottom]
-      BorderSpacing.Left = 5
-      BorderSpacing.Top = 5
-      ItemHeight = 0
-      OnClick = lbxCharsetClick
-      TabOrder = 3
-    end
-    object grid: TStringGrid
-      AnchorSideLeft.Control = splgbEffects
-      AnchorSideLeft.Side = asrBottom
-      AnchorSideTop.Control = lblSample
-      AnchorSideTop.Side = asrBottom
-      AnchorSideRight.Control = scrbxDialog
-      AnchorSideRight.Side = asrBottom
-      AnchorSideBottom.Control = lblCharset
-      Left = 282
-      Height = 108
-      Top = 208
-      Width = 337
-      Anchors = [akTop, akLeft, akRight]
-      AutoFillColumns = True
-      BorderSpacing.Left = 5
-      BorderSpacing.Top = 5
-      BorderSpacing.Right = 10
-      BorderSpacing.Bottom = 10
-      ColCount = 1
-      DefaultRowHeight = 17
-      FixedCols = 0
-      FixedRows = 0
-      Options = [goFixedVertLine, goRangeSelect, goSmoothScroll, goFixedColSizing]
-      ScrollBars = ssNone
-      TabOrder = 4
-      ColWidths = (
-        333
-      )
-    end
-    object edtFamily: TEdit
-      AnchorSideLeft.Control = lbxFamily
-      AnchorSideTop.Control = lblFontFaceList
-      AnchorSideTop.Side = asrBottom
-      AnchorSideRight.Control = lbxFamily
-      AnchorSideRight.Side = asrBottom
-      Left = 10
-      Height = 23
-      Top = 35
-      Width = 244
-      Anchors = [akTop, akLeft, akRight]
-      BorderSpacing.Top = 5
-      TabOrder = 5
-      Text = 'edtFamily'
-    end
-    object splFamilyFontVert: TSplitter
-      AnchorSideTop.Control = edtFamily
-      AnchorSideBottom.Control = lbxFamily
-      AnchorSideBottom.Side = asrBottom
-      Left = 259
-      Height = 138
-      Top = 35
-      Width = 5
-      Align = alCustom
-      Anchors = [akTop, akBottom]
-    end
-    object gbEffects: TGroupBox
-      AnchorSideLeft.Control = lbxFamily
-      AnchorSideTop.Control = splFamilyFontHorz
-      AnchorSideTop.Side = asrBottom
-      AnchorSideRight.Control = splgbEffects
-      Left = 10
-      Height = 135
-      Hint = 'A'
-      Top = 188
-      Width = 257
-      Align = alCustom
-      Anchors = [akTop, akLeft, akRight]
-      AutoSize = True
-      BorderSpacing.Top = 5
-      BorderSpacing.Right = 5
-      Caption = 'gbEffects'
-      ClientHeight = 115
-      ClientWidth = 253
-      TabOrder = 7
-      object chbStrike: TCheckBox
-        AnchorSideLeft.Control = gbEffects
-        AnchorSideTop.Control = gbEffects
-        Left = 10
-        Height = 19
-        Top = 10
-        Width = 65
-        BorderSpacing.Left = 10
-        BorderSpacing.Top = 10
-        Caption = 'Strikeout'
-        OnChange = chbStrikeChange
-        TabOrder = 0
-      end
-      object chbUnderLine: TCheckBox
-        AnchorSideLeft.Control = chbStrike
-        AnchorSideTop.Control = chbStrike
-        AnchorSideTop.Side = asrBottom
-        AnchorSideRight.Side = asrBottom
-        Left = 10
-        Height = 19
-        Top = 34
-        Width = 69
-        BorderSpacing.Top = 5
-        Caption = 'Underline'
-        OnChange = chbUnderLineChange
-        TabOrder = 1
-      end
-      object lblFontColor: TLabel
-        AnchorSideLeft.Control = chbUnderLine
-        AnchorSideTop.Control = chbUnderLine
-        AnchorSideTop.Side = asrBottom
-        Left = 10
-        Height = 15
-        Top = 63
-        Width = 66
-        BorderSpacing.Top = 10
-        Caption = 'lblFontColor'
-      end
-      object clboxFontColor: TColorBox
-        AnchorSideLeft.Control = lblFontColor
-        AnchorSideTop.Control = lblFontColor
-        AnchorSideTop.Side = asrBottom
-        AnchorSideRight.Control = gbEffects
-        AnchorSideRight.Side = asrBottom
-        Left = 10
-        Height = 22
-        Top = 83
-        Width = 233
-        Style = [cbStandardColors, cbExtendedColors, cbSystemColors, cbIncludeNone, cbIncludeDefault, cbCustomColor]
-        Anchors = [akTop, akLeft, akRight]
-        BorderSpacing.Top = 5
-        BorderSpacing.Right = 10
-        BorderSpacing.Bottom = 10
-        ItemHeight = 16
-        OnChange = clboxFontColorChange
-        ParentColor = True
-        TabOrder = 2
-      end
-    end
-    object Edit1: TEdit
-      AnchorSideLeft.Control = lbxSizes
-      AnchorSideTop.Control = edtFamily
-      AnchorSideRight.Control = lbxSizes
-      AnchorSideRight.Side = asrBottom
-      Left = 552
-      Height = 23
-      Top = 35
-      Width = 67
-      Anchors = [akTop, akLeft, akRight]
-      TabOrder = 8
-      Text = 'Edit1'
-    end
-    object gbFilter: TGroupBox
+    AnchorSideBottom.Control = splFamilyFontHorz
+    Left = 586
+    Height = 96
+    Top = 63
+    Width = 67
+    Anchors = [akTop, akRight, akBottom]
+    BorderSpacing.Top = 5
+    BorderSpacing.Right = 10
+    BorderSpacing.Bottom = 5
+    ItemHeight = 0
+    OnClick = lbxSizesClick
+    TabOrder = 8
+  end
+  object gbEffects: TGroupBox
+    AnchorSideLeft.Control = lbxFamily
+    AnchorSideTop.Control = splFamilyFontHorz
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = splgbEffects
+    Left = 10
+    Height = 135
+    Hint = 'A'
+    Top = 174
+    Width = 263
+    Align = alCustom
+    Anchors = [akTop, akLeft, akRight]
+    AutoSize = True
+    BorderSpacing.Top = 5
+    BorderSpacing.Right = 5
+    Caption = 'gbEffects'
+    ClientHeight = 115
+    ClientWidth = 259
+    TabOrder = 9
+    object chbStrike: TCheckBox
       AnchorSideLeft.Control = gbEffects
       AnchorSideTop.Control = gbEffects
+      Left = 10
+      Height = 19
+      Top = 10
+      Width = 65
+      BorderSpacing.Left = 10
+      BorderSpacing.Top = 10
+      Caption = 'Strikeout'
+      OnChange = chbStrikeChange
+      TabOrder = 0
+    end
+    object chbUnderLine: TCheckBox
+      AnchorSideLeft.Control = chbStrike
+      AnchorSideTop.Control = chbStrike
+      AnchorSideTop.Side = asrBottom
+      AnchorSideRight.Side = asrBottom
+      Left = 10
+      Height = 19
+      Top = 34
+      Width = 69
+      BorderSpacing.Top = 5
+      Caption = 'Underline'
+      OnChange = chbUnderLineChange
+      TabOrder = 1
+    end
+    object lblFontColor: TLabel
+      AnchorSideLeft.Control = chbUnderLine
+      AnchorSideTop.Control = chbUnderLine
+      AnchorSideTop.Side = asrBottom
+      Left = 10
+      Height = 15
+      Top = 63
+      Width = 66
+      BorderSpacing.Top = 10
+      Caption = 'lblFontColor'
+    end
+    object clboxFontColor: TColorBox
+      AnchorSideLeft.Control = lblFontColor
+      AnchorSideTop.Control = lblFontColor
       AnchorSideTop.Side = asrBottom
       AnchorSideRight.Control = gbEffects
       AnchorSideRight.Side = asrBottom
-      AnchorSideBottom.Side = asrBottom
       Left = 10
-      Height = 131
-      Top = 333
-      Width = 257
+      Height = 22
+      Top = 83
+      Width = 239
+      Style = [cbStandardColors, cbExtendedColors, cbSystemColors, cbIncludeNone, cbIncludeDefault, cbCustomColor]
       Anchors = [akTop, akLeft, akRight]
-      AutoSize = True
-      BorderSpacing.Top = 10
-      BorderSpacing.Bottom = 20
-      Caption = 'gbFilter'
-      ClientHeight = 111
-      ClientWidth = 253
-      TabOrder = 9
-      object cbbCharset: TComboBox
-        AnchorSideLeft.Control = gbFilter
-        AnchorSideTop.Control = gbFilter
-        AnchorSideRight.Control = gbFilter
-        AnchorSideRight.Side = asrBottom
-        Left = 10
-        Height = 23
-        Top = 10
-        Width = 233
-        Anchors = [akTop, akLeft, akRight]
-        BorderSpacing.Left = 10
-        BorderSpacing.Top = 10
-        BorderSpacing.Right = 10
-        BorderSpacing.Bottom = 10
-        DropDownCount = 24
-        ItemHeight = 15
-        Style = csDropDownList
-        TabOrder = 0
-      end
-      object cbbPitch: TComboBox
-        AnchorSideLeft.Control = gbFilter
-        AnchorSideTop.Control = cbbCharset
-        AnchorSideTop.Side = asrBottom
-        AnchorSideRight.Control = gbFilter
-        AnchorSideRight.Side = asrBottom
-        Left = 10
-        Height = 23
-        Top = 43
-        Width = 233
-        Anchors = [akTop, akLeft, akRight]
-        BorderSpacing.Left = 10
-        BorderSpacing.Top = 10
-        BorderSpacing.Right = 10
-        BorderSpacing.Bottom = 10
-        DropDownCount = 24
-        ItemHeight = 15
-        ItemIndex = 0
-        Items.Strings = (
-          'DEFAULT_PITCH'
-          'FIXED_PITCH'
-          'VARIABLE_PITCH'
-          'MONO_FONT'
-        )
-        Style = csDropDownList
-        TabOrder = 1
-        Text = 'DEFAULT_PITCH'
-      end
-      object btnApplyFilter: TButton
-        AnchorSideLeft.Control = cbbCharset
-        AnchorSideTop.Control = cbbPitch
-        AnchorSideTop.Side = asrBottom
-        AnchorSideRight.Control = cbbCharset
-        AnchorSideRight.Side = asrBottom
-        Left = 10
-        Height = 25
-        Top = 76
-        Width = 233
-        Anchors = [akTop, akLeft, akRight]
-        BorderSpacing.Top = 10
-        BorderSpacing.Bottom = 10
-        Caption = 'btnApplyFilter'
-        OnClick = btnApplyFilterClick
-        TabOrder = 2
-      end
-    end
-    object splgbEffects: TSplitter
-      AnchorSideTop.Control = gbEffects
-      AnchorSideBottom.Control = gbFilter
-      AnchorSideBottom.Side = asrBottom
-      Left = 272
-      Height = 276
-      Top = 188
-      Width = 5
-      Align = alCustom
-      Anchors = [akTop, akBottom]
-    end
-    object lblSample: TLabel
-      AnchorSideLeft.Control = grid
-      AnchorSideTop.Control = splFamilyFontHorz
-      AnchorSideTop.Side = asrBottom
-      Left = 282
-      Height = 15
-      Top = 188
-      Width = 39
       BorderSpacing.Top = 5
-      Caption = 'Sample'
+      BorderSpacing.Right = 10
+      BorderSpacing.Bottom = 10
+      ItemHeight = 16
+      OnChange = clboxFontColorChange
+      ParentColor = True
+      TabOrder = 2
     end
-    object lblCharset: TLabel
-      AnchorSideLeft.Control = lbxCharset
-      AnchorSideTop.Control = grid
-      AnchorSideTop.Side = asrBottom
-      AnchorSideBottom.Control = lbxCharset
-      Left = 282
-      Height = 15
-      Top = 326
-      Width = 41
-      BorderSpacing.Top = 10
-      BorderSpacing.Bottom = 5
-      Caption = 'CharSet'
-    end
-    object splFamilyFontHorz: TSplitter
-      AnchorSideLeft.Control = lbxFamily
-      AnchorSideRight.Control = lbxSizes
+  end
+  object gbFilter: TGroupBox
+    AnchorSideLeft.Control = gbEffects
+    AnchorSideTop.Control = gbEffects
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = gbEffects
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Side = asrBottom
+    Left = 10
+    Height = 131
+    Top = 319
+    Width = 263
+    Anchors = [akTop, akLeft, akRight]
+    AutoSize = True
+    BorderSpacing.Top = 10
+    BorderSpacing.Bottom = 20
+    Caption = 'gbFilter'
+    ClientHeight = 111
+    ClientWidth = 259
+    TabOrder = 10
+    object cbbCharset: TComboBox
+      AnchorSideLeft.Control = gbFilter
+      AnchorSideTop.Control = gbFilter
+      AnchorSideRight.Control = gbFilter
       AnchorSideRight.Side = asrBottom
-      Cursor = crVSplit
       Left = 10
-      Height = 5
-      Top = 178
-      Width = 609
-      Align = alNone
-      Anchors = [akLeft, akRight]
-      ResizeAnchor = akBottom
+      Height = 23
+      Top = 10
+      Width = 239
+      Anchors = [akTop, akLeft, akRight]
+      BorderSpacing.Left = 10
+      BorderSpacing.Top = 10
+      BorderSpacing.Right = 10
+      BorderSpacing.Bottom = 10
+      DropDownCount = 24
+      ItemHeight = 15
+      Style = csDropDownList
+      TabOrder = 0
     end
+    object cbbPitch: TComboBox
+      AnchorSideLeft.Control = gbFilter
+      AnchorSideTop.Control = cbbCharset
+      AnchorSideTop.Side = asrBottom
+      AnchorSideRight.Control = gbFilter
+      AnchorSideRight.Side = asrBottom
+      Left = 10
+      Height = 23
+      Top = 43
+      Width = 239
+      Anchors = [akTop, akLeft, akRight]
+      BorderSpacing.Left = 10
+      BorderSpacing.Top = 10
+      BorderSpacing.Right = 10
+      BorderSpacing.Bottom = 10
+      DropDownCount = 24
+      ItemHeight = 15
+      ItemIndex = 0
+      Items.Strings = (
+        'DEFAULT_PITCH'
+        'FIXED_PITCH'
+        'VARIABLE_PITCH'
+        'MONO_FONT'
+      )
+      Style = csDropDownList
+      TabOrder = 1
+      Text = 'DEFAULT_PITCH'
+    end
+    object btnApplyFilter: TButton
+      AnchorSideLeft.Control = cbbCharset
+      AnchorSideTop.Control = cbbPitch
+      AnchorSideTop.Side = asrBottom
+      AnchorSideRight.Control = cbbCharset
+      AnchorSideRight.Side = asrBottom
+      Left = 10
+      Height = 25
+      Top = 76
+      Width = 239
+      Anchors = [akTop, akLeft, akRight]
+      BorderSpacing.Top = 10
+      BorderSpacing.Bottom = 10
+      Caption = 'btnApplyFilter'
+      OnClick = btnApplyFilterClick
+      TabOrder = 2
+    end
+  end
+  object splgbEffects: TSplitter
+    AnchorSideTop.Control = gbEffects
+    AnchorSideBottom.Control = gbFilter
+    AnchorSideBottom.Side = asrBottom
+    Left = 278
+    Height = 276
+    Top = 174
+    Width = 5
+    Align = alCustom
+    Anchors = [akTop, akBottom]
+  end
+  object lblSample: TLabel
+    AnchorSideLeft.Control = grid
+    AnchorSideTop.Control = splFamilyFontHorz
+    AnchorSideTop.Side = asrBottom
+    Left = 288
+    Height = 15
+    Top = 174
+    Width = 39
+    BorderSpacing.Top = 5
+    Caption = 'Sample'
+  end
+  object grid: TStringGrid
+    AnchorSideLeft.Control = splgbEffects
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = lblSample
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = lblCharset
+    Left = 288
+    Height = 108
+    Top = 194
+    Width = 365
+    Anchors = [akTop, akLeft, akRight]
+    AutoFillColumns = True
+    BorderSpacing.Left = 5
+    BorderSpacing.Top = 5
+    BorderSpacing.Right = 10
+    BorderSpacing.Bottom = 10
+    ColCount = 1
+    DefaultRowHeight = 17
+    FixedCols = 0
+    FixedRows = 0
+    Options = [goFixedVertLine, goRangeSelect, goSmoothScroll, goFixedColSizing]
+    ScrollBars = ssNone
+    TabOrder = 12
+    ColWidths = (
+      361
+    )
+  end
+  object lblCharset: TLabel
+    AnchorSideLeft.Control = lbxCharset
+    AnchorSideTop.Control = grid
+    AnchorSideTop.Side = asrBottom
+    AnchorSideBottom.Control = lbxCharset
+    Left = 288
+    Height = 15
+    Top = 312
+    Width = 41
+    BorderSpacing.Top = 10
+    BorderSpacing.Bottom = 5
+    Caption = 'CharSet'
+  end
+  object lbxCharset: TListBox
+    AnchorSideLeft.Control = splgbEffects
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = lblCharset
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = grid
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = gbFilter
+    AnchorSideBottom.Side = asrBottom
+    Left = 288
+    Height = 118
+    Top = 332
+    Width = 365
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    BorderSpacing.Left = 5
+    BorderSpacing.Top = 5
+    ItemHeight = 0
+    OnClick = lbxCharsetClick
+    TabOrder = 13
   end
 end
