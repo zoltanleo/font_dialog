@@ -4,9 +4,13 @@ To do:
 
 ----------
 
+v.0.0.19
+
+- добавлен обработчик для edtFamily и изменен обработчик lbxFontSizesClick
+
 v.0.0.18
 
-- добавлен обработчик для edtFamily и изменен обработчик lbxFamilyClick
+- добавлен черновой обработчик для edtFontSize и изменен обработчик lbxFamilyClick
 
 v.0.0.17
 
