@@ -271,22 +271,6 @@ begin
   FSelfFont:= TFont.Create;
   FSelfFont.Assign(Screen.SystemFont);
 
-  with scrbxDialog do
-  begin
-    BorderStyle:= bsNone;
-    HorzScrollBar.Smooth:= True;
-    HorzScrollBar.Tracking:= True;
-    VertScrollBar.Smooth:= True;
-    VertScrollBar.Tracking:= True;
-    AutoSize:= True;
-  end;
-
-  //{$IFDEF LINUX}
-  //splFamilyFontHorz.Top:= FCharSize.cy * 12;
-  //{$ELSE}
-  //splFamilyFontHorz.Top:= FCharSize.cy * 14;
-  //{$ENDIF}
-
   with Self do
   begin
     //{darwin w: 13 | h: 15}
@@ -295,9 +279,10 @@ begin
     //Caption:= Format('w: %d | h: %d',[sz.cx, sz.cy]);
     Caption:= cTitle;
     ModalResult:= mrCancel;
-    //BorderStyle:= bsSizeable;
+    BorderStyle:= bsDialog;
     Position:= poScreenCenter;
     BorderIcons:= [biSystemMenu];
+    AutoScroll:= True;
   end;
 
   {$IFDEF MSWINDOWS}
@@ -416,7 +401,14 @@ begin
   grid.Constraints.MinWidth:= gbEffects.Constraints.MinWidth;
   lbxFamily.Constraints.MinWidth:= lblFontFaceList.Width + FCharSize.cx * 2;
   lbxFamily.Constraints.MinHeight:= lbxFamily.ItemHeight + FCharSize.cx * 2;
-  //lbxFamily.Constraints.MaxHeight:= lbxFamily.ItemHeight * 7 + FCharSize.cx * 2;
+  lbxFamily.Constraints.MaxHeight:= lbxFamily.ItemHeight * 6 + FCharSize.cx * 2;
+  gbFilter.Constraints.MinHeight:= cbbCharset.Top +
+                                   cbbPitch.BorderSpacing.Top +
+                                   cbbCharset.Height * 2 +
+                                   btnApplyFilter.BorderSpacing.Top +
+                                   btnApplyFilter.Height +
+                                   btnApplyFilter.BorderSpacing.Bottom +
+                                   FCharSize.cx * 2;
 
   splFamilyFontVert.Left:= lbxFamily.Left +
                            lbxFamily.Width +
@@ -432,7 +424,7 @@ begin
                       gbEffects.BorderSpacing.Right +
                       FCharSize.cx * 2;
 
-  Self.BorderStyle:= bsSizeable;
+  //Self.BorderStyle:= bsSizeable;
   //Self.Constraints.MinWidth:= FCharSize.cx * 60;
   //{$IFDEF LINUX}
   //Self.Constraints.MinHeight:= FCharSize.cy * 36;
