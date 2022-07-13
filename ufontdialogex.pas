@@ -27,8 +27,8 @@ type
 
   TfrmFontDialogEx = class(TForm)
     btnApplyFilter: TButton;
-    btnRight: TButton;
     btnLeft: TButton;
+    btnRight: TButton;
     cbbCharset: TComboBox;
     cbbPitch: TComboBox;
     chbStrike: TCheckBox;
@@ -49,6 +49,8 @@ type
     lbxFamily: TListBox;
     lbxSizes: TListBox;
     lbxStyles: TListBox;
+    Panel1: TPanel;
+    Panel2: TPanel;
     splFamilyFontHorz: TSplitter;
     splFamilyFontVert: TSplitter;
     splgbEffects: TSplitter;
@@ -386,18 +388,19 @@ begin
                       gbEffects.BorderSpacing.Right +
                       FCharSize.cx * 2;
 
-  //Self.Constraints.MinWidth:= FCharSize.cx * 60;
-  //{$IFDEF LINUX}
-  //Self.Constraints.MinHeight:= FCharSize.cy * 36;
-  //{$ELSE}
-  //Self.Constraints.MinHeight:= FCharSize.cy * 39;
-  //{$ENDIF}
+  Self.Constraints.MinWidth:= FCharSize.cx * 60;
+  {$IFDEF LINUX}
+  Self.Constraints.MinHeight:= FCharSize.cy * 36;
+  {$ELSE}
+  Self.Constraints.MinHeight:= FCharSize.cy * 39;
+  {$ENDIF}
 
   with Self do
   begin
     BorderStyle:= bsDialog;
     BorderIcons:= [biSystemMenu];
-    AutoScroll:= True;
+    //AutoScroll:= True;
+    AutoSize:= True;
   end;
 end;
 
