@@ -15,7 +15,6 @@ uses
   , Dialogs
   , StdCtrls
   , Grids
-  , IniFiles
   , LCLType
   , LCLIntf
   , LazUTF8
@@ -59,7 +58,6 @@ type
     procedure chbUnderLineChange(Sender: TObject);
     procedure clboxFontColorChange(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
-    procedure FormCloseQuery(Sender: TObject; var CanClose: boolean);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -96,22 +94,6 @@ type
     procedure BtnOKClick(Sender: TObject);
     procedure BtnCancelClick(Sender: TObject);
   end; 
-
-//const
-//  cTitle = 'Choose font';
-//  cFontFaceList = 'Font family (found: %d items):';
-//  cFontStyles = 'Font style(s):';
-//  cFontSize = 'Font size:';
-//  cFontEffects = 'Font effects:';
-//  cStrikeout = 'StrikeOut';
-//  cUnderline = 'Underline';
-//  cFontColor = 'Font color:';
-//  cFontSample= 'Font sample:';
-//  cFontFilter = 'Font filter';
-//  cFontCharSet = 'Current font charset:';
-//  cBtnOKCaption = 'ОК';
-//  cBtnCancelCaption = 'Cancel';
-//  cBtnApplyFilter = 'Apply filter';
 
 var
   frmFontDialogEx: TfrmFontDialogEx;
@@ -240,23 +222,6 @@ begin
   CloseAction:= caFree;
 end;
 
-procedure TfrmFontDialogEx.FormCloseQuery(Sender: TObject; var CanClose: boolean);
-//var
-//  Ini: TInifile;
-begin
-  //SaveSelection;
-  //Ini := TIniFile.Create(UTF8ToSys(ChangeFileExt(Application.ExeName,'.ini')));
-  //try
-  //  Ini.WriteString('General','CurrentFamily', FCurrentFamily);
-  //  Ini.WriteString('General','CurrentCharset',FCurrentCharset);
-  //  Ini.WriteString('General','CurrentStyle',  FCurrentStyle);
-  //  Ini.WriteString('General','CurrentSize',   FCurrentSize);
-  //  Ini.WriteString('General','CurrentColor',  FCurrentColor);
-  //finally
-  //  Ini.Free;
-  //end;
-end;
-
 procedure TfrmFontDialogEx.FormCreate(Sender: TObject);
 var
   i: PtrInt = 0;
@@ -279,10 +244,7 @@ begin
     //Caption:= Format('w: %d | h: %d',[sz.cx, sz.cy]);
     Caption:= cTitle;
     ModalResult:= mrCancel;
-    BorderStyle:= bsDialog;
     Position:= poScreenCenter;
-    BorderIcons:= [biSystemMenu];
-    AutoScroll:= True;
   end;
 
   {$IFDEF MSWINDOWS}
@@ -401,7 +363,7 @@ begin
   grid.Constraints.MinWidth:= gbEffects.Constraints.MinWidth;
   lbxFamily.Constraints.MinWidth:= lblFontFaceList.Width + FCharSize.cx * 2;
   lbxFamily.Constraints.MinHeight:= lbxFamily.ItemHeight + FCharSize.cx * 2;
-  lbxFamily.Constraints.MaxHeight:= lbxFamily.ItemHeight * 6 + FCharSize.cx * 2;
+  //lbxFamily.Constraints.MaxHeight:= lbxFamily.ItemHeight * 6 + FCharSize.cx * 2;
   gbFilter.Constraints.MinHeight:= cbbCharset.Top +
                                    cbbPitch.BorderSpacing.Top +
                                    cbbCharset.Height * 2 +
@@ -424,14 +386,19 @@ begin
                       gbEffects.BorderSpacing.Right +
                       FCharSize.cx * 2;
 
-  //Self.BorderStyle:= bsSizeable;
   //Self.Constraints.MinWidth:= FCharSize.cx * 60;
   //{$IFDEF LINUX}
   //Self.Constraints.MinHeight:= FCharSize.cy * 36;
   //{$ELSE}
   //Self.Constraints.MinHeight:= FCharSize.cy * 39;
   //{$ENDIF}
-  //Self.AutoSize:= True;
+
+  with Self do
+  begin
+    BorderStyle:= bsDialog;
+    BorderIcons:= [biSystemMenu];
+    AutoScroll:= True;
+  end;
 end;
 
 procedure TfrmFontDialogEx.lbxFamilyClick(Sender: TObject);
