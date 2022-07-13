@@ -16,7 +16,7 @@
     <VersionInfo>
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
-      <RevisionNr Value="26"/>
+      <RevisionNr Value="27"/>
       <BuildNr Value="35"/>
     </VersionInfo>
     <BuildModes Active="Default">
@@ -169,17 +169,17 @@
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="396"/>
-        <CursorPos X="35" Y="397"/>
-        <FoldState Value=" TMn52FO"/>
+        <TopLine Value="388"/>
+        <CursorPos X="49" Y="395"/>
+        <FoldState Value=" TMn62FV"/>
         <UsageCount Value="78"/>
         <Bookmarks Count="6">
-          <Item0 X="3" Y="672" ID="5"/>
-          <Item1 Y="226" ID="4"/>
-          <Item2 X="3" Y="143" ID="3"/>
-          <Item3 X="15" Y="536" ID="9"/>
-          <Item4 Y="241" ID="1"/>
-          <Item5 X="3" Y="392" ID="2"/>
+          <Item0 X="3" Y="673" ID="5"/>
+          <Item1 Y="227" ID="4"/>
+          <Item2 X="3" Y="144" ID="3"/>
+          <Item3 X="15" Y="537" ID="9"/>
+          <Item4 Y="242" ID="1"/>
+          <Item5 X="3" Y="393" ID="2"/>
         </Bookmarks>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -266,119 +266,11 @@
         <EditorIndex Value="2"/>
         <TopLine Value="4344"/>
         <CursorPos Y="4352"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="13"/>
         <Loaded Value="True"/>
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="559" Column="3" TopLine="559"/>
-      </Position>
-      <Position>
-        <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="558" Column="3" TopLine="558"/>
-      </Position>
-      <Position>
-        <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="557" Column="3" TopLine="557"/>
-      </Position>
-      <Position>
-        <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="556" Column="3" TopLine="556"/>
-      </Position>
-      <Position>
-        <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="555" Column="3" TopLine="555"/>
-      </Position>
-      <Position>
-        <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="554" Column="3" TopLine="554"/>
-      </Position>
-      <Position>
-        <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="553" Column="3" TopLine="553"/>
-      </Position>
-      <Position>
-        <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="562" Column="3" TopLine="562"/>
-      </Position>
-      <Position>
-        <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="561" Column="3" TopLine="561"/>
-      </Position>
-      <Position>
-        <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="560" Column="3" TopLine="560"/>
-      </Position>
-      <Position>
-        <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="559" Column="3" TopLine="559"/>
-      </Position>
-      <Position>
-        <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="558" Column="3" TopLine="558"/>
-      </Position>
-      <Position>
-        <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="557" Column="3" TopLine="557"/>
-      </Position>
-      <Position>
-        <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="556" Column="3" TopLine="556"/>
-      </Position>
-      <Position>
-        <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="555" Column="3" TopLine="555"/>
-      </Position>
-      <Position>
-        <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="554" Column="3" TopLine="554"/>
-      </Position>
-      <Position>
-        <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="553" Column="3" TopLine="553"/>
-      </Position>
-      <Position>
-        <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="552" Column="3" TopLine="552"/>
-      </Position>
-      <Position>
-        <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="551" Column="3" TopLine="551"/>
-      </Position>
-      <Position>
-        <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="550" Column="3" TopLine="550"/>
-      </Position>
-      <Position>
-        <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="549" Column="3" TopLine="549"/>
-      </Position>
-      <Position>
-        <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="548" Column="3" TopLine="548"/>
-      </Position>
-      <Position>
-        <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="547" Column="3" TopLine="547"/>
-      </Position>
-      <Position>
-        <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="562" Column="3" TopLine="562"/>
-      </Position>
-      <Position>
-        <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="563" Column="3" TopLine="563"/>
-      </Position>
-      <Position>
-        <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="562" Column="3" TopLine="562"/>
-      </Position>
-      <Position>
-        <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="561" Column="3" TopLine="561"/>
-      </Position>
       <Position>
         <Filename Value="ufontdialogex.pas"/>
         <Caret Line="563" Column="3" TopLine="598"/>
@@ -390,6 +282,114 @@
       <Position>
         <Filename Value="ufontdialogex.pas"/>
         <Caret Line="11" Column="12"/>
+      </Position>
+      <Position>
+        <Filename Value="ufontdialogex.pas"/>
+        <Caret Line="397" Column="35" TopLine="387"/>
+      </Position>
+      <Position>
+        <Filename Value="ufontdialogex.pas"/>
+        <Caret Line="396" Column="35" TopLine="386"/>
+      </Position>
+      <Position>
+        <Filename Value="ufontdialogex.pas"/>
+        <Caret Line="395" Column="35" TopLine="385"/>
+      </Position>
+      <Position>
+        <Filename Value="ufontdialogex.pas"/>
+        <Caret Line="394" Column="35" TopLine="384"/>
+      </Position>
+      <Position>
+        <Filename Value="ufontdialogex.pas"/>
+        <Caret Line="393" Column="35" TopLine="383"/>
+      </Position>
+      <Position>
+        <Filename Value="ufontdialogex.pas"/>
+        <Caret Line="392" Column="35" TopLine="382"/>
+      </Position>
+      <Position>
+        <Filename Value="ufontdialogex.pas"/>
+        <Caret Line="391" Column="35" TopLine="381"/>
+      </Position>
+      <Position>
+        <Filename Value="ufontdialogex.pas"/>
+        <Caret Line="390" Column="35" TopLine="380"/>
+      </Position>
+      <Position>
+        <Filename Value="ufontdialogex.pas"/>
+        <Caret Line="389" Column="35" TopLine="379"/>
+      </Position>
+      <Position>
+        <Filename Value="ufontdialogex.pas"/>
+        <Caret Line="388" Column="35" TopLine="378"/>
+      </Position>
+      <Position>
+        <Filename Value="ufontdialogex.pas"/>
+        <Caret Line="387" Column="35" TopLine="377"/>
+      </Position>
+      <Position>
+        <Filename Value="ufontdialogex.pas"/>
+        <Caret Line="386" Column="35" TopLine="376"/>
+      </Position>
+      <Position>
+        <Filename Value="ufontdialogex.pas"/>
+        <Caret Line="385" Column="35" TopLine="375"/>
+      </Position>
+      <Position>
+        <Filename Value="ufontdialogex.pas"/>
+        <Caret Line="384" Column="35" TopLine="374"/>
+      </Position>
+      <Position>
+        <Filename Value="ufontdialogex.pas"/>
+        <Caret Line="383" Column="35" TopLine="373"/>
+      </Position>
+      <Position>
+        <Filename Value="ufontdialogex.pas"/>
+        <Caret Line="382" Column="35" TopLine="372"/>
+      </Position>
+      <Position>
+        <Filename Value="ufontdialogex.pas"/>
+        <Caret Line="381" Column="35" TopLine="371"/>
+      </Position>
+      <Position>
+        <Filename Value="ufontdialogex.pas"/>
+        <Caret Line="380" Column="35" TopLine="370"/>
+      </Position>
+      <Position>
+        <Filename Value="ufontdialogex.pas"/>
+        <Caret Line="379" Column="35" TopLine="369"/>
+      </Position>
+      <Position>
+        <Filename Value="ufontdialogex.pas"/>
+        <Caret Line="378" Column="35" TopLine="368"/>
+      </Position>
+      <Position>
+        <Filename Value="ufontdialogex.pas"/>
+        <Caret Line="377" Column="35" TopLine="367"/>
+      </Position>
+      <Position>
+        <Filename Value="ufontdialogex.pas"/>
+        <Caret Line="376" Column="35" TopLine="366"/>
+      </Position>
+      <Position>
+        <Filename Value="ufontdialogex.pas"/>
+        <Caret Line="375" Column="35" TopLine="365"/>
+      </Position>
+      <Position>
+        <Filename Value="ufontdialogex.pas"/>
+        <Caret Line="374" Column="35" TopLine="364"/>
+      </Position>
+      <Position>
+        <Filename Value="ufontdialogex.pas"/>
+        <Caret Line="373" Column="35" TopLine="363"/>
+      </Position>
+      <Position>
+        <Filename Value="ufontdialogex.pas"/>
+        <Caret Line="372" Column="35" TopLine="362"/>
+      </Position>
+      <Position>
+        <Filename Value="ufontdialogex.pas"/>
+        <Caret Line="373" Column="35" TopLine="363"/>
       </Position>
     </JumpHistory>
   </ProjectOptions>

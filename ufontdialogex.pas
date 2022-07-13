@@ -51,6 +51,7 @@ type
     lbxStyles: TListBox;
     Panel1: TPanel;
     Panel2: TPanel;
+    ScrollBox1: TScrollBox;
     splFamilyFontHorz: TSplitter;
     splFamilyFontVert: TSplitter;
     splgbEffects: TSplitter;
@@ -391,13 +392,13 @@ begin
 
   Self.Constraints.MinWidth:= FCharSize.cx * 60;
   {$IFDEF LINUX}
-  Self.Constraints.MinHeight:= FCharSize.cy * 36;
+  Self.Constraints.MinHeight:= FCharSize.cy * 18;
   {$ELSE}
-  Self.Constraints.MinHeight:= FCharSize.cy * 39;
+  Self.Constraints.MinHeight:= FCharSize.cy * 20;
   {$ENDIF}
 
-  Self.Constraints.MaxWidth:= Self.Constraints.MinWidth;
-  Self.Constraints.MaxHeight:= Self.Constraints.MinHeight;
+  //Self.Constraints.MaxWidth:= Self.Constraints.MinWidth;
+  //Self.Constraints.MaxHeight:= Self.Constraints.MinHeight;
 
 
   with Self do
