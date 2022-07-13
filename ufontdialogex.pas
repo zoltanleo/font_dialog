@@ -402,10 +402,11 @@ begin
 
   with Self do
   begin
-    BorderStyle:= bsDialog;
+    //BorderStyle:= bsDialog;
     BorderIcons:= [biSystemMenu];
     //AutoScroll:= True;
-    //AutoSize:= True;
+    AutoSize:= True;
+    BorderStyle:= bsSizeable;
   end;
   Panel1.AutoSize:= True;
 end;
