@@ -365,7 +365,8 @@ begin
   grid.Constraints.MinWidth:= gbEffects.Constraints.MinWidth;
   lbxFamily.Constraints.MinWidth:= lblFontFaceList.Width + FCharSize.cx * 2;
   lbxFamily.Constraints.MinHeight:= lbxFamily.ItemHeight + FCharSize.cx * 2;
-  //lbxFamily.Constraints.MaxHeight:= lbxFamily.ItemHeight * 6 + FCharSize.cx * 2;
+  lbxStyles.Constraints.MaxHeight:= lbxStyles.ItemHeight * 12 + FCharSize.cx * 2;
+
   gbFilter.Constraints.MinHeight:= cbbCharset.Top +
                                    cbbPitch.BorderSpacing.Top +
                                    cbbCharset.Height * 2 +
@@ -374,10 +375,10 @@ begin
                                    btnApplyFilter.BorderSpacing.Bottom +
                                    FCharSize.cx * 2;
 
-  splFamilyFontVert.Left:= lbxFamily.Left +
-                           lbxFamily.Width +
-                           lbxFamily.BorderSpacing.Right +
-                           FCharSize.cx * 2;
+  //splFamilyFontVert.Left:= lbxFamily.Left +
+  //                         lbxFamily.Width +
+  //                         lbxFamily.BorderSpacing.Right +
+  //                         FCharSize.cx * 2;
 
   splFamilyFontHorz.Top:= lbxFamily.Top +
                           lbxFamily.Height +
@@ -395,13 +396,18 @@ begin
   Self.Constraints.MinHeight:= FCharSize.cy * 39;
   {$ENDIF}
 
+  Self.Constraints.MaxWidth:= Self.Constraints.MinWidth;
+  Self.Constraints.MaxHeight:= Self.Constraints.MinHeight;
+
+
   with Self do
   begin
     BorderStyle:= bsDialog;
     BorderIcons:= [biSystemMenu];
     //AutoScroll:= True;
-    AutoSize:= True;
+    //AutoSize:= True;
   end;
+  Panel1.AutoSize:= True;
 end;
 
 procedure TfrmFontDialogEx.lbxFamilyClick(Sender: TObject);
