@@ -364,8 +364,8 @@ begin
   gbEffects.Constraints.MinWidth:= chbStrike.Width * 2 + FCharSize.cx * 2;
   grid.Constraints.MinWidth:= gbEffects.Constraints.MinWidth;
   lbxFamily.Constraints.MinWidth:= lblFontFaceList.Width + FCharSize.cx * 2;
-  lbxFamily.Constraints.MinHeight:= lbxFamily.ItemHeight + FCharSize.cx * 2;
-  lbxStyles.Constraints.MaxHeight:= lbxStyles.ItemHeight * 12 + FCharSize.cx * 2;
+  lbxFamily.Constraints.MinHeight:= FCharSize.cx * 4;
+  lbxFamily.Constraints.MaxHeight:= FCharSize.cx * 14;
 
   gbFilter.Constraints.MinHeight:= cbbCharset.Top +
                                    cbbPitch.BorderSpacing.Top +

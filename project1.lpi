@@ -16,7 +16,7 @@
     <VersionInfo>
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
-      <RevisionNr Value="24"/>
+      <RevisionNr Value="25"/>
       <BuildNr Value="35"/>
     </VersionInfo>
     <BuildModes Active="Default">
@@ -170,7 +170,7 @@
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <TopLine Value="365"/>
-        <CursorPos X="3" Y="369"/>
+        <CursorPos X="12" Y="368"/>
         <FoldState Value=" TMn52FO"/>
         <UsageCount Value="77"/>
         <Bookmarks Count="6">
