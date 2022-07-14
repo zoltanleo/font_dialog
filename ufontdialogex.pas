@@ -49,9 +49,9 @@ type
     lbxFamily: TListBox;
     lbxSizes: TListBox;
     lbxStyles: TListBox;
-    Panel1: TPanel;
-    Panel2: TPanel;
-    ScrollBox1: TScrollBox;
+    pnlComp: TPanel;
+    pnlBtn: TPanel;
+    scrboxComp: TScrollBox;
     splFamilyFontHorz: TSplitter;
     splFamilyFontVert: TSplitter;
     splgbEffects: TSplitter;
@@ -279,25 +279,25 @@ begin
   //  else btnRight.Hint:= '';
   //{$ENDIF}
 
-  for i:= 0 to Pred(Self.ControlCount) do
-    if TObject(Self.Controls[i]).InheritsFrom(TButton) then
-      if (txtlen < Self.Canvas.TextWidth(TButton(Self.Controls[i]).Caption)) then
-        txtlen:= Self.Canvas.TextWidth(TButton(Self.Controls[i]).Caption);
+  for i:= 0 to Pred(pnlBtn.ControlCount) do
+    if TObject(pnlBtn.Controls[i]).InheritsFrom(TButton) then
+      if (txtlen < pnlBtn.Canvas.TextWidth(TButton(pnlBtn.Controls[i]).Caption)) then
+        txtlen:= pnlBtn.Canvas.TextWidth(TButton(pnlBtn.Controls[i]).Caption);
 
-  for i:= 0 to Pred(Self.ControlCount) do
-    if TObject(Self.Controls[i]).InheritsFrom(TButton) then
+  for i:= 0 to Pred(pnlBtn.ControlCount) do
+    if TObject(pnlBtn.Controls[i]).InheritsFrom(TButton) then
     begin
       {$IFDEF MSWINDOWS}
-      TButton(Self.Controls[i]).AutoSize:= True;
+      TButton(pnlBtn.Controls[i]).AutoSize:= True;
       {$ELSE}
         {$IFDEF LINUX}
-        TButton(Self.Controls[i]).AutoSize:= False;
-        TButton(Self.Controls[i]).Height:= FCharSize.cx * 3 div 2;
+        TButton(pnlBtn.Controls[i]).AutoSize:= False;
+        TButton(pnlBtn.Controls[i]).Height:= FCharSize.cx * 3 div 2;
         {$ENDIF}
       {$ENDIF}
 
-      TButton(Self.Controls[i]).Constraints.MinWidth:= txtlen + FCharSize.cx * 2;
-      TButton(Self.Controls[i]).ShowHint:= True;
+      TButton(pnlBtn.Controls[i]).Constraints.MinWidth:= txtlen + FCharSize.cx * 2;
+      TButton(pnlBtn.Controls[i]).ShowHint:= True;
     end;
 
 end;
@@ -376,19 +376,45 @@ begin
                                    btnApplyFilter.BorderSpacing.Bottom +
                                    FCharSize.cx * 2;
 
-  //splFamilyFontVert.Left:= lbxFamily.Left +
-  //                         lbxFamily.Width +
-  //                         lbxFamily.BorderSpacing.Right +
-  //                         FCharSize.cx * 2;
+  splFamilyFontVert.Left:= lbxFamily.Left +
+                           lbxFamily.Width +
+                           lbxFamily.BorderSpacing.Right +
+                           FCharSize.cx * 2;
 
   splFamilyFontHorz.Top:= lbxFamily.Top +
                           lbxFamily.Height +
                           lbxFamily.BorderSpacing.Bottom +
                           FCharSize.cx * 2;
+
   splgbEffects.Left:= gbEffects.Left +
                       gbEffects.Width +
                       gbEffects.BorderSpacing.Right +
                       FCharSize.cx * 2;
+
+  with pnlComp do
+  begin
+    AutoSize:= True;
+    ParentColor:= True;
+    BevelOuter:= bvNone;
+    Caption:= '';
+  end;
+
+  with pnlBtn do
+  begin
+    AutoSize:= True;
+    ParentColor:= True;
+    BevelOuter:= bvNone;
+    Caption:= '';
+  end;
+
+  with scrboxComp do
+  begin
+    BorderStyle:= bsNone;
+    HorzScrollBar.Smooth:= True;
+    HorzScrollBar.Tracking:= True;
+    VertScrollBar.Smooth:= True;
+    VertScrollBar.Tracking:= True;
+  end;
 
   Self.Constraints.MinWidth:= FCharSize.cx * 60;
   {$IFDEF LINUX}
@@ -397,19 +423,12 @@ begin
   Self.Constraints.MinHeight:= FCharSize.cy * 20;
   {$ENDIF}
 
-  //Self.Constraints.MaxWidth:= Self.Constraints.MinWidth;
-  //Self.Constraints.MaxHeight:= Self.Constraints.MinHeight;
-
-
   with Self do
   begin
-    //BorderStyle:= bsDialog;
     BorderIcons:= [biSystemMenu];
-    //AutoScroll:= True;
     AutoSize:= True;
     BorderStyle:= bsSizeable;
   end;
-  Panel1.AutoSize:= True;
 end;
 
 procedure TfrmFontDialogEx.lbxFamilyClick(Sender: TObject);
