@@ -60,6 +60,8 @@ type
     procedure chbStrikeChange(Sender: TObject);
     procedure chbUnderLineChange(Sender: TObject);
     procedure clboxFontColorChange(Sender: TObject);
+    procedure edtFamilyEditingDone(Sender: TObject);
+    procedure edtFamilyKeyPress(Sender: TObject; var Key: char);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -219,6 +221,37 @@ begin
   SelectFont;
 end;
 
+procedure TfrmFontDialogEx.edtFamilyEditingDone(Sender: TObject);
+var
+  n: PtrInt = 0;
+  edtText: String = '';
+begin
+  if (lbxFamily.Count = 0) then Exit;
+
+  edtText:= UTF8LowerCase(UTF8Trim(edtFamily.Text));
+
+  if (edtText <> '') then
+  begin
+    n:= lbxFamily.Items.IndexOf(edtText);
+    if (n <> -1)
+      then lbxFamily.ItemIndex:= n
+      else
+        for n:= 0 to Pred(lbxFamily.Count) do
+          begin
+            if ( UTF8Pos(edtText, UTF8LowerCase(lbxFamily.Items[n])) > 0) then
+            begin
+              lbxFamily.ItemIndex:= n;
+              Break;
+            end;
+          end;
+  end;
+end;
+
+procedure TfrmFontDialogEx.edtFamilyKeyPress(Sender: TObject; var Key: char);
+begin
+  //if ((Ord(Key) <> VK_BACK) and ((ord(Key) < VK_0) or (ord(Key) > VK_9))) then Key:= #0;
+end;
+
 procedure TfrmFontDialogEx.FormClose(Sender: TObject;
   var CloseAction: TCloseAction);
 begin
@@ -334,6 +367,11 @@ begin
   chbUnderLine.Checked:= (fsUnderline in SelfFont.Style);
 
   LoadFontlist;
+
+  if (lbxFamily.ItemIndex < 0)
+    then edtFamily.Clear
+    else edtFamily.Text:= lbxFamily.Items[lbxFamily.ItemIndex];
+
   lbxCharsetClick(nil);
   if (lbxCharset.Count > 0) then
   begin
@@ -435,6 +473,10 @@ procedure TfrmFontDialogEx.lbxFamilyClick(Sender: TObject);
 var
   i: PtrInt = -1;
 begin
+  if (lbxFamily.ItemIndex < 0)
+    then edtFamily.Clear
+    else edtFamily.Text:= lbxFamily.Items[lbxFamily.ItemIndex];
+
   LoadFamilyFonts(-1);
   lbxCharsetClick(nil);
 
@@ -791,8 +833,8 @@ begin
   if LoadingCharsets then begin
     // make an initial charset selection
     RestoreSelection(lbxCharset);
-    if lbxCharset.ItemIndex<0 then begin
-      if lbxCharset.Items.Count>0 then
+    if (lbxCharset.ItemIndex < 0) then begin
+      if (lbxCharset.Items.Count > 0) then
         lbxCharset.ItemIndex := 0;
     end;
   end;

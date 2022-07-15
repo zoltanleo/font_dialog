@@ -1,12 +1,12 @@
 object frmFontDialogEx: TfrmFontDialogEx
   Left = 216
-  Height = 332
+  Height = 375
   Top = 153
   Width = 663
   HorzScrollBar.Page = 713
   VertScrollBar.Page = 439
   Caption = 'frmFontDialogEx'
-  ClientHeight = 332
+  ClientHeight = 375
   ClientWidth = 663
   KeyPreview = True
   OnClose = FormClose
@@ -14,6 +14,7 @@ object frmFontDialogEx: TfrmFontDialogEx
   OnDestroy = FormDestroy
   OnShow = FormShow
   ShowHint = True
+  LCLVersion = '2.3.0.0'
   object pnlBtn: TPanel
     AnchorSideLeft.Control = Owner
     AnchorSideRight.Control = Owner
@@ -22,7 +23,7 @@ object frmFontDialogEx: TfrmFontDialogEx
     AnchorSideBottom.Side = asrBottom
     Left = 0
     Height = 67
-    Top = 265
+    Top = 308
     Width = 663
     Anchors = [akLeft, akRight, akBottom]
     Caption = 'pnlBtn'
@@ -67,13 +68,13 @@ object frmFontDialogEx: TfrmFontDialogEx
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = pnlBtn
     Left = 0
-    Height = 265
+    Height = 308
     Top = 0
     Width = 663
     HorzScrollBar.Page = 91
-    VertScrollBar.Page = 261
+    VertScrollBar.Page = 304
     Anchors = [akTop, akLeft, akRight, akBottom]
-    ClientHeight = 261
+    ClientHeight = 304
     ClientWidth = 642
     TabOrder = 1
     object pnlComp: TPanel
@@ -116,6 +117,8 @@ object frmFontDialogEx: TfrmFontDialogEx
         Width = 247
         Anchors = [akTop, akLeft, akRight]
         BorderSpacing.Top = 5
+        OnEditingDone = edtFamilyEditingDone
+        OnKeyPress = edtFamilyKeyPress
         TabOrder = 0
         Text = 'edtFamily'
       end
@@ -347,7 +350,7 @@ object frmFontDialogEx: TfrmFontDialogEx
         ScrollBars = ssNone
         TabOrder = 8
         ColWidths = (
-          348
+          352
         )
       end
       object gbFilter: TGroupBox
