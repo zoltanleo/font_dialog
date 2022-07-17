@@ -14,7 +14,6 @@ object frmFontDialogEx: TfrmFontDialogEx
   OnDestroy = FormDestroy
   OnShow = FormShow
   ShowHint = True
-  LCLVersion = '2.3.0.0'
   object pnlBtn: TPanel
     AnchorSideLeft.Control = Owner
     AnchorSideRight.Control = Owner
@@ -92,7 +91,6 @@ object frmFontDialogEx: TfrmFontDialogEx
       Caption = 'pnlComp'
       ClientHeight = 420
       ClientWidth = 642
-      Color = clMoneyGreen
       ParentColor = False
       TabOrder = 0
       object lblFontFaceList: TLabel
@@ -118,7 +116,6 @@ object frmFontDialogEx: TfrmFontDialogEx
         Anchors = [akTop, akLeft, akRight]
         BorderSpacing.Top = 5
         OnEditingDone = edtFamilyEditingDone
-        OnKeyPress = edtFamilyKeyPress
         TabOrder = 0
         Text = 'edtFamily'
       end
@@ -181,8 +178,8 @@ object frmFontDialogEx: TfrmFontDialogEx
         TabOrder = 3
       end
       object lblSizes: TLabel
-        AnchorSideLeft.Control = Edit1
-        AnchorSideBottom.Control = Edit1
+        AnchorSideLeft.Control = edtFontSize
+        AnchorSideBottom.Control = edtFontSize
         Left = 564
         Height = 15
         Top = 16
@@ -191,7 +188,7 @@ object frmFontDialogEx: TfrmFontDialogEx
         BorderSpacing.Bottom = 5
         Caption = 'Sizes'
       end
-      object Edit1: TEdit
+      object edtFontSize: TEdit
         AnchorSideLeft.Control = lbxSizes
         AnchorSideTop.Control = edtFamily
         AnchorSideRight.Control = lbxSizes
@@ -201,11 +198,13 @@ object frmFontDialogEx: TfrmFontDialogEx
         Top = 36
         Width = 67
         Anchors = [akTop, akLeft, akRight]
+        OnEditingDone = edtFontSizeEditingDone
+        OnKeyPress = edtFontSizeKeyPress
         TabOrder = 4
-        Text = 'Edit1'
+        Text = 'edtFontSize'
       end
       object lbxSizes: TListBox
-        AnchorSideTop.Control = Edit1
+        AnchorSideTop.Control = edtFontSize
         AnchorSideTop.Side = asrBottom
         AnchorSideRight.Control = pnlComp
         AnchorSideRight.Side = asrBottom
@@ -302,6 +301,7 @@ object frmFontDialogEx: TfrmFontDialogEx
           Height = 22
           Top = 83
           Width = 239
+          DefaultColorColor = clDefault
           Style = [cbStandardColors, cbExtendedColors, cbSystemColors, cbIncludeNone, cbIncludeDefault, cbCustomColor]
           Anchors = [akTop, akLeft, akRight]
           BorderSpacing.Top = 5
@@ -309,7 +309,6 @@ object frmFontDialogEx: TfrmFontDialogEx
           BorderSpacing.Bottom = 10
           ItemHeight = 16
           OnChange = clboxFontColorChange
-          ParentColor = True
           TabOrder = 2
         end
       end
@@ -350,7 +349,7 @@ object frmFontDialogEx: TfrmFontDialogEx
         ScrollBars = ssNone
         TabOrder = 8
         ColWidths = (
-          352
+          348
         )
       end
       object gbFilter: TGroupBox

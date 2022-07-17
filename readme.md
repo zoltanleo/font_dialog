@@ -4,6 +4,13 @@ To do:
 
 ----------
 
+v.0.0.30
+
+- добавлены обработчики для edtFontSize и lbxSize
+- изменены Color для pnlComp и clboxFontColor
+- изменена высота кнопок под Линукс
+- линуксовый GUI разделен на gtk и qt(похожа на винду)
+
 v.0.0.29
 
 - добавлены обработчики для edtFamily и lbxFamily
