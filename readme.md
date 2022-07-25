@@ -4,6 +4,11 @@ To do:
 
 ----------
 
+v.0.0.32
+
+- избавляемся от промежуточных полей при загрузке параметров шрифта
+- удалены процедуры SaveSelection/RestoreSelection
+
 v.0.0.31
 
 - переименованы некоторые компоненты: edtFontFamily, lbxFontFamily, lblFontFamily, lblFontStyles, lbxFontStyles, lblFontSizes, lbxFontSizes, gdSample, lblFontCharset, lbxFontCharset, cbbFontCharset, cbbFontPitch

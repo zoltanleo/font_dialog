@@ -77,11 +77,6 @@ type
     FSelfFont: TFont;
     FTime: LongWord;
     FIniTime: LongWord;
-    FCurrentFamily
-    ,FCurrentStyle
-    ,FCurrentSize
-    ,FCurrentCharset
-    , FCurrentColor: string;
     FCharSize: TSize;
     FCurrentFontSize: PtrInt;
     procedure SetSelfFont(AValue: TFont);
@@ -92,8 +87,6 @@ type
     procedure EnableEvents(Ok: boolean; Lb: TListbox = nil);
     procedure SelectFont;
     procedure ResetSampleText;
-    procedure SaveSelection;
-    procedure RestoreSelection(Sender: TListbox);
     procedure LoadFontList;
     procedure LoadFamilyFonts(Charset: integer);
     procedure UpdateFont(F: TFont);
@@ -102,6 +95,7 @@ type
     property SelfFont: TFont read FSelfFont write SetSelfFont;
     property FontSizeValueMin: PtrInt read FFontSizeValueMin write FFontSizeValueMin;
     property FontSizeValueMax: PtrInt read FFontSizeValueMax write FFontSizeValueMax;
+
     procedure BtnOKClick(Sender: TObject);
     procedure BtnCancelClick(Sender: TObject);
   end; 
@@ -184,14 +178,17 @@ begin
   end;
   
   // collect sizes
-  if FontType=TRUETYPE_FONTTYPE then
+  if (FontType=TRUETYPE_FONTTYPE)
+  then
     NeedTTF := True
   else
     with metric.ntmentm do
-      if tmDigitizedAspectY <> 0 then begin
-        n := (tmHeight-tmInternalLeading)*72+tmDigitizedAspectY shr 1;
-        n := n div tmDigitizedAspectY;
-        if n>0 then begin
+      if (tmDigitizedAspectY <> 0) then
+      begin
+        n:= (tmHeight-tmInternalLeading)*72 + tmDigitizedAspectY shr 1;
+        n:= n div tmDigitizedAspectY;
+        if (n > 0) then
+        begin
           s := IntToStr(n)+'*'; // font sizes with * indicate raster fonts
           if LSizes.IndexOf(s)<0 then
             LSizes.AddObject(s, TObject(ptrint(n)));
@@ -344,23 +341,6 @@ begin
   btnRight.OnClick:= @BtnOKClick;
   {$ENDIF}
 
-  //{$IFDEF MSWINDOWS}
-  //if (UTF8LowerCase(ShortCutToText(ActBtnCancel.ShortCut)) <> 'unknown')
-  //  then btnRight.Hint:= Format('<%s>',[ShortCutToText(ActBtnCancel.ShortCut)])
-  //  else btnRight.Hint:= '';
-  //if (UTF8LowerCase(ShortCutToText(ActBtnOK.ShortCut)) <> 'unknown')
-  //  then btnLeft.Hint:= Format('<%s>',[ShortCutToText(ActBtnOK.ShortCut)])
-  //  else btnRight.Hint:= '';
-  //
-  //{$ELSE}
-  //if (UTF8LowerCase(ShortCutToText(ActBtnCancel.ShortCut)) <> 'unknown')
-  //  then btnLeft.Hint:= Format('<%s>',[ShortCutToText(ActBtnCancel.ShortCut)])
-  //  else btnLeft.Hint:= '';
-  //if (UTF8LowerCase(ShortCutToText(ActBtnOK.ShortCut)) <> 'unknown')
-  //  then btnRight.Hint:= Format('<%s>',[ShortCutToText(ActBtnOK.ShortCut)])
-  //  else btnRight.Hint:= '';
-  //{$ENDIF}
-
   for i:= 0 to Pred(pnlBtn.ControlCount) do
     if TObject(pnlBtn.Controls[i]).InheritsFrom(TButton) then
       if (txtlen < pnlBtn.Canvas.TextWidth(TButton(pnlBtn.Controls[i]).Caption)) then
@@ -392,7 +372,6 @@ end;
 procedure TfrmFontDialogEx.FormShow(Sender: TObject);
 var
   i: PtrInt = -1;
-  n: PtrInt = 0;
 begin
   lblFontStyles.Caption:= cFontStyles;
   lblFontSizes.Caption:= cFontSize;
@@ -404,14 +383,7 @@ begin
   lblSample.Caption:= cFontSample;
   lblFontCharset.Caption:= cFontCharSet;
   btnApplyFilter.Caption:= cBtnApplyFilter;
-
-  if (LowerCase(SelfFont.Name) = 'default')
-    then FCurrentFamily:= Screen.SystemFont.Name
-    else FCurrentFamily:= SelfFont.Name;
-
-  FCurrentCharset:= CharSetToString(SelfFont.CharSet);
   FCurrentFontSize:= SelfFont.Size;
-  //FCurrentSize:= IntToStr(FCurrentFontSize);
   edtFontSize.Text:= IntToStr(FCurrentFontSize);
   clboxFontColor.Selected:= SelfFont.Color;
   chbStrike.Checked:= (fsStrikeOut in SelfFont.Style);
@@ -431,21 +403,6 @@ begin
       then cbbFontCharset.ItemIndex:= i
       else cbbFontCharset.ItemIndex:= 1;
   end;
-
-  //load and set font styles
-  n:= 0;//regular = non fsBold and non fsItalic
-
-  if (fsItalic in SelfFont.Style) then n:= (n or 1); //fsItalic and regular
-  if (fsBold in SelfFont.Style) then n:= (n or 2);//fsbold and regular/italic
-
-  i:= lbxFontStyles.Items.IndexOfObject(TObject(PtrInt(n)));
-
-  if (i <> -1)
-    then lbxFontStyles.ItemIndex:= i
-    else
-      if (lbxFontStyles.Count > 0)
-        then lbxFontStyles.ItemIndex:= 0
-        else lbxFontStyles.ItemIndex:= -1;
 
   lbxFontStylesClick(Self);
   edtFontSizeEditingDone(Self);
@@ -635,35 +592,23 @@ end;
 procedure TfrmFontDialogEx.SelectFont;
 var
   i: integer;
-  //function GetFontSize(s: string): Integer;
-  //begin
-  //  i := pos('*',s);
-  //  if i<>0 then
-  //    result := StrToInt(Copy(S, 1, i-1))
-  //  else
-  //    result := StrToInt(s);
-  //end;
 begin
   if (lbxFontFamily.ItemIndex >= 0) then
     if (lbxFontCharset.ItemIndex >= 0) then
       if (lbxFontStyles.ItemIndex >= 0) then
-        //if (lbxFontSizes.ItemIndex >= 0) then
-        begin
-          FSelfFont.Name := lbxFontFamily.Items[lbxFontFamily.ItemIndex];
-          FSelfFont.CharSet := TFontCharSet(ptrint(lbxFontCharset.Items.Objects[lbxFontCharset.ItemIndex]));
-          //FSelfFont.Size := GetFontSize(lbxFontSizes.Items[lbxFontSizes.ItemIndex]);
-          FSelfFont.Size:= FCurrentFontSize;
-          i:= PtrInt(lbxFontStyles.Items.Objects[lbxFontStyles.ItemIndex]);
-          //Self.Caption:= Format('lbxStyles i = %d',[i]);
-          FSelfFont.Style:= [];
-          if ((i and 1) <> 0) then FSelfFont.Style:= FSelfFont.Style + [fsItalic];
-          if ((i and 2) <> 0) then FSelfFont.Style:= FSelfFont.Style + [fsBold];
-          if chbUnderLine.Checked then FSelfFont.Style:= FSelfFont.Style + [fsUnderline];
-          if chbStrike.Checked then FSelfFont.Style:= FSelfFont.Style + [fsStrikeOut];
-          FSelfFont.Color:= clboxFontColor.Selected;
-          UpdateFont(FSelfFont);
-          //SaveSelection;
-        end;
+      begin
+        FSelfFont.Name := lbxFontFamily.Items[lbxFontFamily.ItemIndex];
+        FSelfFont.CharSet := TFontCharSet(ptrint(lbxFontCharset.Items.Objects[lbxFontCharset.ItemIndex]));
+        FSelfFont.Size:= FCurrentFontSize;
+        i:= PtrInt(lbxFontStyles.Items.Objects[lbxFontStyles.ItemIndex]);
+        FSelfFont.Style:= [];
+        if ((i and 1) <> 0) then FSelfFont.Style:= FSelfFont.Style + [fsItalic];
+        if ((i and 2) <> 0) then FSelfFont.Style:= FSelfFont.Style + [fsBold];
+        if chbUnderLine.Checked then FSelfFont.Style:= FSelfFont.Style + [fsUnderline];
+        if chbStrike.Checked then FSelfFont.Style:= FSelfFont.Style + [fsStrikeOut];
+        FSelfFont.Color:= clboxFontColor.Selected;
+        UpdateFont(FSelfFont);
+      end;
 end;
 
 procedure TfrmFontDialogEx.ResetSampleText;
@@ -683,57 +628,6 @@ begin
   end;
 end;
 
-procedure TfrmFontDialogEx.SaveSelection;
-  function doGet(lb: TListbox): string;
-  begin
-    if lb.itemindex>=0 then
-      result := lb.Items[lb.ItemIndex]
-    else
-      result := '';
-  end;
-begin
-  FCurrentFamily := doGet(lbxFontFamily);
-  FCurrentCharset := doGet(lbxFontCharset);
-  FCurrentStyle := doGet(lbxFontStyles);
-  FCurrentSize := doGet(lbxFontSizes);
-  FCurrentColor:= ColorToString(clboxFontColor.Selected);
-end;
-
-procedure TfrmFontDialogEx.RestoreSelection(Sender: TListbox);
-  function GetSelection: string;
-  begin
-    if (Sender.itemindex >= 0) then
-      result := Sender.Items[Sender.ItemIndex]
-    else
-      result := '';
-  end;
-  function GetCurrent: string;
-  begin
-    if Sender=lbxFontFamily then result := FCurrentFamily else
-    if Sender=lbxFontCharset then result := FCurrentCharset else
-    if Sender=lbxFontStyles then result := FCurrentStyle else
-    if Sender=lbxFontSizes then result := FCurrentSize;
-  end;
-var
-  i: Integer;
-  s: string;
-begin
-  s := GetCurrent;
-  if GetSelection <> s then
-  begin
-    i:= Sender.Items.IndexOf(s);
-    if (i <> -1)
-    then
-      begin
-        {$ifdef debug}
-        debugln('RestoreSelection: listbox=',Sender.Name,' Old=',GetSelection,' New=',S);
-        {$endif}
-        if (i <> Sender.ItemIndex) then
-          Sender.ItemIndex := i;
-      end;
-  end;
-end;
-
 procedure TfrmFontDialogEx.LoadFontList;
 var
   DC: HDC;
@@ -743,8 +637,8 @@ var
 begin
   // this could be have done also with screen.fonts
   // but here, we have the list filtered by Charset
-  lf.lfCharSet := GetCharSet;
-  lf.lfFaceName := '';
+  lf.lfCharSet:= GetCharSet;
+  lf.lfFaceName:= '';
   case cbbFontPitch.ItemIndex of
     1: i:=FIXED_PITCH;
     2: i:=VARIABLE_PITCH;
@@ -754,11 +648,6 @@ begin
   end;
 
   lf.lfPitchAndFamily:= i;
-
-  {$ifdef debug}
-  debugln('LoadFontList: for charset=',CharSetToString(lf.lfcharset));
-  {$endif}
-
   L:= TStringList.create;
   lbxFontStyles.Clear;
   lbxFontCharset.Clear;
@@ -767,23 +656,22 @@ begin
   DC := GetDC(0);
   EnableEvents(False, lbxFontFamily);
   try
-    //StartTimer;
     EnumFontFamiliesEX(DC, @lf, @EnumFontsNoDups, ptrint(L), 0);
-    //EndTimer;
     L.Sort;
     lbxFontFamily.Items.Assign(L);
     lbxFontFamily.Itemindex:= -1;
     
-    RestoreSelection(lbxFontFamily);
-    if (lbxFontFamily.ItemIndex < 0) then begin
+    if (LowerCase(SelfFont.Name) = 'default')
+      then lbxFontFamily.ItemIndex:= lbxFontFamily.Items.IndexOf(Screen.SystemFont.Name)
+      else lbxFontFamily.ItemIndex:= lbxFontFamily.Items.IndexOf(SelfFont.Name);
+
+    if (lbxFontFamily.ItemIndex < 0) then
+    begin
       if (lbxFontFamily.Items.Count > 0) then
         lbxFontFamily.ItemIndex:= 0;
     end;
     LoadFamilyFonts(-1);
-    
-    //lblFontFamily.Caption := format('Fontfaces, found %d, %d ms',[lbxFontFamily.Items.Count, FTime]);
     lblFontFamily.Caption := format(cFontFaceList,[lbxFontFamily.Items.Count]);
-
   finally
     EnableEvents(True, lbxFontFamily);
     ReleaseDC(0, DC);
@@ -803,6 +691,7 @@ var
   Lf: TLogFont;
   i: LongInt;
   LoadingCharsets: boolean;
+  n: PtrInt = 0;
   
   procedure AddScalableSizes;
     procedure Add(Sz: Integer);
@@ -844,57 +733,69 @@ begin
   end;
   try
     // enumerate fonts
-    Lf.lfFaceName := lbxFontFamily.Items[i];
-    Lf.lfCharSet := byte(Charset);
+    Lf.lfFaceName:= lbxFontFamily.Items[i];
+    Lf.lfCharSet:= byte(Charset);
     Lf.lfPitchAndFamily := 0;
-    NeedTTF := False;
+    NeedTTF:= False;
     EnumFontFamiliesEX(DC, @Lf, @EnumFamilyFonts, ptrint(LCharset), 0);
     // fill charset listbox if necessary
-    if LCharset<>nil then begin
-      LCharset.Sort;
-      EnableEvents(False, lbxFontCharset);
-      lbxFontCharset.Items.Assign(LCharset);
-      lbxFontCharset.ItemIndex := -1;
-      EnableEvents(true, lbxFontCharset);
-    end else begin
-      // fill styles listbox
-      LStyles.Sort;
-      EnableEvents(False, lbxFontStyles);
-      lbxFontStyles.Items.Assign(LStyles);
-      lbxFontStyles.ItemIndex := -1;
-      EnableEvents(true, lbxFontStyles);
-      RestoreSelection(lbxFontStyles);
-      if lbxFontStyles.ItemIndex<0 then begin
-       if lbxFontStyles.Items.Count>0 then
-          lbxFontStyles.ItemIndex := 0;
-      end;
-      // fill sizes listbox
-      // any raster font size is already there
-      if NeedTTF then
-        AddScalableSizes;
-      LSizes.CustomSort(@CompareSizes);
-      EnableEvents(False, lbxFontSizes);
-      lbxFontSizes.Items.Assign(LSizes);
-      lbxFontSizes.ItemIndex := -1;
-      EnableEvents(true, lbxFontSizes);
-      //RestoreSelection(lbxFontSizes);
-      if lbxFontSizes.ItemIndex<0 then begin
-        if lbxFontSizes.Items.Count>0 then
-          lbxFontSizes.ItemIndex := 0;
-      end;
-    end;
+    if (LCharset <> nil)
+    then begin
+          LCharset.Sort;
+          EnableEvents(False, lbxFontCharset);
+          lbxFontCharset.Items.Assign(LCharset);
+          lbxFontCharset.ItemIndex := -1;
+          EnableEvents(true, lbxFontCharset);
+         end
+    else begin
+          // fill styles listbox
+          LStyles.Sort;
+          EnableEvents(False, lbxFontStyles);
+          lbxFontStyles.Items.Assign(LStyles);
+          lbxFontStyles.ItemIndex := -1;
+          EnableEvents(true, lbxFontStyles);
+
+          //load and set font styles
+          n:= 0;//regular = non fsBold and non fsItalic
+          if (fsItalic in SelfFont.Style) then n:= (n or 1); //fsItalic and regular
+          if (fsBold in SelfFont.Style) then n:= (n or 2);//fsbold and regular/italic
+
+          lbxFontStyles.ItemIndex:= lbxFontStyles.Items.IndexOfObject(TObject(PtrInt(n)));
+
+          if (lbxFontStyles.ItemIndex < 0) then
+            if (lbxFontStyles.Items.Count > 0) then lbxFontStyles.ItemIndex:= 0;
+
+
+          // fill sizes listbox
+          // any raster font size is already there
+          if NeedTTF then AddScalableSizes;
+          LSizes.CustomSort(@CompareSizes);
+          EnableEvents(False, lbxFontSizes);
+          lbxFontSizes.Items.Assign(LSizes);
+          lbxFontSizes.ItemIndex := -1;
+          EnableEvents(true, lbxFontSizes);
+
+          lbxFontSizes.ItemIndex:= lbxFontSizes.Items.IndexOf(IntToStr(FCurrentFontSize));
+
+          if (lbxFontSizes.ItemIndex < 0) then
+            if (lbxFontSizes.Items.Count > 0) then lbxFontSizes.ItemIndex := 0;
+         end;
   finally
-    if LCharset=nil then begin
-      LSizes.Free;
-      LStyles.Free;
-    end else
+    if (LCharset = nil)
+    then begin
+          LSizes.Free;
+          LStyles.Free;
+         end
+    else
       LCharset.Free;
+
     releaseDC(0, DC);
   end;
   
   if LoadingCharsets then begin
     // make an initial charset selection
-    RestoreSelection(lbxFontCharset);
+    lbxFontCharset.ItemIndex:= lbxFontCharset.Items.IndexOf(CharSetToString(PtrInt(SelfFont.CharSet)));
+
     if (lbxFontCharset.ItemIndex < 0) then begin
       if (lbxFontCharset.Items.Count > 0) then
         lbxFontCharset.ItemIndex := 0;

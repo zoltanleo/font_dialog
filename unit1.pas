@@ -131,6 +131,7 @@ begin
 
   try
     tmpFrm.SelfFont.Assign(Label1.Font);
+    tmpFrm.Position:= poOwnerFormCenter;
     tmpFrm.ShowModal;
 
     if (tmpFrm.ModalResult = mrOK) then
@@ -219,6 +220,8 @@ procedure TForm1.FormCreate(Sender: TObject);
 begin
   Label1.Font.Size:= 15;
   StaticText1.Font.Size:= 15;
+  Self.AutoScroll:= True;
+  Self.AutoSize:= True;
 end;
 
 procedure TForm1.FormShow(Sender: TObject);

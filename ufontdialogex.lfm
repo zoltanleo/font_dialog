@@ -1,12 +1,12 @@
 object frmFontDialogEx: TfrmFontDialogEx
   Left = 216
-  Height = 494
+  Height = 362
   Top = 153
   Width = 663
   HorzScrollBar.Page = 713
   VertScrollBar.Page = 439
   Caption = 'frmFontDialogEx'
-  ClientHeight = 494
+  ClientHeight = 362
   ClientWidth = 663
   KeyPreview = True
   OnClose = FormClose
@@ -14,6 +14,7 @@ object frmFontDialogEx: TfrmFontDialogEx
   OnDestroy = FormDestroy
   OnShow = FormShow
   ShowHint = True
+  LCLVersion = '2.3.0.0'
   object pnlBtn: TPanel
     AnchorSideLeft.Control = Owner
     AnchorSideRight.Control = Owner
@@ -22,7 +23,7 @@ object frmFontDialogEx: TfrmFontDialogEx
     AnchorSideBottom.Side = asrBottom
     Left = 0
     Height = 67
-    Top = 427
+    Top = 295
     Width = 663
     Anchors = [akLeft, akRight, akBottom]
     Caption = 'pnlBtn'
@@ -67,14 +68,14 @@ object frmFontDialogEx: TfrmFontDialogEx
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = pnlBtn
     Left = 0
-    Height = 427
+    Height = 295
     Top = 0
     Width = 663
     HorzScrollBar.Page = 84
-    VertScrollBar.Page = 421
+    VertScrollBar.Page = 291
     Anchors = [akTop, akLeft, akRight, akBottom]
-    ClientHeight = 423
-    ClientWidth = 659
+    ClientHeight = 291
+    ClientWidth = 642
     TabOrder = 0
     object pnlComp: TPanel
       AnchorSideLeft.Control = scrboxComp
@@ -84,13 +85,13 @@ object frmFontDialogEx: TfrmFontDialogEx
       AnchorSideBottom.Control = scrboxComp
       AnchorSideBottom.Side = asrBottom
       Left = 0
-      Height = 423
+      Height = 420
       Top = 0
-      Width = 659
+      Width = 642
       Anchors = [akTop, akLeft, akRight, akBottom]
       Caption = 'pnlComp'
-      ClientHeight = 423
-      ClientWidth = 659
+      ClientHeight = 420
+      ClientWidth = 642
       ParentColor = False
       TabOrder = 0
       object lblFontFamily: TLabel
@@ -112,7 +113,7 @@ object frmFontDialogEx: TfrmFontDialogEx
         Left = 10
         Height = 23
         Top = 36
-        Width = 254
+        Width = 247
         Anchors = [akTop, akLeft, akRight]
         BorderSpacing.Top = 5
         OnEditingDone = edtFontFamilyEditingDone
@@ -125,9 +126,9 @@ object frmFontDialogEx: TfrmFontDialogEx
         AnchorSideRight.Control = splFamilyFontVert
         AnchorSideBottom.Control = splFamilyFontHorz
         Left = 10
-        Height = 55
+        Height = 54
         Top = 64
-        Width = 254
+        Width = 247
         Anchors = [akTop, akLeft, akRight, akBottom]
         BorderSpacing.Left = 10
         BorderSpacing.Top = 5
@@ -141,8 +142,8 @@ object frmFontDialogEx: TfrmFontDialogEx
         AnchorSideTop.Control = edtFontFamily
         AnchorSideBottom.Control = lbxFontFamily
         AnchorSideBottom.Side = asrBottom
-        Left = 269
-        Height = 83
+        Left = 262
+        Height = 82
         Top = 36
         Width = 5
         Align = alCustom
@@ -151,7 +152,7 @@ object frmFontDialogEx: TfrmFontDialogEx
       object lblFontStyles: TLabel
         AnchorSideLeft.Control = lbxFontStyles
         AnchorSideBottom.Control = lbxFontStyles
-        Left = 279
+        Left = 272
         Height = 15
         Top = 16
         Width = 54
@@ -165,10 +166,10 @@ object frmFontDialogEx: TfrmFontDialogEx
         AnchorSideTop.Control = edtFontFamily
         AnchorSideRight.Control = lbxFontSizes
         AnchorSideBottom.Control = splFamilyFontHorz
-        Left = 279
-        Height = 83
+        Left = 272
+        Height = 82
         Top = 36
-        Width = 292
+        Width = 282
         Anchors = [akTop, akLeft, akRight, akBottom]
         BorderSpacing.Left = 5
         BorderSpacing.Right = 10
@@ -180,7 +181,7 @@ object frmFontDialogEx: TfrmFontDialogEx
       object lblFontSizes: TLabel
         AnchorSideLeft.Control = edtFontSize
         AnchorSideBottom.Control = edtFontSize
-        Left = 581
+        Left = 564
         Height = 15
         Top = 16
         Width = 49
@@ -193,7 +194,7 @@ object frmFontDialogEx: TfrmFontDialogEx
         AnchorSideTop.Control = edtFontFamily
         AnchorSideRight.Control = lbxFontSizes
         AnchorSideRight.Side = asrBottom
-        Left = 581
+        Left = 564
         Height = 23
         Top = 36
         Width = 67
@@ -209,8 +210,8 @@ object frmFontDialogEx: TfrmFontDialogEx
         AnchorSideRight.Control = pnlComp
         AnchorSideRight.Side = asrBottom
         AnchorSideBottom.Control = splFamilyFontHorz
-        Left = 581
-        Height = 55
+        Left = 564
+        Height = 54
         Top = 64
         Width = 67
         Anchors = [akTop, akRight, akBottom]
@@ -228,8 +229,8 @@ object frmFontDialogEx: TfrmFontDialogEx
         Cursor = crVSplit
         Left = 1
         Height = 5
-        Top = 124
-        Width = 657
+        Top = 123
+        Width = 640
         Align = alNone
         Anchors = [akLeft, akRight]
         ResizeAnchor = akBottom
@@ -242,8 +243,8 @@ object frmFontDialogEx: TfrmFontDialogEx
         Left = 1
         Height = 135
         Hint = 'A'
-        Top = 134
-        Width = 270
+        Top = 133
+        Width = 263
         Align = alCustom
         Anchors = [akTop, akLeft, akRight]
         AutoSize = True
@@ -251,7 +252,7 @@ object frmFontDialogEx: TfrmFontDialogEx
         BorderSpacing.Right = 5
         Caption = 'gbEffects'
         ClientHeight = 115
-        ClientWidth = 266
+        ClientWidth = 259
         TabOrder = 7
         object chbStrike: TCheckBox
           AnchorSideLeft.Control = gbEffects
@@ -300,7 +301,7 @@ object frmFontDialogEx: TfrmFontDialogEx
           Left = 10
           Height = 22
           Top = 83
-          Width = 246
+          Width = 239
           DefaultColorColor = clDefault
           Style = [cbStandardColors, cbExtendedColors, cbSystemColors, cbIncludeNone, cbIncludeDefault, cbCustomColor]
           Anchors = [akTop, akLeft, akRight]
@@ -316,9 +317,9 @@ object frmFontDialogEx: TfrmFontDialogEx
         AnchorSideLeft.Control = gdSample
         AnchorSideTop.Control = splFamilyFontHorz
         AnchorSideTop.Side = asrBottom
-        Left = 286
+        Left = 279
         Height = 15
-        Top = 134
+        Top = 133
         Width = 39
         BorderSpacing.Top = 5
         Caption = 'Sample'
@@ -331,10 +332,10 @@ object frmFontDialogEx: TfrmFontDialogEx
         AnchorSideRight.Control = pnlComp
         AnchorSideRight.Side = asrBottom
         AnchorSideBottom.Control = lblFontCharset
-        Left = 286
+        Left = 279
         Height = 108
-        Top = 154
-        Width = 362
+        Top = 153
+        Width = 352
         Anchors = [akTop, akLeft, akRight]
         AutoFillColumns = True
         BorderSpacing.Left = 5
@@ -347,10 +348,10 @@ object frmFontDialogEx: TfrmFontDialogEx
         FixedRows = 0
         Options = [goFixedVertLine, goRangeSelect, goSmoothScroll, goFixedColSizing]
         ScrollBars = ssNone
-        TabOrder = 10
+        TabOrder = 9
         TabStop = False
         ColWidths = (
-          358
+          352
         )
       end
       object gbFilter: TGroupBox
@@ -362,16 +363,16 @@ object frmFontDialogEx: TfrmFontDialogEx
         AnchorSideBottom.Control = pnlComp
         AnchorSideBottom.Side = asrBottom
         Left = 1
-        Height = 133
-        Top = 279
-        Width = 270
+        Height = 131
+        Top = 278
+        Width = 263
         Anchors = [akTop, akLeft, akRight, akBottom]
         AutoSize = True
         BorderSpacing.Top = 10
         BorderSpacing.Bottom = 10
         Caption = 'gbFilter'
-        ClientHeight = 113
-        ClientWidth = 266
+        ClientHeight = 111
+        ClientWidth = 259
         TabOrder = 8
         object cbbFontCharset: TComboBox
           AnchorSideLeft.Control = gbFilter
@@ -381,7 +382,7 @@ object frmFontDialogEx: TfrmFontDialogEx
           Left = 10
           Height = 23
           Top = 10
-          Width = 246
+          Width = 239
           Anchors = [akTop, akLeft, akRight]
           BorderSpacing.Left = 10
           BorderSpacing.Top = 10
@@ -401,7 +402,7 @@ object frmFontDialogEx: TfrmFontDialogEx
           Left = 10
           Height = 23
           Top = 43
-          Width = 246
+          Width = 239
           Anchors = [akTop, akLeft, akRight]
           BorderSpacing.Left = 10
           BorderSpacing.Top = 10
@@ -429,7 +430,7 @@ object frmFontDialogEx: TfrmFontDialogEx
           Left = 10
           Height = 25
           Top = 76
-          Width = 246
+          Width = 239
           Anchors = [akTop, akLeft, akRight]
           BorderSpacing.Top = 10
           BorderSpacing.Bottom = 10
@@ -443,9 +444,9 @@ object frmFontDialogEx: TfrmFontDialogEx
         AnchorSideTop.Control = gdSample
         AnchorSideTop.Side = asrBottom
         AnchorSideBottom.Control = lbxFontCharset
-        Left = 286
+        Left = 279
         Height = 15
-        Top = 272
+        Top = 271
         Width = 64
         BorderSpacing.Top = 10
         BorderSpacing.Bottom = 5
@@ -460,10 +461,10 @@ object frmFontDialogEx: TfrmFontDialogEx
         AnchorSideRight.Side = asrBottom
         AnchorSideBottom.Control = gbFilter
         AnchorSideBottom.Side = asrBottom
-        Left = 286
-        Height = 120
-        Top = 292
-        Width = 362
+        Left = 279
+        Height = 118
+        Top = 291
+        Width = 352
         Anchors = [akTop, akLeft, akRight, akBottom]
         BorderSpacing.Left = 5
         BorderSpacing.Top = 5
@@ -475,9 +476,9 @@ object frmFontDialogEx: TfrmFontDialogEx
         AnchorSideTop.Control = gbEffects
         AnchorSideBottom.Control = gbFilter
         AnchorSideBottom.Side = asrBottom
-        Left = 276
-        Height = 278
-        Top = 134
+        Left = 269
+        Height = 276
+        Top = 133
         Width = 5
         Align = alCustom
         Anchors = [akTop, akBottom]
