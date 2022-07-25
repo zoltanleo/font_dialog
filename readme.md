@@ -4,6 +4,11 @@ To do:
 
 ----------
 
+v.0.0.31
+
+- переименованы некоторые компоненты: edtFontFamily, lbxFontFamily, lblFontFamily, lblFontStyles, lbxFontStyles, lblFontSizes, lbxFontSizes, gdSample, lblFontCharset, lbxFontCharset, cbbFontCharset, cbbFontPitch
+- изменен TabOrder и TabStop для некоторых контролов
+
 v.0.0.30
 
 - добавлены обработчики для edtFontSize и lbxSize
