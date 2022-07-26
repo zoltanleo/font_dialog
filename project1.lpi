@@ -16,7 +16,7 @@
     <VersionInfo>
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
-      <RevisionNr Value="33"/>
+      <RevisionNr Value="34"/>
       <BuildNr Value="58"/>
     </VersionInfo>
     <BuildModes Active="Default">
@@ -167,7 +167,6 @@
         <ComponentName Value="frmFontDialogEx"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <TopLine Value="217"/>
         <CursorPos X="37" Y="258"/>
@@ -257,6 +256,7 @@
       <Unit>
         <Filename Value="ufontdlgex_i18n.inc"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <TopLine Value="7"/>
         <CursorPos X="2" Y="9"/>
@@ -279,7 +279,7 @@
         <UsageCount Value="11"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="25">
+    <JumpHistory HistoryIndex="22">
       <Position>
         <Filename Value="ufontdialogex.pas"/>
         <Caret Line="902" Column="11" TopLine="890"/>
@@ -370,19 +370,7 @@
       </Position>
       <Position>
         <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="316" Column="11" TopLine="320"/>
-      </Position>
-      <Position>
-        <Filename Value="ufontdialogex.pas"/>
         <Caret Line="473" TopLine="472"/>
-      </Position>
-      <Position>
-        <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="310" TopLine="335"/>
-      </Position>
-      <Position>
-        <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="386" Column="11" TopLine="401"/>
       </Position>
     </JumpHistory>
   </ProjectOptions>
