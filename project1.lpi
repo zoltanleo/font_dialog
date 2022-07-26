@@ -16,8 +16,8 @@
     <VersionInfo>
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
-      <RevisionNr Value="34"/>
-      <BuildNr Value="58"/>
+      <RevisionNr Value="35"/>
+      <BuildNr Value="59"/>
     </VersionInfo>
     <BuildModes Active="Default">
       <Item Name="Default" Default="True"/>
@@ -53,6 +53,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit1"/>
+        <IsVisibleTab Value="True"/>
         <TopLine Value="127"/>
         <CursorPos X="23" Y="224"/>
         <UsageCount Value="163"/>
@@ -168,18 +169,18 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="217"/>
-        <CursorPos X="37" Y="258"/>
+        <TopLine Value="380"/>
+        <CursorPos X="72" Y="389"/>
         <UsageCount Value="94"/>
         <Bookmarks Count="8">
-          <Item0 X="13" Y="608" ID="9"/>
+          <Item0 X="13" Y="609" ID="9"/>
           <Item1 X="6" Y="318" ID="1"/>
-          <Item2 Y="633" ID="4"/>
+          <Item2 Y="634" ID="4"/>
           <Item3 Y="25"/>
-          <Item4 Y="666" ID="3"/>
-          <Item5 X="3" Y="709" ID="5"/>
+          <Item4 Y="667" ID="3"/>
+          <Item5 X="3" Y="710" ID="5"/>
           <Item6 X="11" Y="388" ID="2"/>
-          <Item7 Y="799" ID="6"/>
+          <Item7 Y="800" ID="6"/>
         </Bookmarks>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -256,7 +257,6 @@
       <Unit>
         <Filename Value="ufontdlgex_i18n.inc"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <TopLine Value="7"/>
         <CursorPos X="2" Y="9"/>
@@ -279,7 +279,7 @@
         <UsageCount Value="11"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="22">
+    <JumpHistory HistoryIndex="23">
       <Position>
         <Filename Value="ufontdialogex.pas"/>
         <Caret Line="902" Column="11" TopLine="890"/>
@@ -371,6 +371,10 @@
       <Position>
         <Filename Value="ufontdialogex.pas"/>
         <Caret Line="473" TopLine="472"/>
+      </Position>
+      <Position>
+        <Filename Value="ufontdialogex.pas"/>
+        <Caret Line="258" Column="37" TopLine="175"/>
       </Position>
     </JumpHistory>
   </ProjectOptions>

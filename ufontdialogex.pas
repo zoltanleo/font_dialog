@@ -386,6 +386,7 @@ begin
   lblFontCharset.Caption:= cFontCharSet;
   btnApplyFilter.Caption:= cBtnApplyFilter;
   FCurrentFontSize:= SelfFont.Size;
+  if (SelfFont.Size = 0) then FCurrentFontSize:= Screen.SystemFont.Size;
   edtFontSize.Text:= IntToStr(FCurrentFontSize);
   clboxFontColor.Selected:= SelfFont.Color;
   chbStrike.Checked:= (fsStrikeOut in SelfFont.Style);
