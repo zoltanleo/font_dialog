@@ -4,6 +4,7 @@ To do:
 
 ----------
 
+<<<<<<< HEAD
 v.0.0.33
 
 - в edtFontSizeEditingDone для Darwin закомментирован код из-за ошибки "List index (-1) out of bounds" 
@@ -72,6 +73,8 @@ v.0.0.20
 
 - коммит в новую ветку branch_0_0_16
 
+=======
+>>>>>>> origin/main
 v.0.0.19
 
 - добавлен обработчик для edtFamily и изменен обработчик lbxFontSizesClick

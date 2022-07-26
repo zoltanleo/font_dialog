@@ -35,7 +35,11 @@ type
     chbUnderLine: TCheckBox;
     clboxFontColor: TColorBox;
     edtFontSize: TEdit;
+<<<<<<< HEAD
     edtFontFamily: TEdit;
+=======
+    edtFamily: TEdit;
+>>>>>>> origin/main
     gbEffects: TGroupBox;
     gbFilter: TGroupBox;
     gdSample: TStringGrid;
@@ -44,6 +48,7 @@ type
     lblFontFamily: TLabel;
     lblSample: TLabel;
     lblFontSizes: TLabel;
+<<<<<<< HEAD
     lblFontStyles: TLabel;
     lbxFontCharset: TListBox;
     lbxFontFamily: TListBox;
@@ -53,6 +58,14 @@ type
     pnlBtn: TPanel;
     scrboxComp: TScrollBox;
     splFamilyFontHorz: TSplitter;
+=======
+    lblStyles: TLabel;
+    lbxCharset: TListBox;
+    lbxFamily: TListBox;
+    lbxFontSizes: TListBox;
+    lbxStyles: TListBox;
+    scrbxDialog: TScrollBox;
+>>>>>>> origin/main
     splFamilyFontVert: TSplitter;
     splgbEffects: TSplitter;
     procedure btnResetTextClick(Sender: TObject);
@@ -60,13 +73,18 @@ type
     procedure chbStrikeChange(Sender: TObject);
     procedure chbUnderLineChange(Sender: TObject);
     procedure clboxFontColorChange(Sender: TObject);
+<<<<<<< HEAD
     procedure edtFontFamilyEditingDone(Sender: TObject);
+=======
+    procedure edtFamilyEditingDone(Sender: TObject);
+>>>>>>> origin/main
     procedure edtFontSizeEditingDone(Sender: TObject);
     procedure edtFontSizeKeyPress(Sender: TObject; var Key: char);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
+<<<<<<< HEAD
     procedure lbxFontFamilyClick(Sender: TObject);
     procedure lbxFontCharsetClick(Sender: TObject);
     procedure lbxFontSizesClick(Sender: TObject);
@@ -74,6 +92,15 @@ type
   private
     FFontSizeValueMax: PtrInt;
     FFontSizeValueMin: PtrInt;
+=======
+    procedure lbxFamilyClick(Sender: TObject);
+    procedure lbxCharsetClick(Sender: TObject);
+    procedure lbxFontSizesClick(Sender: TObject);
+    procedure lbxStylesClick(Sender: TObject);
+  private
+    FFontSizeMaxValue: PtrUInt;
+    FFontSizeMinValue: PtrUInt;
+>>>>>>> origin/main
     FSelfFont: TFont;
     FTime: LongWord;
     FIniTime: LongWord;
@@ -92,6 +119,8 @@ type
     procedure UpdateFont(F: TFont);
     procedure FillcbbCharSet;
   public
+    property FontSizeMinValue: PtrUInt read FFontSizeMinValue write FFontSizeMinValue;
+    property FontSizeMaxValue: PtrUInt read FFontSizeMaxValue write FFontSizeMaxValue;
     property SelfFont: TFont read FSelfFont write SetSelfFont;
     property FontSizeValueMin: PtrInt read FFontSizeValueMin write FFontSizeValueMin;
     property FontSizeValueMax: PtrInt read FFontSizeValueMax write FFontSizeValueMax;
@@ -101,8 +130,14 @@ type
   end; 
 
 const
+<<<<<<< HEAD
   cFontSizeValueMin = 4;
   cFontSizeValueMax = 100;
+=======
+  cFontSizeMinValue = 4;
+  cFontSizeMaxValue = 100;
+
+>>>>>>> origin/main
 var
   frmFontDialogEx: TfrmFontDialogEx;
 
@@ -183,6 +218,7 @@ begin
     NeedTTF := True
   else
     with metric.ntmentm do
+<<<<<<< HEAD
       if (tmDigitizedAspectY <> 0) then
       begin
         n:= (tmHeight-tmInternalLeading)*72 + tmDigitizedAspectY shr 1;
@@ -191,6 +227,15 @@ begin
         begin
           s := IntToStr(n)+'*'; // font sizes with * indicate raster fonts
           if LSizes.IndexOf(s)<0 then
+=======
+      if tmDigitizedAspectY <> 0 then begin
+        n := (tmHeight-tmInternalLeading) * 72 + tmDigitizedAspectY shr 1;
+        n := n div tmDigitizedAspectY;
+        if (n > 0) then
+        begin
+          s:= IntToStr(n)+'*'; // font sizes with * indicate raster fonts
+          if (LSizes.IndexOf(s) < 0) then
+>>>>>>> origin/main
             LSizes.AddObject(s, TObject(ptrint(n)));
         end;
       end;
@@ -227,6 +272,7 @@ begin
   SelectFont;
 end;
 
+<<<<<<< HEAD
 procedure TfrmFontDialogEx.edtFontFamilyEditingDone(Sender: TObject);
 var
   n: PtrInt = 0;
@@ -286,13 +332,42 @@ begin
           Break;
         end;
       end;
+=======
+procedure TfrmFontDialogEx.edtFamilyEditingDone(Sender: TObject);
+begin
+  if (lbxFamily.Items.IndexOf(UTF8Trim(edtFamily.Text)) > -1)
+  then
+    begin
+      lbxFamily.ItemIndex:= lbxFamily.Items.IndexOf(UTF8Trim(edtFamily.Text));
+      lbxFamilyClick(nil);
+    end
+  else
+    if (lbxFamily.ItemIndex > -1)
+      then edtFamily.Text:= lbxFamily.Items[lbxFamily.ItemIndex];
+end;
+
+procedure TfrmFontDialogEx.edtFontSizeEditingDone(Sender: TObject);
+begin
+  if (StrToInt(edtFontSize.Text) < FontSizeMinValue)
+    then edtFontSize.Text:= IntToStr(FontSizeMinValue);
+
+  if (StrToInt(edtFontSize.Text) > FontSizeMaxValue)
+    then edtFontSize.Text:= IntToStr(FontSizeMaxValue);
+
+  if (lbxFontSizes.Items.IndexOf(edtFontSize.Text) > -1)
+    then lbxFontSizes.ItemIndex:= lbxFontSizes.Items.IndexOf(edtFontSize.Text)
+    else lbxFontSizes.ItemIndex:= -1;
+>>>>>>> origin/main
 
   SelectFont;
 end;
 
 procedure TfrmFontDialogEx.edtFontSizeKeyPress(Sender: TObject; var Key: char);
 begin
+<<<<<<< HEAD
   //only numbers and backspace key are allowed to be pressed
+=======
+>>>>>>> origin/main
   if ((Ord(Key) <> VK_BACK) and ((ord(Key) < VK_0) or (ord(Key) > VK_9))) then Key:= #0;
 end;
 
@@ -309,17 +384,35 @@ var
 begin
   FCharSize.cx:= Self.Canvas.TextWidth('W');
   FCharSize.cy:= Self.Canvas.TextHeight('Wj');
+  FFontSizeMinValue:= cFontSizeMinValue;
+  FFontSizeMaxValue:= cFontSizeMaxValue;
 
   FillcbbCharSet;
   ResetSampleText;
 
   FSelfFont:= TFont.Create;
   FSelfFont.Assign(Screen.SystemFont);
+<<<<<<< HEAD
   FCurrentFontSize:= Screen.SystemFont.Size;
   FFontSizeValueMin:= cFontSizeValueMin;
   FFontSizeValueMax:= cFontSizeValueMax;
   edtFontSize.MaxLength:= 3;
 
+=======
+
+  edtFontSize.MaxLength:= 3;
+
+  with scrbxDialog do
+  begin
+    BorderStyle:= bsNone;
+    HorzScrollBar.Smooth:= True;
+    HorzScrollBar.Tracking:= True;
+    VertScrollBar.Smooth:= True;
+    VertScrollBar.Tracking:= True;
+    AutoSize:= True;
+  end;
+
+>>>>>>> origin/main
   with Self do
   begin
     //{darwin w: 13 | h: 15}
@@ -375,7 +468,11 @@ procedure TfrmFontDialogEx.FormShow(Sender: TObject);
 var
   i: PtrInt = -1;
 begin
+<<<<<<< HEAD
   lblFontStyles.Caption:= cFontStyles;
+=======
+  lblStyles.Caption:= cFontStyles;
+>>>>>>> origin/main
   lblFontSizes.Caption:= cFontSize;
   gbEffects.Caption:= cFontEffects;
   chbStrike.Caption:= cStrikeout;
@@ -393,12 +490,29 @@ begin
 
   LoadFontlist;
 
+<<<<<<< HEAD
   if (lbxFontFamily.ItemIndex < 0)
     then edtFontFamily.Clear
     else edtFontFamily.Text:= lbxFontFamily.Items[lbxFontFamily.ItemIndex];
 
   lbxFontCharsetClick(nil);
   if (lbxFontCharset.Count > 0) then
+=======
+  if (lbxFamily.ItemIndex < 0)
+    then edtFamily.Clear
+    else
+      if (edtFamily.Text <> lbxFamily.Items[lbxFamily.ItemIndex])
+        then edtFamily.Text:= lbxFamily.Items[lbxFamily.ItemIndex];
+
+  if (lbxFontSizes.ItemIndex < 0)
+    then edtFontSize.Clear
+    else
+      if (UTF8Trim(edtFontSize.Text) <> lbxFontSizes.Items[lbxFontSizes.ItemIndex])
+        then edtFontSize.Text:= lbxFontSizes.Items[lbxFontSizes.ItemIndex];
+
+  lbxCharsetClick(nil);
+  if (lbxCharset.Count > 0) then
+>>>>>>> origin/main
   begin
     i:= cbbFontCharset.Items.IndexOf(lbxFontCharset.Items[lbxFontCharset.ItemIndex]);
     if (i <> -1)
@@ -409,6 +523,7 @@ begin
   lbxFontStylesClick(Self);
   edtFontSizeEditingDone(Self);
 
+<<<<<<< HEAD
   lbxFontSizes.Constraints.MinWidth:=  lblFontSizes.Width + FCharSize.cx * 2;
   lbxFontStyles.Constraints.MinWidth:= lblFontStyles.Width + FCharSize.cx * 2;
   gbEffects.Constraints.MinWidth:= chbStrike.Width * 2 + FCharSize.cx * 2;
@@ -416,6 +531,28 @@ begin
   lbxFontFamily.Constraints.MinWidth:= lblFontFamily.Width + FCharSize.cx * 2;
   lbxFontFamily.Constraints.MinHeight:= FCharSize.cx * 4;
   lbxFontFamily.Constraints.MaxHeight:= FCharSize.cx * 14;
+=======
+  if (fsItalic in SelfFont.Style) then n:= (n or 1); //fsItalic and regular
+  if (fsBold in SelfFont.Style) then n:= (n or 2);//fsbold and regular/italic
+
+  i:= lbxStyles.Items.IndexOfObject(TObject(PtrInt(n)));
+
+  if (i <> -1)
+    then lbxStyles.ItemIndex:= i
+    else
+      if (lbxStyles.Count > 0)
+        then lbxStyles.ItemIndex:= 0
+        else lbxStyles.ItemIndex:= -1;
+
+  lbxStylesClick(Self);
+
+  lbxFontSizes.Constraints.MinWidth:=  lblFontSizes.Width + FCharSize.cx * 2;
+  lbxStyles.Constraints.MinWidth:= lblStyles.Width + FCharSize.cx * 2;
+  gbEffects.Constraints.MinWidth:= chbStrike.Width * 2 + FCharSize.cx * 2;
+  grid.Constraints.MinWidth:= gbEffects.Constraints.MinWidth;
+  lbxFamily.Constraints.MinWidth:= lblFontFaceList.Width + FCharSize.cx * 2;
+  lbxFamily.Constraints.MinHeight:= lbxFamily.ItemHeight + FCharSize.cx * 2;
+>>>>>>> origin/main
 
   gbFilter.Constraints.MinHeight:= cbbFontCharset.Top +
                                    cbbFontPitch.BorderSpacing.Top +
@@ -430,16 +567,20 @@ begin
                            lbxFontFamily.BorderSpacing.Right +
                            FCharSize.cx * 2;
 
+<<<<<<< HEAD
   splFamilyFontHorz.Top:= lbxFontFamily.Top +
                           lbxFontFamily.Height +
                           lbxFontFamily.BorderSpacing.Bottom +
                           FCharSize.cx * 2;
 
+=======
+>>>>>>> origin/main
   splgbEffects.Left:= gbEffects.Left +
                       gbEffects.Width +
                       gbEffects.BorderSpacing.Right +
                       FCharSize.cx * 2;
 
+<<<<<<< HEAD
   with pnlComp do
   begin
     AutoSize:= True;
@@ -478,15 +619,30 @@ begin
     AutoSize:= True;
     BorderStyle:= bsSizeable;
   end;
+=======
+  Self.BorderStyle:= bsSizeable;
+>>>>>>> origin/main
 end;
 
 procedure TfrmFontDialogEx.lbxFontFamilyClick(Sender: TObject);
 var
   i: PtrInt = -1;
 begin
+<<<<<<< HEAD
   if (lbxFontFamily.ItemIndex < 0)
     then edtFontFamily.Clear
     else edtFontFamily.Text:= lbxFontFamily.Items[lbxFontFamily.ItemIndex];
+=======
+  LoadFamilyFonts(-1);
+
+  if (lbxFamily.ItemIndex < 0)
+    then edtFamily.Clear
+    else
+      if (edtFamily.Text <> lbxFamily.Items[lbxFamily.ItemIndex])
+        then edtFamily.Text:= lbxFamily.Items[lbxFamily.ItemIndex];
+
+  lbxCharsetClick(nil);
+>>>>>>> origin/main
 
   LoadFamilyFonts(-1);
   lbxFontCharsetClick(nil);
@@ -513,6 +669,7 @@ begin
 end;
 
 procedure TfrmFontDialogEx.lbxFontSizesClick(Sender: TObject);
+<<<<<<< HEAD
 var
   tmpStr: String = '';
 begin
@@ -522,6 +679,12 @@ begin
   if (edtFontSize.Text <> tmpStr) then edtFontSize.Text:= tmpStr;
 
   FCurrentFontSize:= StrToInt(tmpStr);
+=======
+begin
+  if (lbxFontSizes.ItemIndex < 0) then lbxFontSizes.ItemIndex:= 0;
+  if (UTF8Trim(edtFontSize.Text) <> lbxFontSizes.Items[lbxFontSizes.ItemIndex])
+    then edtFontSize.Text:= lbxFontSizes.Items[lbxFontSizes.ItemIndex];
+>>>>>>> origin/main
 
   SelectFont;
 end;
@@ -573,9 +736,15 @@ procedure TfrmFontDialogEx.EnableEvents(Ok: boolean; Lb: TListbox = nil);
   begin
     Event := nil;
     if ok then begin
+<<<<<<< HEAD
       if l=lbxFontFamily then Event := @lbxFontFamilyClick else
       if l=lbxFontStyles then Event := @lbxFontStylesClick else
       if l=lbxFontCharset then Event := @lbxFontCharsetClick else
+=======
+      if l=lbxFamily then Event := @lbxFamilyClick else
+      if l=lbxStyles then Event := @lbxStylesClick else
+      if l=lbxCharset then Event := @lbxCharsetClick else
+>>>>>>> origin/main
       if l=lbxFontSizes then Event := @lbxFontSizesClick;
     end;
     L.OnClick := Event;
@@ -584,9 +753,15 @@ begin
   if Lb<>nil then
     SetEvent(Lb)
   else begin
+<<<<<<< HEAD
     SetEvent(lbxFontFamily);
     SetEvent(lbxFontStyles);
     SetEvent(lbxFontCharset);
+=======
+    SetEvent(lbxFamily);
+    SetEvent(lbxStyles);
+    SetEvent(lbxCharset);
+>>>>>>> origin/main
     SetEvent(lbxFontSizes);
   end;
 end;
@@ -594,6 +769,7 @@ end;
 procedure TfrmFontDialogEx.SelectFont;
 var
   i: integer;
+<<<<<<< HEAD
 begin
   if (lbxFontFamily.ItemIndex >= 0) then
     if (lbxFontCharset.ItemIndex >= 0) then
@@ -611,6 +787,42 @@ begin
         FSelfFont.Color:= clboxFontColor.Selected;
         UpdateFont(FSelfFont);
       end;
+=======
+  function GetFontSize(s: string): String;
+  begin
+    i := pos('*',s);
+    if (i <> 0) then
+      result:= Copy(S, 1, i-1)
+    else
+      result:= s;
+  end;
+begin
+  if (lbxFamily.ItemIndex >= 0) then
+    if (lbxCharset.ItemIndex >= 0) then
+      if (lbxStyles.ItemIndex >= 0) then
+        if (lbxFontSizes.ItemIndex >= 0) then
+        begin
+          FSelfFont.Name := lbxFamily.Items[lbxFamily.ItemIndex];
+          FSelfFont.CharSet := TFontCharSet(ptrint(lbxCharset.Items.Objects[lbxCharset.ItemIndex]));
+
+          { #todo : переработать этот момент }
+          if (edtFontSize.Text = '') then GetFontSize(lbxFontSizes.Items[lbxFontSizes.ItemIndex]);
+
+          if TryStrToInt(edtFontSize.Text,i)
+            then FSelfFont.Size:= i
+            else FSelfFont.Size:= StrToInt(lbxFontSizes.Items[0]);
+
+          i:= PtrInt(lbxStyles.Items.Objects[lbxStyles.ItemIndex]);
+          FSelfFont.Style:= [];
+          if ((i and 1) <> 0) then FSelfFont.Style:= FSelfFont.Style + [fsItalic];
+          if ((i and 2) <> 0) then FSelfFont.Style:= FSelfFont.Style + [fsBold];
+          if chbUnderLine.Checked then FSelfFont.Style:= FSelfFont.Style + [fsUnderline];
+          if chbStrike.Checked then FSelfFont.Style:= FSelfFont.Style + [fsStrikeOut];
+          FSelfFont.Color:= clboxFontColor.Selected;
+          UpdateFont(FSelfFont);
+          //SaveSelection;
+        end;
+>>>>>>> origin/main
 end;
 
 procedure TfrmFontDialogEx.ResetSampleText;
@@ -630,6 +842,60 @@ begin
   end;
 end;
 
+<<<<<<< HEAD
+=======
+procedure TfrmFontDialogEx.SaveSelection;
+  function doGet(lb: TListbox): string;
+  begin
+    if lb.itemindex>=0 then
+      result := lb.Items[lb.ItemIndex]
+    else
+      result := '';
+  end;
+begin
+  FCurrentFamily := doGet(lbxFamily);
+  FCurrentCharset := doGet(lbxCharset);
+  FCurrentStyle := doGet(lbxStyles);
+  FCurrentSize := doGet(lbxFontSizes);
+  FCurrentColor:= ColorToString(clboxFontColor.Selected);
+end;
+
+procedure TfrmFontDialogEx.RestoreSelection(Sender: TListbox);
+  function GetSelection: string;
+  begin
+    if (Sender.itemindex >= 0) then
+      result := Sender.Items[Sender.ItemIndex]
+    else
+      result := '';
+  end;
+  function GetCurrent: string;
+  begin
+    if Sender=lbxFamily then result := FCurrentFamily else
+    if Sender=lbxCharset then result := FCurrentCharset else
+    if Sender=lbxStyles then result := FCurrentStyle else
+    if Sender=lbxFontSizes then result := FCurrentSize;
+  end;
+var
+  i: Integer;
+  s: string;
+begin
+  s := GetCurrent;
+  if GetSelection <> s then
+  begin
+    i:= Sender.Items.IndexOf(s);
+    if (i <> -1)
+    then
+      begin
+        {$ifdef debug}
+        debugln('RestoreSelection: listbox=',Sender.Name,' Old=',GetSelection,' New=',S);
+        {$endif}
+        if (i <> Sender.ItemIndex) then
+          Sender.ItemIndex := i;
+      end;
+  end;
+end;
+
+>>>>>>> origin/main
 procedure TfrmFontDialogEx.LoadFontList;
 var
   DC: HDC;
@@ -651,8 +917,13 @@ begin
 
   lf.lfPitchAndFamily:= i;
   L:= TStringList.create;
+<<<<<<< HEAD
   lbxFontStyles.Clear;
   lbxFontCharset.Clear;
+=======
+  lbxStyles.Clear;
+  lbxCharset.Clear;
+>>>>>>> origin/main
   lbxFontSizes.Clear;
 
   DC := GetDC(0);
@@ -741,6 +1012,7 @@ begin
     NeedTTF:= False;
     EnumFontFamiliesEX(DC, @Lf, @EnumFamilyFonts, ptrint(LCharset), 0);
     // fill charset listbox if necessary
+<<<<<<< HEAD
     if (LCharset <> nil)
     then begin
           LCharset.Sort;
@@ -782,6 +1054,41 @@ begin
           if (lbxFontSizes.ItemIndex < 0) then
             if (lbxFontSizes.Items.Count > 0) then lbxFontSizes.ItemIndex := 0;
          end;
+=======
+    if LCharset<>nil then begin
+      LCharset.Sort;
+      EnableEvents(False, lbxCharset);
+      lbxCharset.Items.Assign(LCharset);
+      lbxCharset.ItemIndex := -1;
+      EnableEvents(true, lbxCharset);
+    end else begin
+      // fill styles listbox
+      LStyles.Sort;
+      EnableEvents(False, lbxStyles);
+      lbxStyles.Items.Assign(LStyles);
+      lbxStyles.ItemIndex := -1;
+      EnableEvents(true, lbxStyles);
+      RestoreSelection(lbxStyles);
+      if lbxStyles.ItemIndex<0 then begin
+       if lbxStyles.Items.Count>0 then
+          lbxStyles.ItemIndex := 0;
+      end;
+      // fill sizes listbox
+      // any raster font size is already there
+      if NeedTTF then
+        AddScalableSizes;
+      LSizes.CustomSort(@CompareSizes);
+      EnableEvents(False, lbxFontSizes);
+      lbxFontSizes.Items.Assign(LSizes);
+      lbxFontSizes.ItemIndex := -1;
+      EnableEvents(true, lbxFontSizes);
+      RestoreSelection(lbxFontSizes);
+      if lbxFontSizes.ItemIndex<0 then begin
+        if lbxFontSizes.Items.Count>0 then
+          lbxFontSizes.ItemIndex := 0;
+      end;
+    end;
+>>>>>>> origin/main
   finally
     if (LCharset = nil)
     then begin
