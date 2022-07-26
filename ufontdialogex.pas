@@ -266,7 +266,9 @@ begin
 
   FCurrentFontSize:= StrToInt(edtFontSize.Text);
 
+  {$IFNDEF DARWIN}
   lbxFontSizes.ItemIndex:= -1;
+  {$ENDIF}
 
   i:= lbxFontSizes.Items.IndexOf(edtFontSize.Text);
   if (i <> -1)
