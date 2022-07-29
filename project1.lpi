@@ -16,7 +16,7 @@
     <VersionInfo>
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
-      <RevisionNr Value="33"/>
+      <RevisionNr Value="34"/>
       <BuildNr Value="58"/>
     </VersionInfo>
     <BuildModes Active="Default">
@@ -169,18 +169,18 @@
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="217"/>
-        <CursorPos X="37" Y="258"/>
+        <TopLine Value="384"/>
+        <CursorPos Y="389"/>
         <UsageCount Value="94"/>
         <Bookmarks Count="8">
-          <Item0 X="13" Y="608" ID="9"/>
+          <Item0 X="13" Y="612" ID="9"/>
           <Item1 X="6" Y="318" ID="1"/>
-          <Item2 Y="633" ID="4"/>
+          <Item2 Y="637" ID="4"/>
           <Item3 Y="25"/>
-          <Item4 Y="666" ID="3"/>
-          <Item5 X="3" Y="709" ID="5"/>
-          <Item6 X="11" Y="388" ID="2"/>
-          <Item7 Y="799" ID="6"/>
+          <Item4 Y="670" ID="3"/>
+          <Item5 X="3" Y="713" ID="5"/>
+          <Item6 Y="389" ID="2"/>
+          <Item7 Y="803" ID="6"/>
         </Bookmarks>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -279,7 +279,7 @@
         <UsageCount Value="11"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="25">
+    <JumpHistory HistoryIndex="23">
       <Position>
         <Filename Value="ufontdialogex.pas"/>
         <Caret Line="902" Column="11" TopLine="890"/>
@@ -370,19 +370,11 @@
       </Position>
       <Position>
         <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="316" Column="11" TopLine="320"/>
-      </Position>
-      <Position>
-        <Filename Value="ufontdialogex.pas"/>
         <Caret Line="473" TopLine="472"/>
       </Position>
       <Position>
         <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="310" TopLine="335"/>
-      </Position>
-      <Position>
-        <Filename Value="ufontdialogex.pas"/>
-        <Caret Line="386" Column="11" TopLine="401"/>
+        <Caret Line="258" Column="37" TopLine="160"/>
       </Position>
     </JumpHistory>
   </ProjectOptions>

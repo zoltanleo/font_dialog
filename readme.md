@@ -4,6 +4,10 @@ To do:
 
 ----------
 
+v.0.0.34
+
+- сделана поправка на возможное значение SelfFont.Size = 0
+
 v.0.0.33
 
 - в edtFontSizeEditingDone для Darwin закомментирован код из-за ошибки "List index (-1) out of bounds" 
